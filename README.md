@@ -1,3 +1,30 @@
+# Democracy PWA V3
+
+This is the third iteration of the Democracy frontend.
+
+Uses typescript, axios, and rsuite.
+
+The _Democracy_ project by _Small Minds_ is designed to:
+
+1. Provide a secure and fair voting system for small elections.
+1. Give election runners the ability to easily manage a set of open positions.
+1. Give candidates a simple way to run for any given position.
+1. Ensure election runners can restrict applicants by email domain.
+1. Use simple email verification to ensure users are part of any given org.
+
+## Contributing
+
+When adding new features, please use the semantic commit style with these labels:
+
+- **feat**: A new feature
+- **fix**: A bug fix
+- **docs**: Documentation only changes
+- **style**: Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)
+- **refactor**: A code change that neither fixes a bug nor adds a feature
+- **perf**: A code change that improves performance
+- **test**: Adding missing or correcting existing tests
+- **chore**: Changes to the build process or auxiliary tools and libraries such as documentation generation
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

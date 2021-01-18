@@ -15,7 +15,16 @@ const config = {
   },
 };
 
+export const api = axios.create({
+  baseURL: getBackendURL(),
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  timeout: 100,
+});
+
 // DO NOT USE AXIOS OUTSIDE OF THIS PAGE.
+// Instead, import the 'api' object exported from this file.
 
 // Token Info
 // Access Token expires after five minutes.
@@ -78,7 +87,7 @@ export function setNewRefreshToken(token: string) {
 }
 
 export function wakeUpBackend(successFunction: () => null) {
-  axios
+  api
     .get(awakeURL, config)
     .then((response) => {
       if (response.status === 200) {
@@ -99,7 +108,7 @@ export function login(
   successFunction: (response: AxiosResponse) => any
 ) {
   console.log(`POSTing login url: ${loginURL}`);
-  axios
+  api
     .post(
       loginURL,
       {
@@ -154,7 +163,7 @@ export async function isAuthenticated() {
     const refreshToken = localStorage.getItem('refresh-token') || null;
     if (refreshToken == null) return false; // Fail if no refresh token.
     try {
-      const response = await axios.post(
+      const response = await api.post(
         refreshURL,
         {
           refresh: refreshToken,

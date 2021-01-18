@@ -1,5 +1,7 @@
 # Democracy PWA V3
 
+![CI](https://github.com/Small-Minds/Democracy-PWA-V3/workflows/CI/badge.svg?branch=master)
+
 This is the third iteration of the Democracy frontend.
 
 Uses typescript, axios, and rsuite.

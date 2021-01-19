@@ -36,19 +36,6 @@ const loginURL = `${backendUrl}/api/token/obtain/`;
 const refreshURL = `${backendUrl}/api/token/refresh/`;
 const awakeURL = `${backendUrl}/api/awake/`;
 
-type Credentials = {
-  credentials: {
-    authenticated: boolean;
-    token: string;
-    tokenExpiry: Date | undefined;
-    refreshToken: string;
-    refreshTokenExpiry: Date | undefined;
-  };
-  setCredentials: ({ type }: { type: string }) => void;
-};
-
-// Context Object
-export const Credentials = createContext<Credentials>({} as Credentials);
 
 export function getAccessToken() {
   const token = localStorage.getItem('token') || null;

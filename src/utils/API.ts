@@ -205,12 +205,10 @@ export function isRefreshTokenValid() {
 export function isExpiryDateValid(date: Date | number) {
   const now = new Date();
   if (date instanceof Date) {
-    console.log('Date given as date object.');
     return date.getTime() >= now.getTime();
   } else if (typeof date === 'number') {
-    console.log('Date given as number.');
     return date >= now.getTime();
   }
-  console.log('Provided date is invalid.');
+  console.error('Provided date is invalid.');
   return false;
 }

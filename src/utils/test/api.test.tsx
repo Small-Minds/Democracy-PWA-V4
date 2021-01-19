@@ -1,4 +1,4 @@
-import { add, isExpiryDateValid } from './../API';
+import { add, isExpiryDateValid } from '../API';
 
 test('renders vote link', () => {
   expect(add(1, 2)).toBe(3);

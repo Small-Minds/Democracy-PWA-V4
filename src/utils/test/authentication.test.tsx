@@ -1,4 +1,4 @@
-import { add } from './../Authentication';
+import { add } from '../Authentication';
 
 // Push... Github CI Can't find /Auth... file?
 

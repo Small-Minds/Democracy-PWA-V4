@@ -4,6 +4,6 @@ import App from "./App";
 
 test("renders vote link", () => {
   render(<App />);
-  const linkElement = screen.getByText(/Vote/i);
+  const linkElement = screen.getByText(/Democracy/i);
   expect(linkElement).toBeInTheDocument();
 });

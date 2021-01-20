@@ -1,5 +1,6 @@
 import {
   Button,
+  Col,
   Container,
   Content,
   FlexboxGrid,
@@ -27,10 +28,17 @@ function App() {
     <div>
       <Credentials.Provider value={{ credentials, setCredentials }}>
         <FlexboxGrid justify="center">
-          <FlexboxGrid.Item colspan={15}>
+          <FlexboxGrid.Item
+            componentClass={Col}
+            colspan={24}
+            lg={10}
+            md={15}
+            sm={20}
+            xs={23}
+          >
             <Container>
               <Content>
-                <Panel header={<h2>Democracy Prototype 3</h2>}></Panel>
+                <Panel header={<h2>Democracy</h2>}></Panel>
                 <LoggedIn />
                 <SignupForm />
                 <LoginForm />

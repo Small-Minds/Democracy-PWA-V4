@@ -10,6 +10,8 @@ import {
   Button,
   Panel,
   Schema,
+  Notification,
+  ErrorMessage,
 } from 'rsuite';
 import { signup, signupFormData } from '../utils/api/Signup';
 
@@ -72,14 +74,24 @@ function SignupForm() {
         console.log(res);
         setLoading(false);
         setDisabled(true);
+        Notification['success']({
+          title: 'Check your Inbox',
+          description:
+            'Verify your account by opening the email ' +
+            "we've sent you and clicking the link. " +
+            'Thanks for signing up!',
+        });
       })
       .catch((err) => {
         // If errors occur, set them to display on the form.
         setFormErrors(err.response.data);
         const errKeys = Object.keys(err.response.data);
-        if (errKeys.indexOf('non_field_errors') > -1) {
+        const nonFieldErrors: boolean =
+          errKeys.indexOf('non_field_errors') > -1;
+        if (nonFieldErrors) {
           setMiscErrors(err.response.data['non_field_errors']);
         }
+        console.log(err.response);
         setLoading(false);
       });
   };
@@ -115,7 +127,6 @@ function SignupForm() {
             <FormControl name="password2" type="password" disabled={disabled} />
             <HelpBlock>Please enter your password twice.</HelpBlock>
           </FormGroup>
-          {miscErrors ? <HelpBlock>{miscErrors}</HelpBlock> : null}
           <FormGroup>
             <ButtonToolbar>
               <Button
@@ -126,6 +137,15 @@ function SignupForm() {
               >
                 Submit
               </Button>
+              {miscErrors ? (
+                <Button
+                  appearance="subtle"
+                  onClick={submitFormData}
+                  disabled={disabled}
+                >
+                  {miscErrors}
+                </Button>
+              ) : null}
             </ButtonToolbar>
           </FormGroup>
         </Form>

@@ -11,6 +11,7 @@ import {
   Panel,
   Schema,
 } from 'rsuite';
+import { signup, signupFormData } from '../utils/api/Signup';
 
 const msg_required = 'This field is required.';
 const model = Schema.Model({
@@ -20,7 +21,7 @@ const model = Schema.Model({
   username: Schema.Types.StringType()
     .isRequired(msg_required)
     .minLength(1, msg_required),
-  email_address: Schema.Types.StringType()
+  email: Schema.Types.StringType()
     .isEmail('Please use a valid email address.')
     .isRequired(msg_required)
     .minLength(1, msg_required),
@@ -41,25 +42,46 @@ function SignupForm() {
   const [loading, setLoading] = useState<boolean>(false);
   const [disabled, setDisabled] = useState<boolean>(false);
 
-  const [formData, setFormData] = useState<any>({
+  const [formData, setFormData] = useState<Record<string, any>>({
     name: '',
     username: '',
-    email_address: '',
+    email: '',
     password1: '',
     password2: '',
   });
-  const [formErrors, setFormErrors] = useState<any>({});
+  const [formErrors, setFormErrors] = useState<Record<string, any>>({});
+  const [miscErrors, setMiscErrors] = useState<string>('');
 
   const submitFormData = async () => {
+    // Remove errors and set button to loading state.
     setLoading(true);
+    setMiscErrors('');
+
     // First, check the form for errors.
     if (!form.check()) {
+      console.log('Form has errors.');
+      console.log(formErrors);
       setLoading(false);
       return;
     }
 
-    // Then, submit.
+    // Then, submit the form to the backend.
     console.log(formData);
+    signup(formData)
+      .then((res) => {
+        console.log(res);
+        setLoading(false);
+        setDisabled(true);
+      })
+      .catch((err) => {
+        // If errors occur, set them to display on the form.
+        setFormErrors(err.response.data);
+        const errKeys = Object.keys(err.response.data);
+        if (errKeys.indexOf('non_field_errors') > -1) {
+          setMiscErrors(err.response.data['non_field_errors']);
+        }
+        setLoading(false);
+      });
   };
 
   return (
@@ -75,29 +97,31 @@ function SignupForm() {
         >
           <FormGroup>
             <ControlLabel>First &amp; Last Name</ControlLabel>
-            <FormControl name="name" />
+            <FormControl name="name" disabled={disabled} />
           </FormGroup>
           <FormGroup>
             <ControlLabel>Username</ControlLabel>
-            <FormControl name="username" />
+            <FormControl name="username" disabled={disabled} />
           </FormGroup>
           <FormGroup>
             <ControlLabel>Email</ControlLabel>
-            <FormControl name="email_address" type="email" />
+            <FormControl name="email" type="email" disabled={disabled} />
           </FormGroup>
           <FormGroup>
             <ControlLabel>Password</ControlLabel>
-            <FormControl name="password1" type="password" />
+            <FormControl name="password1" type="password" disabled={disabled} />
           </FormGroup>
           <FormGroup>
-            <FormControl name="password2" type="password" />
+            <FormControl name="password2" type="password" disabled={disabled} />
             <HelpBlock>Please enter your password twice.</HelpBlock>
           </FormGroup>
+          {miscErrors ? <HelpBlock>{miscErrors}</HelpBlock> : null}
           <FormGroup>
             <ButtonToolbar>
               <Button
                 appearance="primary"
                 loading={loading}
+                disabled={disabled}
                 onClick={submitFormData}
               >
                 Submit

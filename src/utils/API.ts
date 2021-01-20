@@ -20,7 +20,6 @@ export const api = axios.create({
   headers: {
     'Content-Type': 'application/json',
   },
-  timeout: 100,
 });
 
 // DO NOT USE AXIOS OUTSIDE OF THIS PAGE.
@@ -35,7 +34,6 @@ export const api = axios.create({
 const loginURL = `${backendUrl}/api/token/obtain/`;
 const refreshURL = `${backendUrl}/api/token/refresh/`;
 const awakeURL = `${backendUrl}/api/awake/`;
-
 
 export function getAccessToken() {
   const token = localStorage.getItem('token') || null;

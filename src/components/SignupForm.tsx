@@ -14,16 +14,28 @@ import {
 
 const msg_required = 'This field is required.';
 const model = Schema.Model({
-  name: Schema.Types.StringType().isRequired(msg_required),
-  username: Schema.Types.StringType().isRequired(msg_required),
+  name: Schema.Types.StringType()
+    .isRequired(msg_required)
+    .minLength(1, msg_required),
+  username: Schema.Types.StringType()
+    .isRequired(msg_required)
+    .minLength(1, msg_required),
   email_address: Schema.Types.StringType()
     .isEmail('Please use a valid email address.')
-    .isRequired(msg_required),
-  password1: Schema.Types.StringType().isRequired(msg_required),
-  password2: Schema.Types.StringType().isRequired(msg_required),
+    .isRequired(msg_required)
+    .minLength(1, msg_required),
+  password1: Schema.Types.StringType()
+    .isRequired(msg_required)
+    .minLength(1, msg_required),
+  password2: Schema.Types.StringType()
+    .isRequired(msg_required)
+    .minLength(1, msg_required),
 });
 
 function SignupForm() {
+  // This variable is required for rsuite forms.
+  let form: any = undefined;
+
   // When the app first starts, it is unauthenticated.
   const ctx = useContext(Credentials);
   const [loading, setLoading] = useState<boolean>(false);
@@ -39,6 +51,14 @@ function SignupForm() {
   const [formErrors, setFormErrors] = useState<any>({});
 
   const submitFormData = async () => {
+    setLoading(true);
+    // First, check the form for errors.
+    if (!form.check()) {
+      setLoading(false);
+      return;
+    }
+
+    // Then, submit.
     console.log(formData);
   };
 
@@ -51,23 +71,19 @@ function SignupForm() {
           formValue={formData}
           formError={formErrors}
           model={model}
+          ref={(ref: any) => (form = ref)}
         >
-          <FormGroup controlId="name">
+          <FormGroup>
             <ControlLabel>First &amp; Last Name</ControlLabel>
             <FormControl name="name" />
           </FormGroup>
           <FormGroup>
             <ControlLabel>Username</ControlLabel>
             <FormControl name="username" />
-            <HelpBlock tooltip>You will use this username to log in.</HelpBlock>
           </FormGroup>
           <FormGroup>
             <ControlLabel>Email</ControlLabel>
             <FormControl name="email_address" type="email" />
-            <HelpBlock tooltip>
-              The primary email address for your account. You can add more
-              later.
-            </HelpBlock>
           </FormGroup>
           <FormGroup>
             <ControlLabel>Password</ControlLabel>
@@ -75,7 +91,7 @@ function SignupForm() {
           </FormGroup>
           <FormGroup>
             <FormControl name="password2" type="password" />
-            <HelpBlock>Enter your password twice.</HelpBlock>
+            <HelpBlock>Please enter your password twice.</HelpBlock>
           </FormGroup>
           <FormGroup>
             <ButtonToolbar>

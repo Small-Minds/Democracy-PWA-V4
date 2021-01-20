@@ -9,6 +9,6 @@ export function getBackendURL() {
   ) {
     return 'http://localhost:8000';
   } else {
-    return 'https://xalgo-system.herokuapp.com';
+    return 'https://sm-democracy-v1.herokuapp.com';
   }
 }

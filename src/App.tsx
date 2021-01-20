@@ -14,6 +14,7 @@ import LoggedIn from './components/LoggedIn';
 import SignupForm from './components/SignupForm';
 import LoginForm from './components/LoginForm';
 import { getAccessToken, getRefreshToken, isAuthenticated } from './utils/API';
+import NewElectionButton from './components/NewElectionButton';
 
 function App() {
   // When the app first starts, it is unauthenticated.
@@ -66,6 +67,9 @@ function App() {
                 <LoggedIn />
                 <SignupForm />
                 <LoginForm />
+                <Panel header={<h2>Election Tools</h2>} bordered>
+                  <NewElectionButton />
+                </Panel>
               </Content>
             </Container>
           </FlexboxGrid.Item>

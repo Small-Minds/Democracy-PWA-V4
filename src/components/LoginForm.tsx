@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
-import { Credentials } from '../utils/Authentication';
+import { CredentialData, Credentials } from '../utils/Authentication';
 import {
   Form,
   FormGroup,
@@ -11,8 +11,12 @@ import {
   Panel,
   Schema,
   Notification,
+  ErrorMessage,
 } from 'rsuite';
-import { signup } from '../utils/api/Signup';
+import { signup, signupFormData } from '../utils/api/Signup';
+import { login } from '../utils/api/Login';
+import { couldStartTrivia } from 'typescript';
+import { getAccessToken, getRefreshToken } from '../utils/API';
 
 /**
  * This form can be placed anywhere below the Credentials context provider.
@@ -20,25 +24,15 @@ import { signup } from '../utils/api/Signup';
 
 const msg_required = 'This field is required.';
 const model = Schema.Model({
-  name: Schema.Types.StringType()
-    .isRequired(msg_required)
-    .minLength(1, msg_required),
   username: Schema.Types.StringType()
     .isRequired(msg_required)
     .minLength(1, msg_required),
-  email: Schema.Types.StringType()
-    .isEmail('Please use a valid email address.')
-    .isRequired(msg_required)
-    .minLength(1, msg_required),
-  password1: Schema.Types.StringType()
-    .isRequired(msg_required)
-    .minLength(1, msg_required),
-  password2: Schema.Types.StringType()
+  password: Schema.Types.StringType()
     .isRequired(msg_required)
     .minLength(1, msg_required),
 });
 
-function SignupForm() {
+function LoginForm() {
   // This variable is required for rsuite forms.
   let form: any = undefined;
 
@@ -48,11 +42,8 @@ function SignupForm() {
   const [disabled, setDisabled] = useState<boolean>(false);
 
   const [formData, setFormData] = useState<Record<string, any>>({
-    name: '',
     username: '',
-    email: '',
-    password1: '',
-    password2: '',
+    password: '',
   });
   const [formErrors, setFormErrors] = useState<Record<string, any>>({});
   const [miscErrors, setMiscErrors] = useState<string>('');
@@ -81,17 +72,25 @@ function SignupForm() {
 
     // Then, submit the form to the backend.
     console.log(formData);
-    signup(formData)
+    login(formData)
       .then((res) => {
         console.log(res);
         setLoading(false);
         setDisabled(true);
+        if (!ctx) throw Error('Please refresh the page.');
+        const access = getAccessToken();
+        const refresh = getRefreshToken();
+        const newCreds: CredentialData = {
+          authenticated: true,
+          token: access.token,
+          tokenExpiry: access.expiry,
+          refreshToken: refresh.refreshToken,
+          refreshTokenExpiry: refresh.refreshTokenExpiry,
+        };
+        ctx.setCredentials(newCreds);
         Notification['success']({
-          title: 'Check your Inbox',
-          description:
-            'Verify your account by opening the email ' +
-            "we've sent you and clicking the link. " +
-            'Thanks for signing up!',
+          title: 'Logged In',
+          description: 'Welcome back to Democracy by Small Minds.',
         });
       })
       .catch((err) => {
@@ -100,8 +99,11 @@ function SignupForm() {
         const errKeys = Object.keys(err.response.data);
         const nonFieldErrors: boolean =
           errKeys.indexOf('non_field_errors') > -1;
+        const detail: boolean = errKeys.indexOf('detail') > -1;
         if (nonFieldErrors) {
           setMiscErrors(err.response.data['non_field_errors']);
+        } else if (detail) {
+          setMiscErrors(err.response.data['detail']);
         }
         console.log(err.response);
         setLoading(false);
@@ -110,7 +112,7 @@ function SignupForm() {
 
   return (
     <div>
-      <Panel header={<h2>Sign Up</h2>} bordered>
+      <Panel header={<h2>Log In</h2>} bordered>
         <Form
           onChange={(newData) => setFormData(newData)}
           onCheck={(newErrors) => setFormErrors(newErrors)}
@@ -120,24 +122,12 @@ function SignupForm() {
           ref={(ref: any) => (form = ref)}
         >
           <FormGroup>
-            <ControlLabel>First &amp; Last Name</ControlLabel>
-            <FormControl name="name" disabled={disabled} />
-          </FormGroup>
-          <FormGroup>
             <ControlLabel>Username</ControlLabel>
             <FormControl name="username" disabled={disabled} />
           </FormGroup>
           <FormGroup>
-            <ControlLabel>Email</ControlLabel>
-            <FormControl name="email" type="email" disabled={disabled} />
-          </FormGroup>
-          <FormGroup>
             <ControlLabel>Password</ControlLabel>
-            <FormControl name="password1" type="password" disabled={disabled} />
-          </FormGroup>
-          <FormGroup>
-            <FormControl name="password2" type="password" disabled={disabled} />
-            <HelpBlock>Please enter your password twice.</HelpBlock>
+            <FormControl name="password" type="password" disabled={disabled} />
           </FormGroup>
           <FormGroup>
             <ButtonToolbar>
@@ -167,4 +157,4 @@ function SignupForm() {
   );
 }
 
-export default SignupForm;
+export default LoginForm;

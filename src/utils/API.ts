@@ -31,14 +31,14 @@ export const api = axios.create({
 
 // Build URLs
 // const registrationURL = `${backendUrl}/rest-auth/registration/`;
-const loginURL = `${backendUrl}/api/token/obtain/`;
-const refreshURL = `${backendUrl}/api/token/refresh/`;
-const awakeURL = `${backendUrl}/api/awake/`;
+const refreshURL = `/api/token/refresh/`;
+const awakeURL = `/api/awake/`;
 
 export function getAccessToken() {
-  const token = localStorage.getItem('token') || null;
+  const token = localStorage.getItem('token') || '';
   const expiry =
-    Date.parse(localStorage.getItem('token-expiry') || '') || undefined;
+    new Date(Date.parse(localStorage.getItem('token-expiry') || '')) ||
+    undefined;
   const data = {
     token: token,
     expiry: expiry,
@@ -47,9 +47,10 @@ export function getAccessToken() {
 }
 
 export function getRefreshToken() {
-  const token = localStorage.getItem('refresh-token') || null;
+  const token = localStorage.getItem('refresh-token') || '';
   const expiry =
-    Date.parse(localStorage.getItem('refresh-token-expiry') || '') || undefined;
+    new Date(Date.parse(localStorage.getItem('refresh-token-expiry') || '')) ||
+    undefined;
 
   const data = {
     refreshToken: token,
@@ -86,48 +87,12 @@ export function wakeUpBackend(successFunction: () => null) {
     });
 }
 
-export function login(
-  username: string,
-  password: string,
-  errorMsgFunction: (err: Error) => any,
-  successFunction: (response: AxiosResponse) => any
-) {
-  console.log(`POSTing login url: ${loginURL}`);
-  api
-    .post(
-      loginURL,
-      {
-        username: username,
-        password: password,
-      },
-      config
-    )
-    .then((response) => {
-      console.log('Got response from backend:');
-      console.log(response);
-      if (
-        response.data &&
-        response.data.access !== null &&
-        response.data.refresh !== null
-      ) {
-        setNewAccessToken(response.data.access);
-        setNewRefreshToken(response.data.refresh);
-        successFunction(response);
-      } else {
-        const msg = 'Received an unexpected response from the server.';
-        console.error(msg);
-      }
-    })
-    .catch((error) => {
-      errorMsgFunction(error);
-    });
-}
-export function logout(afterFunction: () => any) {
+export async function logout(): Promise<void> {
   localStorage.removeItem('token');
   localStorage.removeItem('token-expiry');
   localStorage.removeItem('refresh-token');
   localStorage.removeItem('refresh-token-expiry');
-  afterFunction();
+  return;
 }
 
 export async function preRequestRefreshAuth() {

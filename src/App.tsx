@@ -11,6 +11,7 @@ import React, { useState } from 'react';
 import { Credentials, CredentialData } from './utils/Authentication';
 import LoggedIn from './components/LoggedIn';
 import SignupForm from './components/SignupForm';
+import LoginForm from './components/LoginForm';
 
 function App() {
   // When the app first starts, it is unauthenticated.
@@ -32,6 +33,7 @@ function App() {
                 <Panel header={<h2>Democracy Prototype 3</h2>}></Panel>
                 <LoggedIn />
                 <SignupForm />
+                <LoginForm />
               </Content>
             </Container>
           </FlexboxGrid.Item>

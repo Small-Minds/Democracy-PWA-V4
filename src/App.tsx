@@ -1,11 +1,16 @@
-import { Button, Container, Content, Footer, Header } from 'rsuite';
-import React, { useState } from 'react';
 import {
-  Credentials,
-  CredentialInterface,
-  CredentialData,
-} from './utils/Authentication';
+  Button,
+  Container,
+  Content,
+  FlexboxGrid,
+  Footer,
+  Header,
+  Panel,
+} from 'rsuite';
+import React, { useState } from 'react';
+import { Credentials, CredentialData } from './utils/Authentication';
 import LoggedIn from './components/LoggedIn';
+import SignupForm from './components/SignupForm';
 
 function App() {
   // When the app first starts, it is unauthenticated.
@@ -20,12 +25,17 @@ function App() {
   return (
     <div>
       <Credentials.Provider value={{ credentials, setCredentials }}>
-        <Container>
-          <Content>
-            <h2>Democracy Prototype</h2>
-            <LoggedIn />
-          </Content>
-        </Container>
+        <FlexboxGrid justify="center">
+          <FlexboxGrid.Item colspan={15}>
+            <Container>
+              <Content>
+                <Panel header={<h2>Democracy Prototype 3</h2>}></Panel>
+                <LoggedIn />
+                <SignupForm />
+              </Content>
+            </Container>
+          </FlexboxGrid.Item>
+        </FlexboxGrid>
       </Credentials.Provider>
     </div>
   );

@@ -8,12 +8,6 @@ export const add = (a: number, b: number): number => {
 };
 
 axiosRetry(axios, { retries: 5 });
-const backendUrl = getBackendURL();
-const config = {
-  headers: {
-    'Content-Type': 'application/json',
-  },
-};
 
 export const api = axios.create({
   baseURL: getBackendURL(),
@@ -31,8 +25,7 @@ export const api = axios.create({
 
 // Build URLs
 // const registrationURL = `${backendUrl}/rest-auth/registration/`;
-const refreshURL = `/api/token/refresh/`;
-const awakeURL = `/api/awake/`;
+const refreshURL = `/jwt-auth/token/refresh/`;
 
 export function getAccessToken() {
   const token = localStorage.getItem('token') || '';
@@ -72,21 +65,6 @@ export function setNewRefreshToken(token: string) {
   localStorage.setItem('refresh-token-expiry', now.toDateString());
 }
 
-export function wakeUpBackend(successFunction: () => null) {
-  api
-    .get(awakeURL, config)
-    .then((response) => {
-      if (response.status === 200) {
-        successFunction();
-      } else {
-        console.error('Backend returned an invalid code.');
-      }
-    })
-    .catch((error) => {
-      console.error(error);
-    });
-}
-
 export async function logout(): Promise<void> {
   localStorage.removeItem('token');
   localStorage.removeItem('token-expiry');
@@ -113,13 +91,9 @@ export async function isAuthenticated() {
     const refreshToken = localStorage.getItem('refresh-token') || null;
     if (refreshToken == null) return false; // Fail if no refresh token.
     try {
-      const response = await api.post(
-        refreshURL,
-        {
-          refresh: refreshToken,
-        },
-        config
-      );
+      const response = await api.post(refreshURL, {
+        refresh: refreshToken,
+      });
       // Response should contain new access token.
       if (response.data.access) {
         console.log('Success, got new access token.');

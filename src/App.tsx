@@ -8,21 +8,45 @@ import {
   Header,
   Panel,
 } from 'rsuite';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Credentials, CredentialData } from './utils/Authentication';
 import LoggedIn from './components/LoggedIn';
 import SignupForm from './components/SignupForm';
 import LoginForm from './components/LoginForm';
+import { getAccessToken, getRefreshToken, isAuthenticated } from './utils/API';
 
 function App() {
   // When the app first starts, it is unauthenticated.
   const [credentials, setCredentials] = useState<CredentialData>({
-    authenticated: false,
+    authenticated: undefined,
     token: '',
     tokenExpiry: undefined,
     refreshToken: '',
     refreshTokenExpiry: undefined,
   });
+  const [working, setWorking] = useState<boolean>(false);
+
+  useEffect(() => {
+    console.log('Checking for pre-existing credentials...');
+    if (!working && credentials.authenticated === undefined) {
+      setWorking(true);
+      isAuthenticated().then((b) => {
+        if (b) {
+          const access = getAccessToken();
+          const refresh = getRefreshToken();
+          const newCreds: CredentialData = {
+            authenticated: true,
+            token: access.token,
+            tokenExpiry: access.expiry,
+            refreshToken: refresh.refreshToken,
+            refreshTokenExpiry: refresh.refreshTokenExpiry,
+          };
+          setCredentials(newCreds);
+          setWorking(false);
+        }
+      });
+    }
+  }, [credentials, working]);
 
   return (
     <div>

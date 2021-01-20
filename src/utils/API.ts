@@ -65,7 +65,7 @@ export function setNewRefreshToken(token: string) {
   localStorage.setItem('refresh-token-expiry', now.toDateString());
 }
 
-export async function logout(): Promise<void> {
+export async function clearTokens(): Promise<void> {
   localStorage.removeItem('token');
   localStorage.removeItem('token-expiry');
   localStorage.removeItem('refresh-token');

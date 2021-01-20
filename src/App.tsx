@@ -9,22 +9,22 @@ import {
   Panel,
 } from 'rsuite';
 import React, { useEffect, useState } from 'react';
-import { Credentials, CredentialData } from './utils/Authentication';
+import {
+  Credentials,
+  CredentialData,
+  blankCredentialData,
+} from './utils/Authentication';
 import LoggedIn from './components/LoggedIn';
 import SignupForm from './components/SignupForm';
 import LoginForm from './components/LoginForm';
 import { getAccessToken, getRefreshToken, isAuthenticated } from './utils/API';
 import NewElectionButton from './components/NewElectionButton';
-
+import './App.css';
 function App() {
   // When the app first starts, it is unauthenticated.
-  const [credentials, setCredentials] = useState<CredentialData>({
-    authenticated: undefined,
-    token: '',
-    tokenExpiry: undefined,
-    refreshToken: '',
-    refreshTokenExpiry: undefined,
-  });
+  const [credentials, setCredentials] = useState<CredentialData>(
+    blankCredentialData
+  );
   const [working, setWorking] = useState<boolean>(false);
 
   useEffect(() => {

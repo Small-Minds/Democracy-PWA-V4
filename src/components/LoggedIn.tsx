@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { Panel } from 'rsuite';
+import { Container, Panel } from 'rsuite';
 import { Credentials } from '../utils/Authentication';
 
 /**
@@ -14,13 +14,17 @@ function LoggedIn() {
       {ctx ? (
         <div>
           <Panel header={<h4>Authentication Data</h4>} bordered>
-            <p>{`Logged in: ${
-              ctx.credentials.authenticated ? 'Yes' : 'No'
-            }`}</p>
-            <p>{`Access Token: ${ctx.credentials.token || 'not set.'}`}</p>
-            <p>{`Refresh Token: ${
-              ctx.credentials.refreshToken || 'not set.'
-            }`}</p>
+            <Container style={{ wordWrap: 'break-word' }}>
+              <p>{`Logged in: ${
+                ctx.credentials.authenticated ? 'Yes' : 'No'
+              }`}</p>
+              <br />
+              <h5>Access Token</h5>
+              <p>{`${ctx.credentials.token || 'Not set.'}`}</p>
+              <br />
+              <h5>Refresh Token</h5>
+              <p>{`${ctx.credentials.refreshToken || 'Not set.'}`}</p>
+            </Container>
           </Panel>
           <br />
         </div>

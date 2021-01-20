@@ -15,10 +15,10 @@ function NewElectionButton() {
     setLoading(true);
     if (!ctx) return;
     create({}, ctx.credentials.token)
-      .then((x) => {
+      .then((election) => {
         Notification['success']({
           title: 'Success',
-          description: `Created new Election with ID ${x.data['id']}`,
+          description: `Created new Election with ID ${election.id}`,
         });
       })
       .catch((x) => {

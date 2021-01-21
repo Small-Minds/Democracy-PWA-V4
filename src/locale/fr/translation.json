@@ -1,0 +1,11 @@
+{
+    "translation":{
+        "signUpForm": {
+            "loginErrorMsg": "You are already logged in.",
+            "loginSuccessTitle": "Check your Inbox",
+            "loginSuccessDes": "Verify your account by opening the email we've sent you and clicking the link. Thanks for signin up!",
+            "sectionTitle": "Sign Up"
+        }
+
+    }
+}

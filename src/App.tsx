@@ -30,6 +30,8 @@ function App() {
   const [working, setWorking] = useState<boolean>(false);
   //Set Up Localization Hook
   const [t] = useTranslation();
+
+  // Load JWTs and validate.
   useEffect(() => {
     console.log('Checking for pre-existing credentials...');
     if (!working && credentials.authenticated === undefined) {
@@ -51,6 +53,11 @@ function App() {
       });
     }
   }, [credentials, working]);
+
+  // Set Page Title
+  useEffect(() => {
+    document.title = t('mainPage.appName');
+  }, [t]);
 
   return (
     <div>

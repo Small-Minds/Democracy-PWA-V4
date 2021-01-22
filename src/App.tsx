@@ -29,7 +29,7 @@ function App() {
   );
   const [working, setWorking] = useState<boolean>(false);
   //Set Up Localization Hook
-  const [t,i18n] = useTranslation();
+  const [t] = useTranslation();
   useEffect(() => {
     console.log('Checking for pre-existing credentials...');
     if (!working && credentials.authenticated === undefined) {

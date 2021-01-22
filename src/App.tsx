@@ -17,6 +17,7 @@ import {
 import LoggedIn from './components/LoggedIn';
 import SignupForm from './components/SignupForm';
 import LoginForm from './components/LoginForm';
+import LanguagePicker from './components/LanguagePicker';
 import { getAccessToken, getRefreshToken, isAuthenticated } from './utils/API';
 import NewElectionButton from './components/NewElectionButton';
 import './App.css';
@@ -66,6 +67,7 @@ function App() {
             <Container>
               <Content>
                 <Panel header={<h2>{t("mainPage.appName")}</h2>}></Panel>
+                <LanguagePicker />
                 <LoggedIn />
                 <SignupForm />
                 <LoginForm />

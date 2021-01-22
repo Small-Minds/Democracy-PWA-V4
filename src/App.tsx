@@ -17,16 +17,19 @@ import {
 import LoggedIn from './components/LoggedIn';
 import SignupForm from './components/SignupForm';
 import LoginForm from './components/LoginForm';
+import LanguagePicker from './components/LanguagePicker';
 import { getAccessToken, getRefreshToken, isAuthenticated } from './utils/API';
 import NewElectionButton from './components/NewElectionButton';
 import './App.css';
+import { useTranslation } from 'react-i18next';
 function App() {
   // When the app first starts, it is unauthenticated.
   const [credentials, setCredentials] = useState<CredentialData>(
     blankCredentialData
   );
   const [working, setWorking] = useState<boolean>(false);
-
+  //Set Up Localization Hook
+  const [t] = useTranslation();
   useEffect(() => {
     console.log('Checking for pre-existing credentials...');
     if (!working && credentials.authenticated === undefined) {
@@ -63,11 +66,12 @@ function App() {
           >
             <Container>
               <Content>
-                <Panel header={<h2>Democracy</h2>}></Panel>
+                <Panel header={<h2>{t("mainPage.appName")}</h2>}></Panel>
+                <LanguagePicker />
                 <LoggedIn />
                 <SignupForm />
                 <LoginForm />
-                <Panel header={<h2>Election Tools</h2>} bordered>
+                <Panel header={<h2>{t("mainPage.electionToolSectionTitle")}</h2>} bordered>
                   <NewElectionButton />
                 </Panel>
               </Content>

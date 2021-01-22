@@ -1,12 +1,14 @@
 import i18n from 'i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import { initReactI18next } from 'react-i18next';
+import XHR from 'i18next-http-backend';
 
 import languageEN from './locale/en/translation.json';
 import languageCN from './locale/cn/translation.json';
 import languageFR from './locale/fr/translation.json';
 
 i18n
+  .use(XHR)
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
@@ -16,7 +18,7 @@ i18n
       fr: languageFR,
     },
     /*default language*/
-    lng: 'en',
+    /* lng: 'en', */
     /*fallback language*/
     debug: true,
     ns: ['translations'],
@@ -68,3 +70,8 @@ i18n
   });
 
 export default i18n;
+
+/**
+ * Fixed language detection with tips from:
+ * https://stackoverflow.com/questions/54514834/i18next-browser-languagedetector-path-not-working
+ */

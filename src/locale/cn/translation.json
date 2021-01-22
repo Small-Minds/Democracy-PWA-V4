@@ -1,11 +1,48 @@
 {
     "translation":{
         "signUpForm": {
-            "loginErrorMsg": "You are already logged in.",
-            "loginSuccessTitle": "Check your Inbox",
-            "loginSuccessDes": "Verify your account by opening the email we've sent you and clicking the link. Thanks for signin up!",
-            "sectionTitle": "Sign Up"
+            "loginErrorMsg": "您已登入",
+            "signUpSuccessTitle": "请查看您的邮箱",
+            "signUpSuccessDescription": "我们已经将验证链接发送至您的邮箱，请单击此链接来验证您的账户。感谢您注册！",
+            "sectionTitle": "注册",
+            "nameInputLabel": "姓名",
+            "usernameInputLabel": "用户名",
+            "emailInputLabel": "邮箱",
+            "passwordInputLabel": "密码",
+            "passwordInputFieldHint": "请在此再次输入您的密码",
+            "submitBtn": "注册"
+        },
+        "signInForm": {
+            "alreadyLogInMsg": "您已登入",
+            "ctxErrorMsg": "请刷新此网页",
+            "logInSuccessTitle": "已登入",
+            "logInSuccessDescription": "欢迎回到由Small Mind 制作的迪蒙",
+            "sectionTitle": "登入",
+            "usernameInputLabel": "用户名",
+            "passwordInputLabel": "密码",
+            "submitBtn": "登入"
+        },
+        "createElectionBtn": {
+            "btnLabel": "创建新选举"
+        },
+        "loggedInInfo": {
+            "sectionTitle": "认证数据",
+            "loggedInFieldLabel": "是否登入",
+            "notLoggedIn": "否",
+            "loggedIn": "已登入",
+            "accessTokenFieldLabel": "访问令牌",
+            "refreshTokenFieldLabel": "刷新令牌",
+            "noToken": "无"
+        },
+        "languagePicker":{
+            "title":"选择语言",
+            "en":"英语",
+            "fr":"法语",
+            "cn":"中文"
+        },
+        "mainPage": {
+            "appName": "迪蒙",
+            "electionToolSectionTitle":"选举控制板"
         }
-
     }
 }

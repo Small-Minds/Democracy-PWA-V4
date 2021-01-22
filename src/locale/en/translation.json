@@ -34,6 +34,12 @@
             "refreshTokenFieldLabel": "Refresh Token",
             "noToken": "not set"
         },
+        "languagePicker":{
+            "title":"Language Selection",
+            "en":"Englsih",
+            "fr":"French",
+            "cn":"Chinese"
+        },
         "mainPage": {
             "appName": "Democracy",
             "electionToolSectionTitle":"Election Tools"

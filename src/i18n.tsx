@@ -34,9 +34,9 @@ i18n
     detection: {
       // order and from where user language should be detected
       order: [
+        'querystring',
         'cookie',
         'localStorage',
-        'querystring',
         'sessionStorage',
         'navigator',
         'htmlTag',
@@ -45,7 +45,7 @@ i18n
       ],
 
       // keys or params to lookup language from
-      lookupQuerystring: 'lng',
+      lookupQuerystring: 'lang',
       lookupCookie: 'i18next',
       lookupLocalStorage: 'i18nextLng',
       lookupSessionStorage: 'i18nextLng',

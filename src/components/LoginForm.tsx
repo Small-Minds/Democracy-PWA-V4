@@ -37,7 +37,7 @@ function LoginForm() {
   // This variable is required for rsuite forms.
   let form: any = undefined;
   // Set up localization hook
-  const [t] = useTranslation()
+  const [t] = useTranslation();
   // When the app first starts, it is unauthenticated.
   const ctx = useContext(Credentials);
   const [loading, setLoading] = useState<boolean>(false);
@@ -55,7 +55,7 @@ function LoginForm() {
     if (ctx === undefined) return;
     if (ctx?.credentials.authenticated) {
       setDisabled(true);
-      setMiscErrors(t("signInForm.alreadyLogInMsg"));
+      setMiscErrors(t('signInForm.alreadyLogInMsg'));
     }
   }, [ctx]);
 
@@ -91,7 +91,7 @@ function LoginForm() {
         };
         ctx.setCredentials(newCreds);
         Notification['success']({
-          title:t('signInForm.logInSuccessTitle'),
+          title: t('signInForm.logInSuccessTitle'),
           description: t('signInForm.logInSuccessDescription'),
         });
       })

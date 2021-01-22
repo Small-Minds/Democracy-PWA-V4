@@ -14,10 +14,18 @@ function LoggedIn() {
     <div>
       {ctx ? (
         <div>
-          <h4>{t("loggedInInfo.sectionTitle")}</h4>
-          <p>{`${t("loggedInInfo.loggedInFieldLabel")}: ${ctx.credentials.authenticated ? t("loggedInInfo.loggedIn") : t("loggedInInfo.notLoggedIn")}`}</p>
-          <p>{`${t("loggedInInfo.accessTokenFieldLabel")}: ${ctx.credentials.token || t("loggedInInfo.noToken")}`}</p>
-          <p>{`${t("loggedInInfo.refreshTokenFieldLabel")}: ${ctx.credentials.refreshToken || t("loggedInInfo.noToken")}`}</p>
+          <h4>{t('loggedInInfo.sectionTitle')}</h4>
+          <p>{`${t('loggedInInfo.loggedInFieldLabel')}: ${
+            ctx.credentials.authenticated
+              ? t('loggedInInfo.loggedIn')
+              : t('loggedInInfo.notLoggedIn')
+          }`}</p>
+          <p>{`${t('loggedInInfo.accessTokenFieldLabel')}: ${
+            ctx.credentials.token || t('loggedInInfo.noToken')
+          }`}</p>
+          <p>{`${t('loggedInInfo.refreshTokenFieldLabel')}: ${
+            ctx.credentials.refreshToken || t('loggedInInfo.noToken')
+          }`}</p>
         </div>
       ) : null}
     </div>

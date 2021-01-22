@@ -43,7 +43,7 @@ function SignupForm() {
   // This variable is required for rsuite forms.
   let form: any = undefined;
   // Set up localization hook
-  const [t] = useTranslation()
+  const [t] = useTranslation();
   // When the app first starts, it is unauthenticated.
   const ctx = useContext(Credentials);
   const [loading, setLoading] = useState<boolean>(false);
@@ -89,7 +89,7 @@ function SignupForm() {
         setDisabled(true);
         Notification['success']({
           title: t('signUpForm.signUpSuccessTitle'),
-          description: t('signUpForm.signUpSuccessDescription')
+          description: t('signUpForm.signUpSuccessDescription'),
         });
       })
       .catch((err) => {
@@ -108,7 +108,7 @@ function SignupForm() {
 
   return (
     <div>
-      <Panel header={<h2>{t("signUpForm.sectionTitle")}</h2>} bordered>
+      <Panel header={<h2>{t('signUpForm.sectionTitle')}</h2>} bordered>
         <Form
           onChange={(newData) => setFormData(newData)}
           onCheck={(newErrors) => setFormErrors(newErrors)}

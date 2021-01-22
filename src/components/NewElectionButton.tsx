@@ -12,7 +12,7 @@ function NewElectionButton() {
   const ctx = useContext(Credentials);
   const [loading, setLoading] = useState<boolean>(false);
   // Set up localization hook
-  const [t] = useTranslation()
+  const [t] = useTranslation();
   const createElection = async () => {
     setLoading(true);
     if (!ctx) return;
@@ -44,7 +44,7 @@ function NewElectionButton() {
         loading={loading}
         onClick={createElection}
       >
-        {t("createElectionBtn.btnLabel")}
+        {t('createElectionBtn.btnLabel')}
       </Button>
     </div>
   );

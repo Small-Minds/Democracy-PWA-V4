@@ -66,12 +66,15 @@ function App() {
           >
             <Container>
               <Content>
-                <Panel header={<h2>{t("mainPage.appName")}</h2>}></Panel>
+                <Panel header={<h2>{t('mainPage.appName')}</h2>}></Panel>
                 <LanguagePicker />
                 <LoggedIn />
                 <SignupForm />
                 <LoginForm />
-                <Panel header={<h2>{t("mainPage.electionToolSectionTitle")}</h2>} bordered>
+                <Panel
+                  header={<h2>{t('mainPage.electionToolSectionTitle')}</h2>}
+                  bordered
+                >
                   <NewElectionButton />
                 </Panel>
               </Content>

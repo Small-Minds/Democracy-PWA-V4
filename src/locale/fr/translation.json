@@ -2,6 +2,8 @@
   "translation": {
     "signUpForm": {
       "loginErrorMsg": "Vous êtes déjà connecté",
+      "msgRequired": "Ce champ est obligatoire",
+      "invalidEmailFormatMsg": "Veuillez utiliser une adresse mail valide",
       "signUpSuccessTitle": "Vérifiez votre boîte de réception",
       "signUpSuccessDescription": "Vérifiez votre compte en ouvrant l'e-mail que nous vous avons envoyé et en cliquant sur le lien. Merci de vous être inscrit!",
       "sectionTitle": "S'inscrire",
@@ -14,6 +16,7 @@
     },
     "signInForm": {
       "alreadyLogInMsg": "Vous êtes déjà connecté",
+      "msgRequired": "Ce champ est obligatoire",
       "ctxErrorMsg": "Veuillez actualiser la page",
       "logInSuccessTitle": "connecté",
       "logInSuccessDescription": "Bienvenue à nouveau chez Democarcy by Small Minds",
@@ -23,7 +26,11 @@
       "submitBtn": "S'identifier"
     },
     "createElectionBtn": {
-      "btnLabel": "Créer une nouvelle élection"
+      "btnLabel": "Créer une nouvelle élection",
+      "successMsgTitle": "Succès",
+      "successMsg": "Créer une nouvelle élection avec ID",
+      "failMsgTitle": "Erreur",
+      "failMsg": "Échec du lancement d'une nouvelle élection"
     },
     "loggedInInfo": {
       "sectionTitle": "Données d'authentification",

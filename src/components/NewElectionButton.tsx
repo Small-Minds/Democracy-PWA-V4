@@ -19,15 +19,15 @@ function NewElectionButton() {
     create({}, ctx.credentials.token)
       .then((election) => {
         Notification['success']({
-          title: 'Success',
-          description: `Created new Election with ID ${election.id}`,
+          title: t("createElectionBtn.successMsgTitle"),
+          description: `${t("createElectionBtn.successMsg")} ${election.id}`,
         });
       })
       .catch((x) => {
         console.log(x.response.data);
         Notification['error']({
-          title: 'Error',
-          description: 'Failed to start a new Election.',
+          title: t("createElectionBtn.failMsgTitle"),
+          description: t("createElectionBtn.failMsg"),
         });
       })
       .finally(() => {

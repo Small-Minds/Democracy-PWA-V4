@@ -2,6 +2,8 @@
   "translation": {
     "signUpForm": {
       "loginErrorMsg": "您已登入",
+      "msgRequired": "此为必填字段",
+      "invalidEmailFormatMsg": "请使用有效的电子邮件地址",
       "signUpSuccessTitle": "请查看您的邮箱",
       "signUpSuccessDescription": "我们已经将验证链接发送至您的邮箱，请单击此链接来验证您的账户。感谢您注册！",
       "sectionTitle": "注册",
@@ -14,6 +16,7 @@
     },
     "signInForm": {
       "alreadyLogInMsg": "您已登入",
+      "msgRequired": "此为必填字段",
       "ctxErrorMsg": "请刷新此网页",
       "logInSuccessTitle": "已登入",
       "logInSuccessDescription": "欢迎回到由Small Mind 制作的迪蒙",
@@ -23,7 +26,11 @@
       "submitBtn": "登入"
     },
     "createElectionBtn": {
-      "btnLabel": "创建新选举"
+      "btnLabel": "创建新选举",
+      "successMsgTitle": "成功",
+      "successMsg": "使用ID创建新的选举",
+      "failMsgTitle": "错误",
+      "failMsg": "无法开始新的选举"
     },
     "loggedInInfo": {
       "sectionTitle": "认证数据",

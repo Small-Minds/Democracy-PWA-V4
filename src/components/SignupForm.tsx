@@ -19,8 +19,16 @@ import { useTranslation } from 'react-i18next';
  * This form can be placed anywhere below the Credentials context provider.
  */
 
-const msg_required = 'This field is required.';
-const model = Schema.Model({
+
+
+function SignupForm() {
+  // This variable is required for rsuite forms.
+  let form: any = undefined;
+  // Set up localization hook
+  const [t] = useTranslation();
+  //form model set up
+  const msg_required = t("signInForm.msgRequired");
+  const model = Schema.Model({
   name: Schema.Types.StringType()
     .isRequired(msg_required)
     .minLength(1, msg_required),
@@ -28,7 +36,7 @@ const model = Schema.Model({
     .isRequired(msg_required)
     .minLength(1, msg_required),
   email: Schema.Types.StringType()
-    .isEmail('Please use a valid email address.')
+    .isEmail(t("signInForm.invalidEmailFormatMsg"))
     .isRequired(msg_required)
     .minLength(1, msg_required),
   password1: Schema.Types.StringType()
@@ -38,12 +46,6 @@ const model = Schema.Model({
     .isRequired(msg_required)
     .minLength(1, msg_required),
 });
-
-function SignupForm() {
-  // This variable is required for rsuite forms.
-  let form: any = undefined;
-  // Set up localization hook
-  const [t] = useTranslation();
   // When the app first starts, it is unauthenticated.
   const ctx = useContext(Credentials);
   const [loading, setLoading] = useState<boolean>(false);

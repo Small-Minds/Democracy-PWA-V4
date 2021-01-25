@@ -1,0 +1,48 @@
+{
+  "translation": {
+    "signUpForm": {
+      "loginErrorMsg": "You are already logged in",
+      "signUpSuccessTitle": "Check your Inbox",
+      "signUpSuccessDescription": "Verify your account by opening the email we've sent you and clicking the link. Thanks for signin up!",
+      "sectionTitle": "Sign Up",
+      "nameInputLabel": "Fisrt and last Name",
+      "usernameInputLabel": "Username",
+      "emailInputLabel": "Email",
+      "passwordInputLabel": "Password",
+      "passwordInputFieldHint": "Please enter your password twice",
+      "submitBtn": "Submit"
+    },
+    "signInForm": {
+      "alreadyLogInMsg": "You are already logged in",
+      "ctxErrorMsg": "Please refresh the page",
+      "logInSuccessTitle": "Logged In",
+      "logInSuccessDescription": "Welcome back to Democarcy by Small Minds",
+      "sectionTitle": "Log In",
+      "usernameInputLabel": "Username",
+      "passwordInputLabel": "Password",
+      "submitBtn": "Submit"
+    },
+    "createElectionBtn": {
+      "btnLabel": "Create New Election"
+    },
+    "loggedInInfo": {
+      "sectionTitle": "Authentication Data",
+      "loggedInFieldLabel": "Logged in",
+      "notLoggedIn": "No",
+      "loggedIn": "Yes",
+      "accessTokenFieldLabel": "Access Token",
+      "refreshTokenFieldLabel": "Refresh Token",
+      "noToken": "not set"
+    },
+    "languagePicker": {
+      "title": "Language Selection",
+      "en": "English",
+      "fr": "French",
+      "cn": "Chinese"
+    },
+    "mainPage": {
+      "appName": "Democracy",
+      "electionToolSectionTitle": "Election Tools"
+    }
+  }
+}

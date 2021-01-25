@@ -12,6 +12,14 @@ export type CredentialData = {
   refreshTokenExpiry: Date | undefined;
 };
 
+export const blankCredentialData: CredentialData = {
+  authenticated: undefined,
+  token: '',
+  tokenExpiry: undefined,
+  refreshToken: '',
+  refreshTokenExpiry: undefined,
+};
+
 export interface CredentialInterface {
   credentials: CredentialData;
   setCredentials: (x: CredentialData) => void;

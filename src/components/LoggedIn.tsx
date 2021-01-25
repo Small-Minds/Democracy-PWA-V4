@@ -1,5 +1,6 @@
 import { useContext } from 'react';
-import { Panel } from 'rsuite';
+import { useTranslation } from 'react-i18next';
+import { Container, Panel } from 'rsuite';
 import { Credentials } from '../utils/Authentication';
 
 /**
@@ -8,19 +9,28 @@ import { Credentials } from '../utils/Authentication';
 function LoggedIn() {
   // When the app first starts, it is unauthenticated.
   const ctx = useContext(Credentials);
-
+  //Set up localization hook
+  const [t] = useTranslation();
   return (
     <div>
       {ctx ? (
         <div>
-          <Panel header={<h4>Authentication Data</h4>} bordered>
-            <p>{`Logged in: ${
-              ctx.credentials.authenticated ? 'Yes' : 'No'
-            }`}</p>
-            <p>{`Access Token: ${ctx.credentials.token || 'not set.'}`}</p>
-            <p>{`Refresh Token: ${
-              ctx.credentials.refreshToken || 'not set.'
-            }`}</p>
+          <Panel header={<h4>{t('loggedInInfo.sectionTitle')}</h4>} bordered>
+            <Container style={{ wordWrap: 'break-word' }}>
+              <p>{`${t('loggedInInfo.loggedInFieldLabel')}: ${
+                ctx.credentials.authenticated
+                  ? t('loggedInInfo.loggedIn')
+                  : t('loggedInInfo.notLoggedIn')
+              }`}</p>
+              <br />
+              <h5>{t('loggedInInfo.accessTokenFieldLabel')}:</h5>
+              <p>{`${ctx.credentials.token || t('loggedInInfo.noToken')}`}</p>
+              <br />
+              <h5>{t('loggedInInfo.refreshTokenFieldLabel')}:</h5>
+              <p>{`${
+                ctx.credentials.refreshToken || t('loggedInInfo.noToken')
+              }`}</p>
+            </Container>
           </Panel>
           <br />
         </div>

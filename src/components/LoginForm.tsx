@@ -17,6 +17,7 @@ import { signup, signupFormData } from '../utils/api/Signup';
 import { login } from '../utils/api/Login';
 import { couldStartTrivia } from 'typescript';
 import { getAccessToken, getRefreshToken } from '../utils/API';
+import { useTranslation } from 'react-i18next';
 
 /**
  * This form can be placed anywhere below the Credentials context provider.
@@ -35,7 +36,8 @@ const model = Schema.Model({
 function LoginForm() {
   // This variable is required for rsuite forms.
   let form: any = undefined;
-
+  // Set up localization hook
+  const [t] = useTranslation();
   // When the app first starts, it is unauthenticated.
   const ctx = useContext(Credentials);
   const [loading, setLoading] = useState<boolean>(false);
@@ -53,7 +55,7 @@ function LoginForm() {
     if (ctx === undefined) return;
     if (ctx?.credentials.authenticated) {
       setDisabled(true);
-      setMiscErrors('You are already logged in.');
+      setMiscErrors(t('signInForm.alreadyLogInMsg'));
     }
   }, [ctx]);
 
@@ -77,7 +79,7 @@ function LoginForm() {
         console.log(res);
         setLoading(false);
         setDisabled(true);
-        if (!ctx) throw Error('Please refresh the page.');
+        if (!ctx) throw Error(t('signInForm.ctxErrorMsg'));
         const access = getAccessToken();
         const refresh = getRefreshToken();
         const newCreds: CredentialData = {
@@ -89,8 +91,8 @@ function LoginForm() {
         };
         ctx.setCredentials(newCreds);
         Notification['success']({
-          title: 'Logged In',
-          description: 'Welcome back to Democracy by Small Minds.',
+          title: t('signInForm.logInSuccessTitle'),
+          description: t('signInForm.logInSuccessDescription'),
         });
       })
       .catch((err) => {
@@ -112,7 +114,7 @@ function LoginForm() {
 
   return (
     <div>
-      <Panel header={<h2>Log In</h2>} bordered>
+      <Panel header={<h2>{t('signInForm.sectionTitle')}</h2>} bordered>
         <Form
           onChange={(newData) => setFormData(newData)}
           onCheck={(newErrors) => setFormErrors(newErrors)}
@@ -122,11 +124,11 @@ function LoginForm() {
           ref={(ref: any) => (form = ref)}
         >
           <FormGroup>
-            <ControlLabel>Username</ControlLabel>
+            <ControlLabel>{t('signInForm.usernameInputLabel')}</ControlLabel>
             <FormControl name="username" disabled={disabled} />
           </FormGroup>
           <FormGroup>
-            <ControlLabel>Password</ControlLabel>
+            <ControlLabel>{t('signInForm.passwordInputLabel')}</ControlLabel>
             <FormControl name="password" type="password" disabled={disabled} />
           </FormGroup>
           <FormGroup>
@@ -137,7 +139,7 @@ function LoginForm() {
                 disabled={disabled}
                 onClick={submitFormData}
               >
-                Submit
+                {t('signInForm.submitBtn')}
               </Button>
               {miscErrors ? (
                 <Button

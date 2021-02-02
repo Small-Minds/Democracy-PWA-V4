@@ -18,10 +18,12 @@ import LoggedIn from './components/LoggedIn';
 import SignupForm from './components/SignupForm';
 import LoginForm from './components/LoginForm';
 import LanguagePicker from './components/LanguagePicker';
+import Election from './pages/Election'
 import { getAccessToken, getRefreshToken, isAuthenticated } from './utils/API';
 import NewElectionButton from './components/NewElectionButton';
 import './App.css';
 import { useTranslation } from 'react-i18next';
+import { BrowserRouter as Router, Switch, Route} from "react-router-dom"
 function App() {
   // When the app first starts, it is unauthenticated.
   const [credentials, setCredentials] = useState<CredentialData>(
@@ -62,6 +64,7 @@ function App() {
   return (
     <div>
       <Credentials.Provider value={{ credentials, setCredentials }}>
+        <Router>
         <FlexboxGrid justify="center">
           <FlexboxGrid.Item
             componentClass={Col}
@@ -84,10 +87,15 @@ function App() {
                 >
                   <NewElectionButton />
                 </Panel>
+                <Switch>
+                  {/*Election Page*/}
+                  <Route path='/election/:id' component={ Election }/>
+                </Switch>
               </Content>
             </Container>
           </FlexboxGrid.Item>
         </FlexboxGrid>
+        </Router>
       </Credentials.Provider>
       <br />
     </div>

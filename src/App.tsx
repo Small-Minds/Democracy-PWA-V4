@@ -24,6 +24,7 @@ import NewElectionButton from './components/NewElectionButton';
 import './App.css';
 import { useTranslation } from 'react-i18next';
 import { BrowserRouter as Router, Switch, Route} from "react-router-dom"
+import ElectionList from './components/ElectionList';
 function App() {
   // When the app first starts, it is unauthenticated.
   const [credentials, setCredentials] = useState<CredentialData>(
@@ -87,10 +88,11 @@ function App() {
                 >
                   <NewElectionButton />
                 </Panel>
-                <Switch>
-                  {/*Election Page*/}
-                  <Route path='/election/:id' component={ Election }/>
-                </Switch>
+                <Panel header = {<h2>ELectionList</h2>}
+                       bordered
+                >
+                  <ElectionList />
+                </Panel>
               </Content>
             </Container>
           </FlexboxGrid.Item>

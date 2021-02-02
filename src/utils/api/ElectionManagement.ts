@@ -53,3 +53,14 @@ export async function getElectionList(accessToken: string):Promise<AxiosResponse
     headers: { Authorization: `JWT ${accessToken}` },
   })
 }
+
+export async function getElection(accessToken: string, electionId: string ): Promise<AxiosResponse> {
+  let config = {
+    headers: { Authorization: `JWT ${accessToken}`},
+    params: {
+      id: electionId
+    }
+  }
+  return api
+  .get(electionURL+electionId, config)
+}

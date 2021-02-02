@@ -1,18 +1,18 @@
 import React, { useEffect, useContext, useState} from 'react'
-import { Credentials } from '../utils/Authentication';
-import { Link } from 'react-router-dom';
+import { Link, Route, Switch } from 'react-router-dom';
 import { List } from 'rsuite'
 import { getElectionList, Election} from '../utils/api/ElectionManagement'
+import { getAccessToken} from '../utils/API';
+import ElectionInfo from './ElectionInfo';
 
 export default function ElectionList() {
-    const ctx = useContext(Credentials);
-    const accessToken = ctx ? (ctx.credentials.authenticated ? ctx.credentials.token:''): '';
+    const accessToken = getAccessToken();
     const[isLoading, setLoading] = useState(true);
     const[electionList, setElectionList] = useState<Array<Election>>([]);
     
     useEffect(()=>{
         accessToken ? 
-        getElectionList(accessToken)
+        getElectionList(accessToken.token)
         .then((res)=>{
             setElectionList(res.data);
             setLoading(false);
@@ -29,10 +29,14 @@ export default function ElectionList() {
             <List>
             {electionList.map((election, index) => (
                     <List.Item key={index} index={index}>
-                        {election.id}
+                        <Link to={`/election/${election.id}`}>{election.id}</Link>
                     </List.Item>
                 ))}
             </List>
+
+            <Switch>
+                <Route path='/election/:id' children={<ElectionInfo />} />
+            </Switch>
         </div>
     )
 }

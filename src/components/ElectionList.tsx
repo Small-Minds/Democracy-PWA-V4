@@ -1,38 +1,36 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useContext, useState} from 'react'
+import { Credentials } from '../utils/Authentication';
 import { Link } from 'react-router-dom';
 import { List } from 'rsuite'
+import { getElectionList, Election} from '../utils/api/ElectionManagement'
 
-interface position {
-    id: string
-    candidate: Array<string>
-    title: string
-    description: string
-    election: string
-}
-interface electionResponse {
-    id: string
-    positions: Array<position>
-    created: string
-    title: string
-    description: string
-    enable_multiple_submissions: boolean
-    election_email_domain: string
-    submission_start_time: string
-    submission_end_time: string
-    voting_start_time: string
-    voting_end_time: string
-    manager: string
-}
 export default function ElectionList() {
-    const data = ['Roses are red', 'Violets are blue', 'Sugar is sweet', 'And so are you'];
+    const ctx = useContext(Credentials);
+    const accessToken = ctx ? (ctx.credentials.authenticated ? ctx.credentials.token:''): '';
+    const[isLoading, setLoading] = useState(true);
+    const[electionList, setElectionList] = useState<Array<Election>>([]);
+    
+    useEffect(()=>{
+        accessToken ? 
+        getElectionList(accessToken)
+        .then((res)=>{
+            setElectionList(res.data);
+            setLoading(false);
+        }) : console.log('Please Login');
+    }, [])
+
+    //waiting for the response from getEletctionList 
+    if(isLoading){
+        return <div>Loading...</div>
+    }
 
     return (
         <div>
-            <List bordered>
-                {data.map((item, index) => (
-                <List.Item key={index} index={index}>
-                    <Link to="/">{item}</Link>
-                </List.Item>
+            <List>
+            {electionList.map((election, index) => (
+                    <List.Item key={index} index={index}>
+                        {election.id}
+                    </List.Item>
                 ))}
             </List>
         </div>

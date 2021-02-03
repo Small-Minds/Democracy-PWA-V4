@@ -33,10 +33,6 @@ export default function ElectionList() {
                     </List.Item>
                 ))}
             </List>
-
-            <Switch>
-                <Route path='/election/:id' children={<ElectionInfo />} />
-            </Switch>
         </div>
     )
 }

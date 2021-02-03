@@ -25,6 +25,7 @@ import './App.css';
 import { useTranslation } from 'react-i18next';
 import { BrowserRouter as Router, Switch, Route} from "react-router-dom"
 import ElectionList from './components/ElectionList';
+import ElectionInfo from './components/ElectionInfo';
 function App() {
   // When the app first starts, it is unauthenticated.
   const [credentials, setCredentials] = useState<CredentialData>(
@@ -80,8 +81,13 @@ function App() {
                 <Panel header={<h2>{t('mainPage.appName')}</h2>}></Panel>
                 <LanguagePicker />
                 <LoggedIn />
-                <SignupForm />
-                <LoginForm />
+                <Switch>
+                  {/*Login */}
+                  <Route path='/login' component={LoginForm}/>
+                  {/* Signup */}
+                  <Route path='/signup' component={SignupForm}/>
+                  <Route path='/election/:id' children={<ElectionInfo />} />
+                </Switch>
                 <Panel
                   header={<h2>{t('mainPage.electionToolSectionTitle')}</h2>}
                   bordered

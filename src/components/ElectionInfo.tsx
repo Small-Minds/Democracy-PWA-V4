@@ -15,7 +15,7 @@ export default function ElectionInfo() {
             console.log(res)
             setElection(res.data);
             setLoading(false);
-        }) : console.log("Please Login2")
+        }) : console.log("Please Login")
     },[id])
 
     //waiting for the response from getEletctionList 

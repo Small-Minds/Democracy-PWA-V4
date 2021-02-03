@@ -81,11 +81,15 @@ function App() {
                 <Panel header={<h2>{t('mainPage.appName')}</h2>}></Panel>
                 <LanguagePicker />
                 <LoggedIn />
+                <SignupForm />
+                <LoginForm />
                 <Switch>
-                  {/*Login */}
+                 {/**
+                
                   <Route path='/login' component={LoginForm}/>
-                  {/* Signup */}
+               
                   <Route path='/signup' component={SignupForm}/>
+                  */} 
                   <Route path='/election/:id' children={<ElectionInfo />} />
                 </Switch>
                 <Panel

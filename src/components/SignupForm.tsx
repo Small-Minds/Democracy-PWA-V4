@@ -32,9 +32,6 @@ function SignupForm() {
   name: Schema.Types.StringType()
     .isRequired(msg_required)
     .minLength(1, msg_required),
-  username: Schema.Types.StringType()
-    .isRequired(msg_required)
-    .minLength(1, msg_required),
   email: Schema.Types.StringType()
     .isEmail(t("signInForm.invalidEmailFormatMsg"))
     .isRequired(msg_required)
@@ -53,7 +50,6 @@ function SignupForm() {
 
   const [formData, setFormData] = useState<Record<string, any>>({
     name: '',
-    username: '',
     email: '',
     password1: '',
     password2: '',
@@ -122,10 +118,6 @@ function SignupForm() {
           <FormGroup>
             <ControlLabel>{t('signUpForm.nameInputLabel')}</ControlLabel>
             <FormControl name="name" disabled={disabled} />
-          </FormGroup>
-          <FormGroup>
-            <ControlLabel>{t('signUpForm.nameInputLabel')}</ControlLabel>
-            <FormControl name="username" disabled={disabled} />
           </FormGroup>
           <FormGroup>
             <ControlLabel>{t('signUpForm.emailInputLabel')}</ControlLabel>

@@ -34,6 +34,7 @@ function LoginForm() {
   const msg_required = t("signInForm.msgRequired");
   const model = Schema.Model({
   username: Schema.Types.StringType()
+    .isEmail(t("signInForm.invalidEmailFormatMsg"))
     .isRequired(msg_required)
     .minLength(1, msg_required),
   password: Schema.Types.StringType()
@@ -126,7 +127,7 @@ function LoginForm() {
           ref={(ref: any) => (form = ref)}
         >
           <FormGroup>
-            <ControlLabel>{t('signInForm.usernameInputLabel')}</ControlLabel>
+            <ControlLabel>{t('signUpForm.emailInputLabel')}</ControlLabel>
             <FormControl name="username" disabled={disabled} />
           </FormGroup>
           <FormGroup>

@@ -86,27 +86,17 @@ function App() {
                       <Fragment>
                         {/* Protected Pages */}
                         <Switch>
-                          <Route path="/election/:id/">
-                            <Election />
-                          </Route>
-                          <Route path="/vote">
-                            <EmptyPage />
-                          </Route>
-                          <Route path="/setup">
-                            <EmptyPage />
-                          </Route>
-                          <Route path="/">
-                            <Base />
-                          </Route>
+                          <Route path="/election/:id/" component={Election} />
+                          <Route path="/vote" component={EmptyPage} />
+                          <Route path="/setup" component={EmptyPage} />
+                          <Route path="/" component={Base} />
                         </Switch>
                       </Fragment>
                     ) : (
                       <Fragment>
                         {/* Public Pages */}
                         <Switch>
-                          <Route path="/">
-                            <Info />
-                          </Route>
+                          <Route path="/" component={Info} />
                         </Switch>
                       </Fragment>
                     )}

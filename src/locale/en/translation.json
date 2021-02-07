@@ -18,6 +18,7 @@
       "alreadyLogInMsg": "You are already logged in",
       "msgRequired": "This field is required",
       "ctxErrorMsg": "Please refresh the page",
+      "invalidEmailFormatMsg": "Please use a valid email address",
       "logInSuccessTitle": "Logged In",
       "logInSuccessDescription": "Welcome back to Democracy by Small Minds",
       "sectionTitle": "Log In",

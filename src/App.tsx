@@ -1,44 +1,40 @@
-import {
-  Button,
-  Col,
-  Container,
-  Content,
-  FlexboxGrid,
-  Footer,
-  Header,
-  Panel,
-} from 'rsuite';
 import React, { useEffect, useState } from 'react';
 import {
   Credentials,
   CredentialData,
   blankCredentialData,
 } from './utils/Authentication';
-import LoggedIn from './components/LoggedIn';
-import SignupForm from './components/SignupForm';
-import LoginForm from './components/LoginForm';
-import LanguagePicker from './components/LanguagePicker';
-import Election from './pages/Election';
 import { getAccessToken, getRefreshToken, isAuthenticated } from './utils/API';
-import NewElectionButton from './components/NewElectionButton';
 import './App.css';
 import { useTranslation } from 'react-i18next';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import ElectionList from './components/ElectionList';
-import ElectionInfo from './components/ElectionInfo';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  BrowserRouter,
+} from 'react-router-dom';
+import Loading from './pages/Loading';
+import Base from './pages/Base';
+import './App.css';
+
+/**
+ * Parent for the entire application.
+ * Contains the router and credential provider.
+ */
 function App() {
   // When the app first starts, it is unauthenticated.
   const [credentials, setCredentials] = useState<CredentialData>(
     blankCredentialData
   );
-  const [working, setWorking] = useState<boolean>(false);
+  // If processing credentials, be working.
+  const [working, setWorking] = useState<boolean>(true);
   //Set Up Localization Hook
   const [t] = useTranslation();
 
   // Load JWTs and validate.
   useEffect(() => {
     console.log('Checking for pre-existing credentials...');
-    if (!working && credentials.authenticated === undefined) {
+    if (credentials.authenticated === undefined) {
       setWorking(true);
       isAuthenticated().then((b) => {
         if (b) {
@@ -66,46 +62,19 @@ function App() {
   return (
     <div>
       <Credentials.Provider value={{ credentials, setCredentials }}>
-        <Router>
-          <FlexboxGrid justify="center">
-            <FlexboxGrid.Item
-              componentClass={Col}
-              colspan={24}
-              lg={10}
-              md={15}
-              sm={20}
-              xs={23}
-            >
-              <Container>
-                <Content>
-                  <Panel header={<h2>{t('mainPage.appName')}</h2>}></Panel>
-                  <LanguagePicker />
-                  <LoggedIn />
-                  <SignupForm />
-                  <LoginForm />
-                  <Switch>
-                    {/**
-                
-                  <Route path='/login' component={LoginForm}/>
-               
-                  <Route path='/signup' component={SignupForm}/>
-                  */}
-                    <Route path="/election/:id" children={<ElectionInfo />} />
-                  </Switch>
-                  <Panel
-                    header={<h2>{t('mainPage.electionToolSectionTitle')}</h2>}
-                    bordered
-                  >
-                    <NewElectionButton />
-                  </Panel>
-                  <Panel header={<h2>ELectionList</h2>} bordered>
-                    <ElectionList />
-                  </Panel>
-                </Content>
-              </Container>
-            </FlexboxGrid.Item>
-          </FlexboxGrid>
-        </Router>
+        {working === false ? (
+          <BrowserRouter>
+            <Switch>
+              {/* Protected Pages */}
+              <Route path="/">
+                <Base />
+              </Route>
+              {/* Public Pages */}
+            </Switch>
+          </BrowserRouter>
+        ) : (
+          <Loading />
+        )}
       </Credentials.Provider>
       <br />
     </div>

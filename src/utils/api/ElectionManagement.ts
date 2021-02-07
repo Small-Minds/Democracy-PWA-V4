@@ -2,6 +2,7 @@ import { AxiosResponse } from 'axios';
 import { api } from '../API';
 
 const electionURL = `/elections/manage/election/`;
+const electionParticipationURL = `/elections/participate/election/`;
 
 export type EmptyElection = {
   id: string;
@@ -45,6 +46,14 @@ export async function create(
       const election: EmptyElection = res.data;
       return election;
     });
+}
+
+export async function getPublicElectionList(
+  accessToken: string
+): Promise<AxiosResponse> {
+  return api.get(electionParticipationURL, {
+    headers: { Authorization: `JWT ${accessToken}` },
+  });
 }
 
 export async function getElectionList(

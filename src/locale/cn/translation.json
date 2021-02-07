@@ -17,6 +17,7 @@
     "signInForm": {
       "alreadyLogInMsg": "您已登入",
       "msgRequired": "此为必填字段",
+      "invalidEmailFormatMsg": "请使用有效的电子邮件地址",
       "ctxErrorMsg": "请刷新此网页",
       "logInSuccessTitle": "已登入",
       "logInSuccessDescription": "欢迎回到由Small Mind 制作的迪蒙",

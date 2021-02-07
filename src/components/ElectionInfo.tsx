@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { getAccessToken } from '../utils/API';
 import { Election, getElection } from '../utils/api/ElectionManagement';
+
 export default function ElectionInfo() {
   let { id } = useParams<any>();
   const [isLoading, setLoading] = useState(true);

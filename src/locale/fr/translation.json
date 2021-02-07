@@ -17,6 +17,7 @@
     "signInForm": {
       "alreadyLogInMsg": "Vous êtes déjà connecté",
       "msgRequired": "Ce champ est obligatoire",
+      "invalidEmailFormatMsg": "Veuillez utiliser une adresse mail valide",
       "ctxErrorMsg": "Veuillez actualiser la page",
       "logInSuccessTitle": "connecté",
       "logInSuccessDescription": "Bienvenue à nouveau chez Democarcy by Small Minds",

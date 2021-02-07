@@ -44,8 +44,9 @@ function AccountMenu() {
     <Dropdown
       placement="bottomEnd"
       renderTitle={() => (
-        <Avatar style={{ margin: 8 }} alt={initials()}>
-          {initials()}
+        <Avatar style={{ margin: 8 }}>
+          {/** Render initials or avatar as fallback */}
+          {initials() || <Icon icon="avatar" />}
         </Avatar>
       )}
     >

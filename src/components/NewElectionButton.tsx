@@ -109,7 +109,7 @@ function NewElectionButton() {
       >
         {t('createElectionBtn.btnLabel')}
       </Button>
-      <Modal size="xs" show={open} onHide={() => setOpen(false)}>
+      <Modal size="sm" show={open} onHide={() => setOpen(false)}>
         <Modal.Title>Create a New Election</Modal.Title>
         <Modal.Body>
           <Form
@@ -119,6 +119,7 @@ function NewElectionButton() {
             formError={formErrors}
             model={model}
             ref={(ref: any) => (form = ref)}
+            fluid
           >
             <FormGroup>
               <ControlLabel>Title</ControlLabel>
@@ -127,7 +128,7 @@ function NewElectionButton() {
             <FormGroup>
               <ControlLabel>Description</ControlLabel>
               <FormControl
-                rows={5}
+                rows={3}
                 name="description"
                 componentClass="textarea"
               />

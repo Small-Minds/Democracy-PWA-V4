@@ -18,6 +18,7 @@ import LanguagePicker from './LanguagePicker';
 
 function AccountMenu() {
   const ctx = useContext(Credentials);
+  const history = useHistory();
   const [t] = useTranslation();
 
   return (
@@ -34,6 +35,7 @@ function AccountMenu() {
             refreshToken: '',
             refreshTokenExpiry: undefined,
           });
+          history.push('/');
           Notification['success']({
             title: t('mainPage.logoutSuccessTitle'),
             description: t('mainPage.logoutSuccessDescription'),

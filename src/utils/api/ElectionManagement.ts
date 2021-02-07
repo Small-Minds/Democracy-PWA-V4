@@ -34,8 +34,19 @@ export type Election = {
   voting_start_time: string;
 };
 
+export type CreateElectionParams = {
+  title: string;
+  description: string;
+  election_email_domain: string;
+  enable_multiple_submissions: boolean;
+  submission_end_time: Date;
+  submission_start_time: Date;
+  voting_end_time: Date;
+  voting_start_time: Date;
+};
+
 export async function create(
-  formData: any,
+  formData: CreateElectionParams,
 ): Promise<EmptyElection> {
   const token = await preRequestRefreshAuth();
   return api

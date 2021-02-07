@@ -1,10 +1,10 @@
 import { Fragment, useContext, useState } from 'react';
 import { Button, Modal, Notification, Panel } from 'rsuite';
-import { api } from '../utils/API';
 import { Credentials } from '../utils/Authentication';
 import { create } from '../utils/api/ElectionManagement';
 import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
+
 /**
  * Here is an example of a useContext hook to consume a provider.
  */
@@ -12,18 +12,38 @@ function NewElectionButton() {
   // When the app first starts, it is unauthenticated.
   const ctx = useContext(Credentials);
   const [loading, setLoading] = useState<boolean>(false);
-  // Modal state:
+  // Modal open/closed state:
   const [open, setOpen] = useState<boolean>(false);
   // Set up localization hook
   const [t] = useTranslation();
   const history = useHistory();
 
+  /**
+   * Creates a new election and navigates to that page.
+   * @param title New title for the election.
+   * @param description New description for the election.
+   */
   const createElection = async (title: string, description: string) => {
+    // If  not authenticated, quit early.
+    if (!ctx || !ctx.credentials.authenticated) return;
+    // Otherwise, start loading animations.
     setLoading(true);
-    if (!ctx) return;
+
+    // Use a fake date until the form is implemented.
+    const d = new Date();
+
+    // Process form input (todo)
+
+    // Call the creation endpoint.
     create({
       title: title,
       description: description,
+      election_email_domain: 'uottawa.ca',
+      enable_multiple_submissions: false,
+      submission_end_time: d,
+      submission_start_time: d,
+      voting_end_time: d,
+      voting_start_time: d,
     })
       .then((election) => {
         let path = `/election/${election.id}`;

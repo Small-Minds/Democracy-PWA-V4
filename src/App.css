@@ -9,6 +9,7 @@ body {
 
   /* To prevent jank, always show the scrollbar. */
   overflow-y: scroll;
+  min-width: 300px;
 }
 
 /* Apple-System is the strange/blurry font. */

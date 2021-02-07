@@ -86,7 +86,10 @@ function App() {
                       <Fragment>
                         {/* Protected Pages */}
                         <Switch>
-                          <Route path="/election/:id/" component={Election} />
+                          <Route path="/election/:id/positions/:positionId" component={EmptyPage} />
+                          <Route path="/election/:id/platforms/:platformId" component={EmptyPage} />
+                          <Route path="/election/:id/vote" component={EmptyPage} />
+                          <Route path="/election/:id" component={Election} />
                           <Route path="/vote" component={EmptyPage} />
                           <Route path="/setup" component={EmptyPage} />
                           <Route path="/" component={Base} />

@@ -35,7 +35,8 @@ function Info() {
             <br />
             <h1>{t('mainPage.appName')}</h1>
             <br />
-            <LanguagePicker />
+            <p>{t('mainPage.slogan')}</p>
+            <br />
             <LoginForm />
             <SignupForm />
           </Content>

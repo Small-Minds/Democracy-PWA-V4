@@ -50,6 +50,7 @@
     },
     "mainPage": {
       "appName": "Democracy",
+      "slogan": "Sign up and participate in student elections.",
       "electionToolSectionTitle": "Election Tools",
       "loginButton": "Log In",
       "logoutButton": "Log Out",

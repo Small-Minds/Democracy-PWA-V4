@@ -5,17 +5,10 @@ import {
   blankCredentialData,
 } from './utils/Authentication';
 import { getAccessToken, getRefreshToken, isAuthenticated } from './utils/API';
-import './App.css';
 import { useTranslation } from 'react-i18next';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  BrowserRouter,
-} from 'react-router-dom';
+import { Switch, Route, BrowserRouter } from 'react-router-dom';
 import Loading from './pages/Loading';
 import Base from './pages/Home';
-import './App.css';
 import Info from './pages/Landing';
 import Navigation from './components/Navigation';
 import EmptyPage from './pages/Empty';
@@ -23,6 +16,7 @@ import Election from './pages/Election';
 import { Col, Container, Content, FlexboxGrid, Panel } from 'rsuite';
 import HomeVote from './pages/HomeVote';
 import HomeSetup from './pages/HomeSetup';
+import './App.css';
 
 /**
  * Parent for the entire application.

@@ -13,3 +13,14 @@ body {
 }
 
 /* Apple-System is the strange/blurry font. */
+
+/* On mobile, reduce padding on navbar buttons. */
+@media (max-width: 450px) {
+  .rs-nav-item-content {
+    padding-right: 5px !important;
+    padding-left: 5px !important;
+  }
+  .rs-navbar-nav .rs-dropdown > .rs-dropdown-toggle {
+    padding-left: 5px !important;
+  }
+}

@@ -55,6 +55,7 @@ function Navigation() {
             appearance="subtle"
             activeKey={location.pathname}
             onSelect={(key: string) => history.push(key)}
+            className="democracy-nav"
           >
             <Nav.Item eventKey="/" icon={<Icon icon="home" />}>
               {t('mainPage.homeLink')}

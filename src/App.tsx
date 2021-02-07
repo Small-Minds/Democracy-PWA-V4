@@ -13,7 +13,7 @@ import Info from './pages/Landing';
 import Navigation from './components/Navigation';
 import EmptyPage from './pages/Empty';
 import Election from './pages/Election';
-import { Col, Container, Content, FlexboxGrid, Panel } from 'rsuite';
+import { Col, Container, Content, FlexboxGrid } from 'rsuite';
 import HomeVote from './pages/HomeVote';
 import HomeSetup from './pages/HomeSetup';
 import './App.css';
@@ -36,23 +36,27 @@ function App() {
   useEffect(() => {
     if (credentials.authenticated === undefined) {
       console.log('Checking for pre-existing credentials...');
-      isAuthenticated().then((b) => {
-        if (b) {
-          const access = getAccessToken();
-          const refresh = getRefreshToken();
-          const newCreds: CredentialData = {
-            authenticated: true,
-            token: access.token,
-            tokenExpiry: access.expiry,
-            refreshToken: refresh.refreshToken,
-            refreshTokenExpiry: refresh.refreshTokenExpiry,
-          };
-          setCredentials(newCreds);
+      isAuthenticated()
+        .then((b) => {
+          if (b) {
+            const access = getAccessToken();
+            const refresh = getRefreshToken();
+            const newCreds: CredentialData = {
+              authenticated: true,
+              token: access.token,
+              tokenExpiry: access.expiry,
+              refreshToken: refresh.refreshToken,
+              refreshTokenExpiry: refresh.refreshTokenExpiry,
+            };
+            setCredentials(newCreds);
+          }
+        })
+        .catch((err) => {
+          console.log("Couldn't authenticate.");
+        })
+        .finally(() => {
           setWorking(false);
-        } else {
-          setWorking(false);
-        }
-      });
+        });
     }
   }, [credentials]);
 

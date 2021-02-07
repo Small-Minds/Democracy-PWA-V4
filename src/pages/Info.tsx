@@ -32,8 +32,8 @@ function Info() {
               <h1>{t('mainPage.appName')}</h1>
               <br />
               <LanguagePicker />
-              <SignupForm />
               <LoginForm />
+              <SignupForm />
             </Content>
           </Container>
         </FlexboxGrid.Item>

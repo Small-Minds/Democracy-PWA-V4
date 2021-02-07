@@ -1,7 +1,10 @@
 import React, { useEffect, useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { List } from 'rsuite';
-import { getPublicElectionList, Election } from '../utils/api/ElectionManagement';
+import {
+  getPublicElectionList,
+  Election,
+} from '../utils/api/ElectionManagement';
 import { Credentials } from '../utils/Authentication';
 
 export default function PublicElectionList() {

@@ -36,8 +36,9 @@ function Base() {
               <LoggedIn />
 
               <LogoutButton />
-              <SignupForm />
-              <LoginForm />
+              <br />
+              <br />
+
               <Switch>
                 {/**
                 

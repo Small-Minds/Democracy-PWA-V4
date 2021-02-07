@@ -1,5 +1,5 @@
 import { AxiosResponse } from 'axios';
-import { api, getAccessToken, preRequestRefreshAuth } from '../API';
+import { api, preRequestRefreshAuth } from '../API';
 
 const electionURL = `/elections/manage/election/`;
 const electionParticipationURL = `/elections/participate/election/`;

@@ -19,6 +19,8 @@ import './App.css';
 import Info from './pages/Landing';
 import Navigation from './components/Navigation';
 import EmptyPage from './pages/EmptyPage';
+import Election from './pages/Election';
+import { Col, Container, Content, FlexboxGrid, Panel } from 'rsuite';
 
 /**
  * Parent for the entire application.
@@ -69,31 +71,50 @@ function App() {
         {working === false ? (
           <BrowserRouter>
             <Navigation />
-            {credentials && credentials.authenticated ? (
-              <Fragment>
-                {/* Protected Pages */}
-                <Switch>
-                  <Route path="/vote">
-                    <EmptyPage />
-                  </Route>
-                  <Route path="/setup">
-                    <EmptyPage />
-                  </Route>
-                  <Route path="/">
-                    <Base />
-                  </Route>
-                </Switch>
-              </Fragment>
-            ) : (
-              <Fragment>
-                {/* Public Pages */}
-                <Switch>
-                  <Route path="/">
-                    <Info />
-                  </Route>
-                </Switch>
-              </Fragment>
-            )}
+            <FlexboxGrid justify="center">
+              <FlexboxGrid.Item
+                componentClass={Col}
+                sm={22}
+                xs={24}
+                colspan={24}
+                style={{ maxWidth: '800px' }}
+              >
+                <Container>
+                  <br />
+                  <Content>
+                    {credentials && credentials.authenticated ? (
+                      <Fragment>
+                        {/* Protected Pages */}
+                        <Switch>
+                          <Route path="/election">
+                            <Election />
+                          </Route>
+                          <Route path="/vote">
+                            <EmptyPage />
+                          </Route>
+                          <Route path="/setup">
+                            <EmptyPage />
+                          </Route>
+                          <Route path="/">
+                            <Base />
+                          </Route>
+                        </Switch>
+                      </Fragment>
+                    ) : (
+                      <Fragment>
+                        {/* Public Pages */}
+                        <Switch>
+                          <Route path="/">
+                            <Info />
+                          </Route>
+                        </Switch>
+                      </Fragment>
+                    )}
+                  </Content>
+                  <br />
+                </Container>
+              </FlexboxGrid.Item>
+            </FlexboxGrid>
           </BrowserRouter>
         ) : (
           <Loading />

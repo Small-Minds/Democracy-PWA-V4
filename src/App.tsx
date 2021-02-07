@@ -14,9 +14,9 @@ import {
   BrowserRouter,
 } from 'react-router-dom';
 import Loading from './pages/Loading';
-import Base from './pages/Landing';
+import Base from './pages/Home';
 import './App.css';
-import Info from './pages/Info';
+import Info from './pages/Landing';
 import Navigation from './components/Navigation';
 import EmptyPage from './pages/EmptyPage';
 

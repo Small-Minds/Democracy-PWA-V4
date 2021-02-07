@@ -1,7 +1,7 @@
 import React, { Fragment, useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useHistory, useLocation } from 'react-router-dom';
-import { Dropdown, Navbar, Icon, Nav, Notification } from 'rsuite';
+import { Dropdown, Navbar, Icon, Nav, Notification, FlexboxGrid } from 'rsuite';
 import { clearTokens } from '../utils/API';
 import { Credentials } from '../utils/Authentication';
 import LanguagePicker from './LanguagePicker';
@@ -49,7 +49,7 @@ function Navigation() {
 
   return (
     <Navbar>
-      <Navbar.Body>
+      <Navbar.Body style={{ maxWidth: '800px', margin: '0 auto' }}>
         {ctx && ctx?.credentials.authenticated && (
           <Nav
             appearance="subtle"

@@ -26,10 +26,9 @@ function Info() {
       <FlexboxGrid.Item
         componentClass={Col}
         colspan={24}
-        lg={10}
-        md={15}
         sm={20}
         xs={23}
+        style={{ maxWidth: '800px' }}
       >
         <Container>
           <Content>

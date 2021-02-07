@@ -14,10 +14,11 @@ import {
   BrowserRouter,
 } from 'react-router-dom';
 import Loading from './pages/Loading';
-import Base from './pages/Base';
+import Base from './pages/Landing';
 import './App.css';
 import Info from './pages/Info';
 import Navigation from './components/Navigation';
+import EmptyPage from './pages/EmptyPage';
 
 /**
  * Parent for the entire application.
@@ -73,6 +74,12 @@ function App() {
               <Fragment>
                 {/* Protected Pages */}
                 <Switch>
+                  <Route path="/vote">
+                    <EmptyPage />
+                  </Route>
+                  <Route path="/setup">
+                    <EmptyPage />
+                  </Route>
                   <Route path="/">
                     <Base />
                   </Route>

@@ -57,7 +57,12 @@
       "voteLink": "Vote",
       "setupLink": "Setup",
       "logoutSuccessTitle": "Logged Out",
-      "logoutSuccessDescription": "You have successfully logged out of your Democracy session. Enjoy the rest of your day!"
+      "logoutSuccessDescription": "You have successfully logged out of your Democracy session. Enjoy the rest of your day!",
+      "welcome":"Welcome"
+    },
+    "emptyPage": {
+      "title": "Empty Page",
+      "body": "This is a placeholder page, and will be replaced."
     }
   }
 }

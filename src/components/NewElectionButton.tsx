@@ -6,8 +6,10 @@ import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
 
 /**
- * Here is an example of a useContext hook to consume a provider.
+ * Reminder to self:
+ * Max editing this file. Do not edit until his PR is merged.
  */
+
 function NewElectionButton() {
   // When the app first starts, it is unauthenticated.
   const ctx = useContext(Credentials);

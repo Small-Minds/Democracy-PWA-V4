@@ -46,7 +46,7 @@ export type CreateElectionParams = {
 };
 
 export async function create(
-  formData: CreateElectionParams,
+  formData: CreateElectionParams
 ): Promise<EmptyElection> {
   const token = await preRequestRefreshAuth();
   return api
@@ -59,8 +59,7 @@ export async function create(
     });
 }
 
-export async function getPublicElectionList(
-): Promise<AxiosResponse> {
+export async function getPublicElectionList(): Promise<AxiosResponse> {
   const token = await preRequestRefreshAuth();
   return api.get(electionParticipationURL, {
     headers: { Authorization: `JWT ${token}` },
@@ -74,9 +73,7 @@ export async function getElectionList(): Promise<AxiosResponse> {
   });
 }
 
-export async function getElection(
-  electionId: string
-): Promise<AxiosResponse> {
+export async function getElection(electionId: string): Promise<AxiosResponse> {
   const token = await preRequestRefreshAuth();
   let config = {
     headers: { Authorization: `JWT ${token}` },

@@ -30,7 +30,7 @@ function LogoutButton() {
             refreshToken: '',
             refreshTokenExpiry: undefined,
           });
-          history.push("/");
+          history.push('/');
           Notification['success']({
             title: t('mainPage.logOutSuccessTitle'),
             description: t('mainPage.logOutSuccessDescription'),

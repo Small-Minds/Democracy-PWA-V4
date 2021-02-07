@@ -61,17 +61,17 @@
       "setupLink": "Setup",
       "logoutSuccessTitle": "Logged Out",
       "logoutSuccessDescription": "You have successfully logged out of your Democracy session. Enjoy the rest of your day!",
-      "welcome":"Welcome"
+      "welcome": "Welcome"
     },
     "emptyPage": {
       "title": "Empty Page",
       "body": "This is a placeholder page, and will be replaced."
     },
-    "voteHomePage":{
+    "voteHomePage": {
       "title": "Vote",
       "subtitle": "Vote in a public election from your domain"
     },
-    "setupHomePage":{
+    "setupHomePage": {
       "title": "Setup",
       "subtitle": "Configure a new or existing election"
     }

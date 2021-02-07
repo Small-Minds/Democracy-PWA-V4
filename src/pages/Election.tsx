@@ -46,16 +46,25 @@ const Election: FC<RouteComponentProps> = ({ match }) => {
       <h1>Election</h1>
       <code>ID {id}</code>
       <br />
-      <Button appearance="primary" onClick={() => history.push(`${match.url}/vote`)}>
-        Vote 
+      <Button
+        appearance="primary"
+        onClick={() => history.push(`${match.url}/vote`)}
+      >
+        Vote
       </Button>
       <Button appearance="subtle" onClick={() => history.push(match.url)}>
-        Election Info 
+        Election Info
       </Button>
-      <Button appearance="subtle" onClick={() => history.push(`${match.url}/positions`)}>
+      <Button
+        appearance="subtle"
+        onClick={() => history.push(`${match.url}/positions`)}
+      >
         Open Positions
       </Button>
-      <Button appearance="subtle" onClick={() => history.push(`${match.url}/platforms`)}>
+      <Button
+        appearance="subtle"
+        onClick={() => history.push(`${match.url}/platforms`)}
+      >
         Candidate Platforms
       </Button>
       <br />

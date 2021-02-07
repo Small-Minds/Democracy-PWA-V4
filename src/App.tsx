@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import {
   Credentials,
   CredentialData,
@@ -17,6 +17,7 @@ import Loading from './pages/Loading';
 import Base from './pages/Base';
 import './App.css';
 import Info from './pages/Info';
+import Navigation from './components/Navigation';
 
 /**
  * Parent for the entire application.
@@ -67,20 +68,25 @@ function App() {
       <Credentials.Provider value={{ credentials, setCredentials }}>
         {working === false ? (
           <BrowserRouter>
+            <Navigation />
             {credentials && credentials.authenticated ? (
-              <Switch>
+              <Fragment>
                 {/* Protected Pages */}
-                <Route path="/">
-                  <Base />
-                </Route>
-              </Switch>
+                <Switch>
+                  <Route path="/">
+                    <Base />
+                  </Route>
+                </Switch>
+              </Fragment>
             ) : (
-              <Switch>
+              <Fragment>
                 {/* Public Pages */}
-                <Route path="/">
-                  <Info />
-                </Route>
-              </Switch>
+                <Switch>
+                  <Route path="/">
+                    <Info />
+                  </Route>
+                </Switch>
+              </Fragment>
             )}
           </BrowserRouter>
         ) : (

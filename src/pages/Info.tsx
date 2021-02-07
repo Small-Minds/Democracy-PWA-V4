@@ -13,32 +13,30 @@ import PublicElectionList from '../components/PublicElectionList';
 import SignupForm from '../components/SignupForm';
 
 function Info() {
-  const [t, i18n] = useTranslation();
+  const [t] = useTranslation();
 
   return (
-    <React.Fragment>
-      <FlexboxGrid justify="center">
-        <FlexboxGrid.Item
-          componentClass={Col}
-          colspan={24}
-          lg={10}
-          md={15}
-          sm={20}
-          xs={23}
-        >
-          <Container>
-            <Content>
-              <br />
-              <h1>{t('mainPage.appName')}</h1>
-              <br />
-              <LanguagePicker />
-              <LoginForm />
-              <SignupForm />
-            </Content>
-          </Container>
-        </FlexboxGrid.Item>
-      </FlexboxGrid>
-    </React.Fragment>
+    <FlexboxGrid justify="center">
+      <FlexboxGrid.Item
+        componentClass={Col}
+        colspan={24}
+        lg={10}
+        md={15}
+        sm={20}
+        xs={23}
+      >
+        <Container>
+          <Content>
+            <br />
+            <h1>{t('mainPage.appName')}</h1>
+            <br />
+            <LanguagePicker />
+            <LoginForm />
+            <SignupForm />
+          </Content>
+        </Container>
+      </FlexboxGrid.Item>
+    </FlexboxGrid>
   );
 }
 

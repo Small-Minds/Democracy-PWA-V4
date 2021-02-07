@@ -1,35 +1,51 @@
-import { Button, Container, Content, Footer, Header } from 'rsuite';
-import React, { useContext, useState } from 'react';
-import { Credentials, CredentialInterface } from '../utils/Authentication';
+import React, { Fragment, useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useHistory, useLocation } from 'react-router-dom';
+import {
+  Panel,
+  Dropdown,
+  ButtonToolbar,
+  Navbar,
+  Icon,
+  Nav,
+  Avatar,
+} from 'rsuite';
+import { Credentials } from '../utils/Authentication';
+import LanguagePicker from './LanguagePicker';
 
-/**
- * Here is an example of a useContext hook to consume a provider.
- */
-function LoggedIn() {
-  // When the app first starts, it is unauthenticated.
+function Navigation() {
   const ctx = useContext(Credentials);
-  const [t] = useTranslation();
+  const [t, i18n] = useTranslation();
+  const history = useHistory();
+  const location = useLocation();
+
+  console.log(location);
   return (
-    <div>
-      {ctx ? (
-        <div>
-          <h4>{t('loggedInInfo.sectionTitle')}</h4>
-          <p>{`${t('loggedInInfo.loggedInFieldLabel')}: ${
-            ctx.credentials.authenticated
-              ? t('loggedInInfo.loggedIn')
-              : t('loggedInInfo.notLoggedIn')
-          }`}</p>
-          <p>{`${t('loggedInInfo.accessTokenFieldLabel')}: ${
-            ctx.credentials.token || t('loggedInInfo.noToken')
-          }`}</p>
-          <p>{`${t('loggedInInfo.refreshTokenFieldLabel')}: ${
-            ctx.credentials.refreshToken || t('loggedInInfo.noToken')
-          }`}</p>
-        </div>
-      ) : null}
-    </div>
+    <Navbar>
+      <Navbar.Body>
+        {ctx && ctx?.credentials.authenticated && (
+          <Nav
+            appearance="subtle"
+            activeKey={location.pathname}
+            onSelect={(key: string) => history.push(key)}
+          >
+            <Nav.Item eventKey="/" icon={<Icon icon="home" />}>
+              Home
+            </Nav.Item>
+            <Nav.Item eventKey="/vote" icon={<Icon icon="check2" />}>
+              Vote
+            </Nav.Item>
+            <Nav.Item eventKey="/setup" icon={<Icon icon="gears2" />}>
+              Setup
+            </Nav.Item>
+          </Nav>
+        )}
+        <Nav pullRight>
+          <LanguagePicker />
+        </Nav>
+      </Navbar.Body>
+    </Navbar>
   );
 }
 
-export default LoggedIn;
+export default Navigation;

@@ -1,8 +1,17 @@
-import React, { Fragment, useContext } from 'react';
+import React, { Fragment, useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useHistory, useLocation } from 'react-router-dom';
-import { Dropdown, Navbar, Icon, Nav, Notification, FlexboxGrid } from 'rsuite';
+import {
+  Dropdown,
+  Navbar,
+  Icon,
+  Nav,
+  Notification,
+  FlexboxGrid,
+  Avatar,
+} from 'rsuite';
 import { clearTokens } from '../utils/API';
+import { getUserInfo, UserInfo } from '../utils/api/User';
 import { Credentials } from '../utils/Authentication';
 import LanguagePicker from './LanguagePicker';
 
@@ -10,12 +19,43 @@ function AccountMenu() {
   const ctx = useContext(Credentials);
   const history = useHistory();
   const [t] = useTranslation();
+  const [userInfo, setUserInfo] = useState<UserInfo | undefined>();
+
+  useEffect(() => {
+    getUserInfo().then((i) => {
+      setUserInfo(i);
+    });
+  }, [ctx]);
+
+  const initials = (): string => {
+    if (!userInfo || !userInfo.name) return '';
+    const elems = userInfo.name.split(' ');
+    if (elems.length == 1) {
+      return elems[0].charAt(0).toUpperCase();
+    } else if (elems.length >= 2) {
+      return (
+        elems[0].charAt(0).toUpperCase() + elems[1].charAt(0).toUpperCase()
+      );
+    }
+    return '';
+  };
 
   return (
     <Dropdown
       placement="bottomEnd"
-      renderTitle={() => <Nav.Item icon={<Icon icon="user" />} />}
+      renderTitle={() => (
+        <Avatar style={{ margin: 8 }} alt={initials()}>
+          {initials()}
+        </Avatar>
+      )}
     >
+      <Dropdown.Item panel style={{ padding: 10 }}>
+        <p>
+          <b>{userInfo?.name}</b>
+        </p>
+        <p>{userInfo?.email}</p>
+      </Dropdown.Item>
+      <Dropdown.Item divider />
       <Dropdown.Item
         icon={<Icon icon="sign-out" />}
         onSelect={() => {

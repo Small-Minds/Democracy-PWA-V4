@@ -1,4 +1,3 @@
-
 body {
   /* Use System Fonts */
   /* Default: Apple-System, Arial, Helvetica, "PingFang SC", "Hiragino Sans GB",
@@ -7,6 +6,9 @@ body {
     Arial, sans-serif, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei',
     STXihei, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
   text-rendering: optimizeLegibility;
+
+  /* To prevent jank, always show the scrollbar. */
+  overflow-y: scroll;
 }
 
 /* Apple-System is the strange/blurry font. */

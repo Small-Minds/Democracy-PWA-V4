@@ -46,7 +46,7 @@ function AccountMenu() {
       renderTitle={() => (
         <Avatar style={{ margin: 8 }}>
           {/** Render initials or avatar as fallback */}
-          {initials() || <Icon icon="avatar" />}
+          <b>{initials() || <Icon icon="avatar" />}</b>
         </Avatar>
       )}
     >

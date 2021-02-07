@@ -15,9 +15,8 @@ export default function LanguagePicker() {
   return (
     <Fragment>
       <Dropdown
-        icon={<Icon icon="globe2" />}
+        icon={<Icon icon="globe" />}
         title={t(`languagePicker.${i18n.language || 'en'}`)}
-        activeKey={i18n.language || 'en'}
         onSelect={(key) => i18n.changeLanguage(key)}
         placement="bottomEnd"
       >

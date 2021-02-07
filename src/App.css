@@ -35,6 +35,11 @@ body {
   }
 }
 
-.rs-modal{
+/* Some rsuite components like to spill over edges on mobile */
+.rs-modal {
+  max-width: 100%;
+}
+
+.rs-input {
   max-width: 100%;
 }

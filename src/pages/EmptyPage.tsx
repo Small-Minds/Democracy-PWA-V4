@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
 
@@ -7,7 +7,7 @@ function EmptyPage() {
   const history = useHistory();
 
   return (
-    <React.Fragment>
+    <Fragment>
       <h1>{t('emptyPage.title')}</h1>
       <br />
       <br />
@@ -16,7 +16,7 @@ function EmptyPage() {
       </p>
       <p>{t('emptyPage.body')}</p>
       <br />
-    </React.Fragment>
+    </Fragment>
   );
 }
 

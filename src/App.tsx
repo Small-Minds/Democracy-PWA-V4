@@ -86,7 +86,7 @@ function App() {
                       <Fragment>
                         {/* Protected Pages */}
                         <Switch>
-                          <Route path="/election">
+                          <Route path="/election/:id/">
                             <Election />
                           </Route>
                           <Route path="/vote">

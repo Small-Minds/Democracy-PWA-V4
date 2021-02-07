@@ -4,17 +4,19 @@ import { useParams, Switch, Route, useRouteMatch } from 'react-router-dom';
 export default function Election() {
   const { id } = useParams<Record<string, string | undefined>>();
   const { url } = useRouteMatch();
-  console.log(url);
+  
   return (
     <Fragment>
-      <h1>The election Id is {id}</h1>
+      <h1>Election</h1>
+      <code>ID {id}</code>
+      <br />
       <Switch>
         {/* Positions*/}
-        <Route path={`${url}/positions/:positionid`}>positionid</Route>
-        <Route path={`${url}/positions`}>position</Route>
-        <Route path={`${url}/platforms/:platformsid`}>platformsid</Route>
-        <Route path={`${url}/platforms`}>platforms</Route>
-        <Route path={`${url}/vote`}>vote</Route>
+        <Route path={`${url}/${id}/positions/:positionid`}>positionid</Route>
+        <Route path={`${url}/${id}/positions`}>position</Route>
+        <Route path={`${url}/${id}/platforms/:platformsid`}>platformsid</Route>
+        <Route path={`${url}/${id}/platforms`}>platforms</Route>
+        <Route path={`${url}/${id}/vote`}>vote</Route>
       </Switch>
     </Fragment>
   );

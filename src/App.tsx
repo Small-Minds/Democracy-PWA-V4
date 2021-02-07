@@ -18,12 +18,12 @@ import LoggedIn from './components/LoggedIn';
 import SignupForm from './components/SignupForm';
 import LoginForm from './components/LoginForm';
 import LanguagePicker from './components/LanguagePicker';
-import Election from './pages/Election'
+import Election from './pages/Election';
 import { getAccessToken, getRefreshToken, isAuthenticated } from './utils/API';
 import NewElectionButton from './components/NewElectionButton';
 import './App.css';
 import { useTranslation } from 'react-i18next';
-import { BrowserRouter as Router, Switch, Route} from "react-router-dom"
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import ElectionList from './components/ElectionList';
 import ElectionInfo from './components/ElectionInfo';
 function App() {
@@ -67,46 +67,44 @@ function App() {
     <div>
       <Credentials.Provider value={{ credentials, setCredentials }}>
         <Router>
-        <FlexboxGrid justify="center">
-          <FlexboxGrid.Item
-            componentClass={Col}
-            colspan={24}
-            lg={10}
-            md={15}
-            sm={20}
-            xs={23}
-          >
-            <Container>
-              <Content>
-                <Panel header={<h2>{t('mainPage.appName')}</h2>}></Panel>
-                <LanguagePicker />
-                <LoggedIn />
-                <SignupForm />
-                <LoginForm />
-                <Switch>
-                 {/**
+          <FlexboxGrid justify="center">
+            <FlexboxGrid.Item
+              componentClass={Col}
+              colspan={24}
+              lg={10}
+              md={15}
+              sm={20}
+              xs={23}
+            >
+              <Container>
+                <Content>
+                  <Panel header={<h2>{t('mainPage.appName')}</h2>}></Panel>
+                  <LanguagePicker />
+                  <LoggedIn />
+                  <SignupForm />
+                  <LoginForm />
+                  <Switch>
+                    {/**
                 
                   <Route path='/login' component={LoginForm}/>
                
                   <Route path='/signup' component={SignupForm}/>
-                  */} 
-                  <Route path='/election/:id' children={<ElectionInfo />} />
-                </Switch>
-                <Panel
-                  header={<h2>{t('mainPage.electionToolSectionTitle')}</h2>}
-                  bordered
-                >
-                  <NewElectionButton />
-                </Panel>
-                <Panel header = {<h2>ELectionList</h2>}
-                       bordered
-                >
-                  <ElectionList />
-                </Panel>
-              </Content>
-            </Container>
-          </FlexboxGrid.Item>
-        </FlexboxGrid>
+                  */}
+                    <Route path="/election/:id" children={<ElectionInfo />} />
+                  </Switch>
+                  <Panel
+                    header={<h2>{t('mainPage.electionToolSectionTitle')}</h2>}
+                    bordered
+                  >
+                    <NewElectionButton />
+                  </Panel>
+                  <Panel header={<h2>ELectionList</h2>} bordered>
+                    <ElectionList />
+                  </Panel>
+                </Content>
+              </Container>
+            </FlexboxGrid.Item>
+          </FlexboxGrid>
         </Router>
       </Credentials.Provider>
       <br />

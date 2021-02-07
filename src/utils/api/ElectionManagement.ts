@@ -30,7 +30,7 @@ export type Election = {
   submission_start_time: string;
   title: string;
   voting_end_time: string;
-  voting_start_time: string;  
+  voting_start_time: string;
 };
 
 export async function create(
@@ -47,20 +47,23 @@ export async function create(
     });
 }
 
-export async function getElectionList(accessToken: string):Promise<AxiosResponse> {
-  return api
-  .get(electionURL, {
+export async function getElectionList(
+  accessToken: string
+): Promise<AxiosResponse> {
+  return api.get(electionURL, {
     headers: { Authorization: `JWT ${accessToken}` },
-  })
+  });
 }
 
-export async function getElection(accessToken: string, electionId: string ): Promise<AxiosResponse> {
+export async function getElection(
+  accessToken: string,
+  electionId: string
+): Promise<AxiosResponse> {
   let config = {
-    headers: { Authorization: `JWT ${accessToken}`},
+    headers: { Authorization: `JWT ${accessToken}` },
     params: {
-      id: electionId
-    }
-  }
-  return api
-  .get(electionURL+electionId, config)
+      id: electionId,
+    },
+  };
+  return api.get(electionURL + electionId, config);
 }

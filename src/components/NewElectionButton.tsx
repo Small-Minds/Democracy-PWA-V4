@@ -20,18 +20,18 @@ function NewElectionButton() {
     if (!ctx) return;
     create({}, ctx.credentials.token)
       .then((election) => {
-       /** Notification['success']({
+        /** Notification['success']({
           title: t("createElectionBtn.successMsgTitle"),
           description: `${t("createElectionBtn.successMsg")} ${election.id}`,
         });*/
-        let path = `/election/${election.id}`
-        history.push(path)
+        let path = `/election/${election.id}`;
+        history.push(path);
       })
       .catch((x) => {
         console.log(x.response.data);
         Notification['error']({
-          title: t("createElectionBtn.failMsgTitle"),
-          description: t("createElectionBtn.failMsg"),
+          title: t('createElectionBtn.failMsgTitle'),
+          description: t('createElectionBtn.failMsg'),
         });
       })
       .finally(() => {

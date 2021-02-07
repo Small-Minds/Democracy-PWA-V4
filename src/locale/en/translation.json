@@ -49,6 +49,8 @@
       "cn": "Chinese"
     },
     "mainPage": {
+      "title": "Democracy",
+      "subtitle": "Welcome. Vote, register your candidacy, or configure a new election",
       "appName": "Democracy",
       "slogan": "Sign up and participate in student elections.",
       "electionToolSectionTitle": "Election Tools",
@@ -64,6 +66,14 @@
     "emptyPage": {
       "title": "Empty Page",
       "body": "This is a placeholder page, and will be replaced."
+    },
+    "voteHomePage":{
+      "title": "Vote",
+      "subtitle": "Vote in a public election from your domain"
+    },
+    "setupHomePage":{
+      "title": "Setup",
+      "subtitle": "Configure a new or existing election"
     }
   }
 }

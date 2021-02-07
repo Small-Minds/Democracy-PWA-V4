@@ -27,7 +27,7 @@ export default function PublicElectionList() {
       <List>
         {electionList.map((election, index) => (
           <List.Item key={index} index={index}>
-            <Link to={`/election/${election.id}/`}>{election.id}</Link>
+            <Link to={`/election/${election.id}`}>{election.id}</Link>
           </List.Item>
         ))}
       </List>

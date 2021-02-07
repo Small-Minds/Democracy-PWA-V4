@@ -41,7 +41,6 @@ const Election: FC<RouteComponentProps> = ({ match }) => {
     return null;
   }
 
-  console.log(match.url);
   return (
     <Fragment>
       <h1>Election</h1>

@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
 
-function EmptyPage() {
+function Empty() {
   const [t] = useTranslation();
   const history = useHistory();
 
@@ -20,4 +20,4 @@ function EmptyPage() {
   );
 }
 
-export default EmptyPage;
+export default Empty;

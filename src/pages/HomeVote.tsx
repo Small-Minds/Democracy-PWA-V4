@@ -5,17 +5,13 @@ import { Col, Container, Content, FlexboxGrid, Panel } from 'rsuite';
 import ElectionList from '../components/ElectionList';
 import PublicElectionList from '../components/PublicElectionList';
 
-function Home() {
+function HomeVote() {
   const [t, i18n] = useTranslation();
 
   return (
     <Fragment>
-      <h1>{t('mainPage.title')}</h1>
-      <p>{t('mainPage.subtitle')}</p>
-      <br />
-      <Panel header={<h2>Your Elections</h2>} bordered>
-        <ElectionList />
-      </Panel>
+      <h1>{t('voteHomePage.title')}</h1>
+      <p>{t('voteHomePage.subtitle')}</p>
       <br />
       <Panel header={<h2>All Elections</h2>} bordered>
         <PublicElectionList />
@@ -24,4 +20,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default HomeVote;

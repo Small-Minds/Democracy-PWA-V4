@@ -18,9 +18,11 @@ import Base from './pages/Home';
 import './App.css';
 import Info from './pages/Landing';
 import Navigation from './components/Navigation';
-import EmptyPage from './pages/EmptyPage';
+import EmptyPage from './pages/Empty';
 import Election from './pages/Election';
 import { Col, Container, Content, FlexboxGrid, Panel } from 'rsuite';
+import HomeVote from './pages/HomeVote';
+import HomeSetup from './pages/HomeSetup';
 
 /**
  * Parent for the entire application.
@@ -90,8 +92,8 @@ function App() {
                           <Route path="/election/:id/platforms/:platformId" component={EmptyPage} />
                           <Route path="/election/:id/vote" component={EmptyPage} />
                           <Route path="/election/:id" component={Election} />
-                          <Route path="/vote" component={EmptyPage} />
-                          <Route path="/setup" component={EmptyPage} />
+                          <Route path="/vote" component={HomeVote} />
+                          <Route path="/setup" component={HomeSetup} />
                           <Route path="/" component={Base} />
                         </Switch>
                       </Fragment>

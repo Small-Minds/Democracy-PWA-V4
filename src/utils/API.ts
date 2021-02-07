@@ -74,14 +74,18 @@ export async function clearTokens(): Promise<void> {
   return;
 }
 
-export async function preRequestRefreshAuth(): Promise<boolean> {
+/**
+ * Ensures auth is up to date, and returns access token if it's fine.
+ */
+export async function preRequestRefreshAuth(): Promise<string> {
   return isAuthenticated()
     .then(() => {
-      return true;
+      const { token } = getAccessToken();
+      return token;
     })
     .catch((err) => {
       console.error(err);
-      return false;
+      return '';
     });
 }
 

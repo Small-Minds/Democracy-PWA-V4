@@ -18,10 +18,13 @@ function NewElectionButton() {
   const [t] = useTranslation();
   const history = useHistory();
 
-  const createElection = async () => {
+  const createElection = async (title: string, description: string) => {
     setLoading(true);
     if (!ctx) return;
-    create({}, ctx.credentials.token)
+    create({
+      title: title,
+      description: description,
+    })
       .then((election) => {
         let path = `/election/${election.id}`;
         history.push(path);
@@ -52,12 +55,28 @@ function NewElectionButton() {
       </Button>
       <Modal size="xs" show={open} onHide={() => setOpen(false)}>
         <Modal.Title>Create a New Election</Modal.Title>
-        <Modal.Body></Modal.Body>
+        <Modal.Body>(Form to set title and subtitle.)</Modal.Body>
         <Modal.Footer>
-          <Button appearance="subtle" onClick={() => setOpen(false)}>
+          <Button
+            disabled={!ctx?.credentials.authenticated}
+            loading={loading}
+            appearance="subtle"
+            onClick={() => setOpen(false)}
+          >
             Cancel
           </Button>
-          <Button appearance="primary" onClick={createElection}>
+          <Button
+            disabled={!ctx?.credentials.authenticated}
+            loading={loading}
+            appearance="primary"
+            onClick={() => {
+              setLoading(true);
+              createElection(
+                'New Election',
+                'Come and vote for the new president of nothing.'
+              );
+            }}
+          >
             Create
           </Button>
         </Modal.Footer>

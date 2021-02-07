@@ -5,7 +5,6 @@ import {
   getPublicElectionList,
   Election,
 } from '../utils/api/ElectionManagement';
-import { Credentials } from '../utils/Authentication';
 
 export default function PublicElectionList() {
   const [electionList, setElectionList] = useState<Array<Election>>([]);

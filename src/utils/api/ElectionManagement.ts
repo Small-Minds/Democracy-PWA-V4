@@ -36,12 +36,11 @@ export type Election = {
 
 export async function create(
   formData: any,
-  accessToken: string
 ): Promise<EmptyElection> {
-  await preRequestRefreshAuth();
+  const token = await preRequestRefreshAuth();
   return api
     .post(electionURL, formData, {
-      headers: { Authorization: `JWT ${accessToken}` },
+      headers: { Authorization: `JWT ${token}` },
     })
     .then((res) => {
       const election: EmptyElection = res.data;
@@ -51,17 +50,14 @@ export async function create(
 
 export async function getPublicElectionList(
 ): Promise<AxiosResponse> {
-  await preRequestRefreshAuth();
-  const { token } = await getAccessToken();
-  await preRequestRefreshAuth();
+  const token = await preRequestRefreshAuth();
   return api.get(electionParticipationURL, {
     headers: { Authorization: `JWT ${token}` },
   });
 }
 
 export async function getElectionList(): Promise<AxiosResponse> {
-  await preRequestRefreshAuth();
-  const { token } = await getAccessToken();
+  const token = await preRequestRefreshAuth();
   return api.get(electionURL, {
     headers: { Authorization: `JWT ${token}` },
   });
@@ -70,8 +66,7 @@ export async function getElectionList(): Promise<AxiosResponse> {
 export async function getElection(
   electionId: string
 ): Promise<AxiosResponse> {
-  await preRequestRefreshAuth();
-  const { token } = await getAccessToken();
+  const token = await preRequestRefreshAuth();
   let config = {
     headers: { Authorization: `JWT ${token}` },
     params: {

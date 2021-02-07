@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Col, Container, Content, FlexboxGrid, Panel } from 'rsuite';
 
 import ElectionList from '../components/ElectionList';
+import NewElectionButton from '../components/NewElectionButton';
 import PublicElectionList from '../components/PublicElectionList';
 
 function HomeSetup() {
@@ -12,6 +13,9 @@ function HomeSetup() {
     <Fragment>
       <h1>{t('setupHomePage.title')}</h1>
       <p>{t('setupHomePage.subtitle')}</p>
+      <br />
+      <NewElectionButton />
+      <br />
       <br />
       <Panel header={<h2>Your Elections</h2>} bordered>
         <ElectionList />

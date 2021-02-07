@@ -14,8 +14,12 @@ export default function ElectionList() {
     // Return if the list has already been populated.
     if (electionList.length > 0) return;
     // If logged in, attempt to get the list of elections.
-    getElectionList(ctx.credentials.token).then((res) => {
+    console.log("Fetching election list...");
+    getElectionList().then((res) => {
+      console.log("Setting election list...");
       setElectionList(res.data);
+    }).catch((err) => {
+      console.error(err);
     });
   }, [ctx]);
 

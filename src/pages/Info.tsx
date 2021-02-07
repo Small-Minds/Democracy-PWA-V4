@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, useHistory } from 'react-router-dom';
 import { Col, Container, Content, FlexboxGrid, Panel } from 'rsuite';
 
 import ElectionInfo from '../components/ElectionInfo';
@@ -14,6 +14,12 @@ import SignupForm from '../components/SignupForm';
 
 function Info() {
   const [t] = useTranslation();
+  const history = useHistory();
+
+  // If a user lands on this page, set history to '/'.
+  useEffect(() => {
+    history.replace('/');
+  }, []);
 
   return (
     <FlexboxGrid justify="center">

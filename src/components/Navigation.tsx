@@ -23,8 +23,8 @@ function AccountMenu() {
 
   return (
     <Dropdown placement="bottomEnd" icon={<Icon icon="user" />}>
-      <Dropdown.Item onSelect={() => {}}>Company</Dropdown.Item>
       <Dropdown.Item
+        icon={<Icon icon="sign-out" />}
         onSelect={() => {
           clearTokens();
           if (!ctx) return;

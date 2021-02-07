@@ -1,5 +1,5 @@
 import { AxiosResponse } from 'axios';
-import { api } from '../API';
+import { api, preRequestRefreshAuth } from '../API';
 
 const electionURL = `/elections/manage/election/`;
 const electionParticipationURL = `/elections/participate/election/`;
@@ -38,6 +38,7 @@ export async function create(
   formData: any,
   accessToken: string
 ): Promise<EmptyElection> {
+  await preRequestRefreshAuth();
   return api
     .post(electionURL, formData, {
       headers: { Authorization: `JWT ${accessToken}` },
@@ -51,6 +52,7 @@ export async function create(
 export async function getPublicElectionList(
   accessToken: string
 ): Promise<AxiosResponse> {
+  await preRequestRefreshAuth();
   return api.get(electionParticipationURL, {
     headers: { Authorization: `JWT ${accessToken}` },
   });
@@ -59,6 +61,7 @@ export async function getPublicElectionList(
 export async function getElectionList(
   accessToken: string
 ): Promise<AxiosResponse> {
+  await preRequestRefreshAuth();
   return api.get(electionURL, {
     headers: { Authorization: `JWT ${accessToken}` },
   });
@@ -68,6 +71,7 @@ export async function getElection(
   accessToken: string,
   electionId: string
 ): Promise<AxiosResponse> {
+  await preRequestRefreshAuth();
   let config = {
     headers: { Authorization: `JWT ${accessToken}` },
     params: {

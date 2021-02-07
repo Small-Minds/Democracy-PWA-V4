@@ -73,13 +73,18 @@ export async function clearTokens(): Promise<void> {
   return;
 }
 
-export async function preRequestRefreshAuth() {
-  isAuthenticated().then((result) => {
-    return result;
-  });
+export async function preRequestRefreshAuth(): Promise<boolean> {
+  return isAuthenticated()
+    .then(() => {
+      return true;
+    })
+    .catch((err) => {
+      console.error(err);
+      return false;
+    });
 }
 
-export async function isAuthenticated() {
+export async function isAuthenticated(): Promise<boolean> {
   // If the access token is valid, return true immediately.
   if (isAccessTokenValid()) {
     console.log('Access token is still valid.');
@@ -89,7 +94,8 @@ export async function isAuthenticated() {
   if (isRefreshTokenValid()) {
     console.log('Getting new access token using refresh token...');
     const refreshToken = localStorage.getItem('refresh-token') || null;
-    if (refreshToken == null) return false; // Fail if no refresh token.
+    if (refreshToken == null) throw new Error('No stored refresh token.');
+
     try {
       const response = await api.post(refreshURL, {
         refresh: refreshToken,
@@ -105,7 +111,7 @@ export async function isAuthenticated() {
       }
     } catch (err) {
       console.error(err);
-      return false;
+      throw new Error('Could not fetch new token.');
     }
   }
   console.log("It's not valid. Not authenticated.");
@@ -130,9 +136,13 @@ export function isRefreshTokenValid() {
 export function isExpiryDateValid(date: Date | number) {
   const now = new Date();
   if (date instanceof Date) {
-    return date.getTime() >= now.getTime();
+    const valid = date.getTime() >= now.getTime();
+    console.log(`Date ${date} valid? ${valid}`);
+    return valid;
   } else if (typeof date === 'number') {
-    return date >= now.getTime();
+    const valid = date >= now.getTime();
+    console.log(`Date ${date} valid? ${valid}`);
+    return valid;
   }
   console.error('Provided date is invalid.');
   return false;

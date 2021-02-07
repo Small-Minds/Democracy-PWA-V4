@@ -1,6 +1,6 @@
 import { Fragment, useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Button, Container, Panel } from 'rsuite';
+import { Button, Container, Notification, Panel } from 'rsuite';
 import { clearTokens } from '../utils/API';
 import { Credentials } from '../utils/Authentication';
 
@@ -27,6 +27,10 @@ function LogoutButton() {
             tokenExpiry: undefined,
             refreshToken: '',
             refreshTokenExpiry: undefined,
+          });
+          Notification['success']({
+            title: t('mainPage.logOutSuccessTitle'),
+            description: t('mainPage.logOutSuccessDescription'),
           });
         }}
       >

@@ -52,7 +52,12 @@
       "appName": "Democracy",
       "electionToolSectionTitle": "Election Tools",
       "loginButton": "Log In",
-      "logoutButton": "Log Out"
+      "logoutButton": "Log Out",
+      "homeLink": "Home",
+      "voteLink": "Vote",
+      "setupLink": "Setup",
+      "logoutSuccessTitle": "Logged Out",
+      "logoutSuccessDescription": "You have successfully logged out of your Democracy session. Enjoy the rest of your day!"
     }
   }
 }

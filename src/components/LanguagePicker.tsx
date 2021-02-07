@@ -19,6 +19,7 @@ export default function LanguagePicker() {
         title={t(`languagePicker.${i18n.language || 'en'}`)}
         activeKey={i18n.language || 'en'}
         onSelect={(key) => i18n.changeLanguage(key)}
+        placement="bottomEnd"
       >
         {languageCollection.map((lang, key) => (
           <Dropdown.Item key={key} eventKey={lang.value}>

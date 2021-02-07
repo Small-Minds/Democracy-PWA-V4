@@ -9,9 +9,42 @@ import {
   Icon,
   Nav,
   Avatar,
+  IconButton,
+  Notification,
 } from 'rsuite';
+import { clearTokens } from '../utils/API';
 import { Credentials } from '../utils/Authentication';
 import LanguagePicker from './LanguagePicker';
+
+function AccountMenu() {
+  const ctx = useContext(Credentials);
+  const [t] = useTranslation();
+
+  return (
+    <Dropdown placement="bottomEnd" icon={<Icon icon="user" />}>
+      <Dropdown.Item onSelect={() => {}}>Company</Dropdown.Item>
+      <Dropdown.Item
+        onSelect={() => {
+          clearTokens();
+          if (!ctx) return;
+          ctx.setCredentials({
+            authenticated: false,
+            token: '',
+            tokenExpiry: undefined,
+            refreshToken: '',
+            refreshTokenExpiry: undefined,
+          });
+          Notification['success']({
+            title: t('mainPage.logoutSuccessTitle'),
+            description: t('mainPage.logoutSuccessDescription'),
+          });
+        }}
+      >
+        {t('mainPage.logoutButton')}
+      </Dropdown.Item>
+    </Dropdown>
+  );
+}
 
 function Navigation() {
   const ctx = useContext(Credentials);
@@ -30,18 +63,19 @@ function Navigation() {
             onSelect={(key: string) => history.push(key)}
           >
             <Nav.Item eventKey="/" icon={<Icon icon="home" />}>
-              Home
+              {t('mainPage.homeLink')}
             </Nav.Item>
             <Nav.Item eventKey="/vote" icon={<Icon icon="check2" />}>
-              Vote
+              {t('mainPage.voteLink')}
             </Nav.Item>
             <Nav.Item eventKey="/setup" icon={<Icon icon="gears2" />}>
-              Setup
+              {t('mainPage.setupLink')}
             </Nav.Item>
           </Nav>
         )}
         <Nav pullRight>
           <LanguagePicker />
+          {ctx && ctx.credentials.authenticated && <AccountMenu />}
         </Nav>
       </Navbar.Body>
     </Navbar>

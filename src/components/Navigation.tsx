@@ -27,6 +27,9 @@ function AccountMenu() {
     });
   }, [ctx]);
 
+  /**
+   * Extracts initials from the present userInfo
+   */
   const initials = (): string => {
     if (!userInfo || !userInfo.name) return '';
     const elems = userInfo.name.split(' ');

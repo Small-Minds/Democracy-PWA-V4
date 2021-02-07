@@ -1,17 +1,7 @@
-import React, { Fragment, useContext, useEffect, useState } from 'react';
+import React, { Fragment, useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useHistory, useLocation } from 'react-router-dom';
-import {
-  Panel,
-  Dropdown,
-  ButtonToolbar,
-  Navbar,
-  Icon,
-  Nav,
-  Avatar,
-  IconButton,
-  Notification,
-} from 'rsuite';
+import { Dropdown, Navbar, Icon, Nav, Notification } from 'rsuite';
 import { clearTokens } from '../utils/API';
 import { Credentials } from '../utils/Authentication';
 import LanguagePicker from './LanguagePicker';
@@ -24,14 +14,7 @@ function AccountMenu() {
   return (
     <Dropdown
       placement="bottomEnd"
-      renderTitle={() => {
-        return (
-          <Fragment>
-            <Nav.Item icon={<Icon icon="user" />}>
-            </Nav.Item>
-          </Fragment>
-        );
-      }}
+      renderTitle={() => <Nav.Item icon={<Icon icon="user" />} />}
     >
       <Dropdown.Item
         icon={<Icon icon="sign-out" />}

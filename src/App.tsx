@@ -16,6 +16,7 @@ import {
 import Loading from './pages/Loading';
 import Base from './pages/Base';
 import './App.css';
+import Info from './pages/Info';
 
 /**
  * Parent for the entire application.
@@ -49,10 +50,12 @@ function App() {
           };
           setCredentials(newCreds);
           setWorking(false);
+        } else {
+          setWorking(false);
         }
       });
     }
-  }, [credentials, working]);
+  }, [credentials]);
 
   // Set Page Title
   useEffect(() => {
@@ -64,13 +67,21 @@ function App() {
       <Credentials.Provider value={{ credentials, setCredentials }}>
         {working === false ? (
           <BrowserRouter>
-            <Switch>
-              {/* Protected Pages */}
-              <Route path="/">
-                <Base />
-              </Route>
-              {/* Public Pages */}
-            </Switch>
+            {credentials && credentials.authenticated ? (
+              <Switch>
+                {/* Protected Pages */}
+                <Route path="/">
+                  <Base />
+                </Route>
+              </Switch>
+            ) : (
+              <Switch>
+                {/* Public Pages */}
+                <Route path="/">
+                  <Info />
+                </Route>
+              </Switch>
+            )}
           </BrowserRouter>
         ) : (
           <Loading />

@@ -108,6 +108,7 @@ export async function isAuthenticated() {
       return false;
     }
   }
+  console.log("It's not valid. Not authenticated.");
   // If neither of these operations is successful, return false.
   return false;
 }

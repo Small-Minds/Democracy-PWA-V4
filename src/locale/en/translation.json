@@ -50,7 +50,9 @@
     },
     "mainPage": {
       "appName": "Democracy",
-      "electionToolSectionTitle": "Election Tools"
+      "electionToolSectionTitle": "Election Tools",
+      "loginButton": "Log In",
+      "logoutButton": "Log Out"
     }
   }
 }

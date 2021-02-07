@@ -22,7 +22,17 @@ function AccountMenu() {
   const [t] = useTranslation();
 
   return (
-    <Dropdown placement="bottomEnd" icon={<Icon icon="user" />}>
+    <Dropdown
+      placement="bottomEnd"
+      renderTitle={() => {
+        return (
+          <Fragment>
+            <Nav.Item icon={<Icon icon="user" />}>
+            </Nav.Item>
+          </Fragment>
+        );
+      }}
+    >
       <Dropdown.Item
         icon={<Icon icon="sign-out" />}
         onSelect={() => {
@@ -54,7 +64,6 @@ function Navigation() {
   const history = useHistory();
   const location = useLocation();
 
-  console.log(location);
   return (
     <Navbar>
       <Navbar.Body>

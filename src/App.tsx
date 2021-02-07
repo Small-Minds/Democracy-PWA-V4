@@ -36,9 +36,8 @@ function App() {
 
   // Load JWTs and validate.
   useEffect(() => {
-    console.log('Checking for pre-existing credentials...');
     if (credentials.authenticated === undefined) {
-      setWorking(true);
+      console.log('Checking for pre-existing credentials...');
       isAuthenticated().then((b) => {
         if (b) {
           const access = getAccessToken();

@@ -1,6 +1,6 @@
 import React, { useEffect, useContext, useState, FC } from 'react';
 import { Link } from 'react-router-dom';
-import { Button, Col, FlexboxGrid, List } from 'rsuite';
+import { Button, Col, FlexboxGrid, Icon, List } from 'rsuite';
 import { getElectionList, Election } from '../utils/api/ElectionManagement';
 import { Credentials } from '../utils/Authentication';
 
@@ -28,11 +28,11 @@ const ElectionListElement: FC<ElectionListElementProps> = ({
           componentClass={Col}
           colspan={24}
           sm={8}
-          style={{ padding: 5 }}
+          style={{ paddingRight: 20, textAlign: 'right' }}
         >
-          <Button block>
-            <Link to={`/election/${election.id}`}>View Election</Link>
-          </Button>
+          <Link to={`/election/${election.id}`}>
+            View Election <Icon icon="arrow-right-line" />
+          </Link>
         </FlexboxGrid.Item>
       </FlexboxGrid>
     </List.Item>

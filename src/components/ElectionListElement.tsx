@@ -1,8 +1,7 @@
-import React, { useEffect, useContext, useState, FC } from 'react';
+import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
-import { Button, Col, FlexboxGrid, Icon, List } from 'rsuite';
-import { getElectionList, Election } from '../utils/api/ElectionManagement';
-import { Credentials } from '../utils/Authentication';
+import { Col, FlexboxGrid, Icon, List } from 'rsuite';
+import { Election } from '../utils/api/ElectionManagement';
 
 interface ElectionListElementProps {
   index: any;

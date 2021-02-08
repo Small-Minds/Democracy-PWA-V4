@@ -14,7 +14,7 @@ function Empty() {
       <p>
         <code>/{history.location.pathname}</code>
       </p>
-      <p>{t('emptyPage.body')}</p>
+      <h3>{t('emptyPage.body')}</h3>
       <br />
     </Fragment>
   );

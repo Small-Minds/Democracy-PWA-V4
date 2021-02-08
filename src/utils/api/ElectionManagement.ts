@@ -11,14 +11,6 @@ export type EmptyElection = {
   description: string;
 };
 
-export type Position = {
-  id: string;
-  candidate: Array<string>;
-  title: string;
-  description: string;
-  election: string;
-};
-
 export type Election = {
   created: string;
   description: string;
@@ -26,7 +18,7 @@ export type Election = {
   enable_multiple_submissions: boolean;
   id: string;
   manager: string;
-  positions: Array<Position>;
+  positions: Array<string>;
   submission_end_time: string;
   submission_start_time: string;
   title: string;
@@ -83,4 +75,49 @@ export async function getElection(electionId: string): Promise<Election> {
     config
   );
   return res.data;
+}
+
+/**
+ * CANDIDATES
+ */
+
+export type Candidate = {
+  id: string;
+  created: string;
+  position: string;
+  platform: string;
+};
+
+/**
+ * POSITIONS
+ */
+
+const positionManagementUrl = `/elections/manage/position/`;
+
+export type CreatePositionParams = {
+  title: string;
+  description: string;
+  election: string;
+};
+
+export type Position = {
+  id: string;
+  candidates: Candidate[];
+  title: string;
+  description: string;
+  election: string;
+};
+
+export async function createPosition(
+  formData: CreatePositionParams
+): Promise<Position> {
+  const token = await preRequestRefreshAuth();
+  return api
+    .post(positionManagementUrl, formData, {
+      headers: { Authorization: `JWT ${token}` },
+    })
+    .then((res) => {
+      const p: Position = res.data;
+      return p;
+    });
 }

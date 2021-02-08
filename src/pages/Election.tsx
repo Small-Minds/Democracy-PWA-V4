@@ -1,4 +1,12 @@
-import React, { Fragment, FC, useState, useEffect, useContext } from 'react';
+import React, {
+  Fragment,
+  FC,
+  useState,
+  useEffect,
+  useContext,
+  Dispatch,
+  SetStateAction,
+} from 'react';
 import {
   RouteComponentProps,
   useParams,
@@ -15,6 +23,7 @@ import {
   Icon,
   IconButton,
 } from 'rsuite';
+import AddPositionModal from '../components/AddPositionModal';
 import {
   getElection,
   Election as ElectionType,
@@ -26,7 +35,50 @@ interface ElectionSubpage {
   id: string | undefined;
   election: ElectionType | undefined;
   user: UserDataInterface | null;
+  updateElection?: (id: string) => Promise<any>;
 }
+
+const ManagementTools: FC<ElectionSubpage> = ({ id, election, user, updateElection }) => {
+  const [setTimelineOpen, setSetTimelineOpen] = useState<boolean>(false);
+  const [addPositionOpen, setAddPositionOpen] = useState<boolean>(false);
+  const [deleteElectionOpen, setDeleteElectionOpen] = useState<boolean>(false);
+
+  if (!id) return null;
+  if (!election || election === undefined) return null;
+
+  return (
+    <Fragment>
+      <h5 style={{ marginBottom: 10 }}>Management Tools</h5>
+      <ButtonToolbar>
+        <IconButton icon={<Icon icon="clock-o" />}>Set Timeline</IconButton>
+        <IconButton
+          icon={<Icon icon="plus" />}
+          onClick={() => setAddPositionOpen(true)}
+        >
+          Add Position
+        </IconButton>
+        <IconButton
+          appearance="primary"
+          icon={<Icon icon="trash" />}
+          color="red"
+        >
+          Delete Election
+        </IconButton>
+      </ButtonToolbar>
+      {/* TODO: Add delete election modal. */}
+      {/* TODO: Add configure times modal. */}
+      <AddPositionModal
+        open={addPositionOpen}
+        setOpen={setAddPositionOpen}
+        election={election}
+        onCreate={(p) => {
+          if (updateElection) updateElection(election.id);
+          setAddPositionOpen(false);
+        }}
+      />
+    </Fragment>
+  );
+};
 
 const Information: FC<ElectionSubpage> = ({ id, election }) => {
   if (!id) return null;
@@ -63,19 +115,20 @@ const Election: FC<RouteComponentProps> = ({ match }) => {
   const history = useHistory();
   const user = useContext(User);
 
-  const [isLoading, setLoading] = useState<boolean>(true);
   const [showTools, setShowTools] = useState<boolean>(false);
   const [election, setElection] = useState<ElectionType>();
 
+  const updateElection = (i: string): Promise<any> => {
+    return getElection(i).then((res) => {
+      console.log(res);
+      setElection(res);
+    });
+  };
   // Get Election
   useEffect(() => {
     if (!id) return;
-    getElection(id).then((res) => {
-      console.log(res);
-      setElection(res);
-      setLoading(false);
-    });
-  }, [id]);
+    updateElection(id);
+  }, [id, election]);
 
   // Show Management Tools
   useEffect(() => {
@@ -118,38 +171,35 @@ const Election: FC<RouteComponentProps> = ({ match }) => {
               >
                 Apply Now
               </IconButton>
-              <Button onClick={() => history.push(match.url)}>
+              <IconButton
+                icon={<Icon icon="info" />}
+                onClick={() => history.push(match.url)}
+              >
                 Information
-              </Button>
-              <Button onClick={() => history.push(`${match.url}/positions`)}>
+              </IconButton>
+              <IconButton
+                icon={<Icon icon="cubes" />}
+                onClick={() => history.push(`${match.url}/positions`)}
+              >
                 Open Positions
-              </Button>
-              <Button onClick={() => history.push(`${match.url}/platforms`)}>
+              </IconButton>
+              <IconButton
+                icon={<Icon icon="speaker" />}
+                onClick={() => history.push(`${match.url}/platforms`)}
+              >
                 Candidate Platforms
-              </Button>
+              </IconButton>
             </ButtonToolbar>
           </Fragment>
           <br />
           <br />
           {showTools && (
-            <Fragment>
-              <h5 style={{ marginBottom: 10 }}>Management Tools</h5>
-              <ButtonToolbar>
-                <IconButton icon={<Icon icon="clock-o" />}>
-                  Set Timeline
-                </IconButton>
-                <IconButton icon={<Icon icon="plus" />}>
-                  Add Position
-                </IconButton>
-                <IconButton
-                  appearance="primary"
-                  icon={<Icon icon="trash" />}
-                  color="red"
-                >
-                  Delete Election
-                </IconButton>
-              </ButtonToolbar>
-            </Fragment>
+            <ManagementTools
+              id={id}
+              election={election}
+              user={user}
+              updateElection={updateElection}
+            />
           )}
           <br />
           <br />

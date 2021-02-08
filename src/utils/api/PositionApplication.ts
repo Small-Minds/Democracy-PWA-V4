@@ -1,3 +1,4 @@
+import PositionApply from "../../pages/PositionApply";
 import { api, preRequestRefreshAuth } from "../API";
 
 export type Position = {
@@ -14,8 +15,14 @@ export type Position = {
     position: string;
     platform: string;
   };
+
+  export type PositionApplicationParams = {
+      platform: string;
+      position: string;
+  };
+
   const positionManagementUrl = `/elections/manage/position/`;
-  
+  const positionApplicationSubmitUrl = `/elections/participate/candidate/`
   export async function getPosition(
       positionId:string
       ): Promise<Position>{
@@ -27,5 +34,19 @@ export type Position = {
         .then((res)=>{
             const p: Position = res.data;
             return p;
+        })
+  }
+
+  export async function submitPositionApplication (
+    formData: PositionApplicationParams
+  ): Promise<Candidate>{
+    const token = await preRequestRefreshAuth();
+    return api
+        .post(positionApplicationSubmitUrl, formData, {
+            headers: {Authorization: `JWT ${token}`},
+        })
+        .then((res) => {
+            const c: Candidate = res.data;
+            return c;
         })
   }

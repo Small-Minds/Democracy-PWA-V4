@@ -26,6 +26,21 @@ export type Election = {
   voting_start_time: string;
 };
 
+export type ElectionDetails = {
+  created: string;
+  description: string;
+  election_email_domain: string;
+  enable_multiple_submissions: boolean;
+  id: string;
+  manager: string;
+  positions: Array<Position>;
+  submission_end_time: string;
+  submission_start_time: string;
+  title: string;
+  voting_end_time: string;
+  voting_start_time: string;
+};
+
 export type CreateElectionParams = {
   title: string;
   description: string;
@@ -65,7 +80,7 @@ export async function getElectionList(): Promise<AxiosResponse> {
   });
 }
 
-export async function getElection(electionId: string): Promise<Election> {
+export async function getElection(electionId: string): Promise<ElectionDetails> {
   const token = await preRequestRefreshAuth();
   let config = {
     headers: { Authorization: `JWT ${token}` },

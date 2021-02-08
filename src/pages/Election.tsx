@@ -24,21 +24,24 @@ import {
   IconButton,
 } from 'rsuite';
 import AddPositionModal from '../components/AddPositionModal';
-import {
-  getElection,
-  Election as ElectionType,
-} from '../utils/api/ElectionManagement';
+import PositionList from '../components/PositionList';
+import { getElection, ElectionDetails } from '../utils/api/ElectionManagement';
 import { User, UserDataInterface } from '../utils/api/User';
 import Loading from './Loading';
 
 interface ElectionSubpage {
   id: string | undefined;
-  election: ElectionType | undefined;
+  election: ElectionDetails | undefined;
   user: UserDataInterface | null;
   updateElection?: (id: string) => Promise<any>;
 }
 
-const ManagementTools: FC<ElectionSubpage> = ({ id, election, user, updateElection }) => {
+const ManagementTools: FC<ElectionSubpage> = ({
+  id,
+  election,
+  user,
+  updateElection,
+}) => {
   const [setTimelineOpen, setSetTimelineOpen] = useState<boolean>(false);
   const [addPositionOpen, setAddPositionOpen] = useState<boolean>(false);
   const [deleteElectionOpen, setDeleteElectionOpen] = useState<boolean>(false);
@@ -81,10 +84,16 @@ const ManagementTools: FC<ElectionSubpage> = ({ id, election, user, updateElecti
 };
 
 const Information: FC<ElectionSubpage> = ({ id, election }) => {
-  if (!id) return null;
+  if (!id || !election) return null;
   return (
     <Fragment>
       <h3>Information</h3>
+      <br />
+      <h4>Positions</h4>
+      <br />
+      <PositionList election={election} />
+      <br />
+      <h4>Raw Data</h4>
       <code>
         <pre>{JSON.stringify(election, null, 2)}</pre>
       </code>
@@ -92,11 +101,13 @@ const Information: FC<ElectionSubpage> = ({ id, election }) => {
   );
 };
 
-const Positions: FC<ElectionSubpage> = ({ id }) => {
-  if (!id) return null;
+const Positions: FC<ElectionSubpage> = ({ id, election }) => {
+  if (!id || !election) return null;
   return (
     <Fragment>
-      <h3>Positions for {id}</h3>
+      <h3>Positions</h3>
+      <br />
+      <PositionList election={election} />
     </Fragment>
   );
 };
@@ -116,7 +127,7 @@ const Election: FC<RouteComponentProps> = ({ match }) => {
   const user = useContext(User);
 
   const [showTools, setShowTools] = useState<boolean>(false);
-  const [election, setElection] = useState<ElectionType>();
+  const [election, setElection] = useState<ElectionDetails>();
 
   const updateElection = (i: string): Promise<any> => {
     return getElection(i).then((res) => {
@@ -124,6 +135,7 @@ const Election: FC<RouteComponentProps> = ({ match }) => {
       setElection(res);
     });
   };
+
   // Get Election
   useEffect(() => {
     if (!id) return;
@@ -192,16 +204,18 @@ const Election: FC<RouteComponentProps> = ({ match }) => {
             </ButtonToolbar>
           </Fragment>
           <br />
-          <br />
           {showTools && (
-            <ManagementTools
-              id={id}
-              election={election}
-              user={user}
-              updateElection={updateElection}
-            />
+            <Fragment>
+              <br />
+              <ManagementTools
+                id={id}
+                election={election}
+                user={user}
+                updateElection={updateElection}
+              />
+              <br />
+            </Fragment>
           )}
-          <br />
           <br />
           <Switch>
             {/* Positions*/}

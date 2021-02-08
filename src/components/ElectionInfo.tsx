@@ -1,19 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { Election, getElection } from '../utils/api/ElectionManagement';
+import { ElectionDetails, getElection } from '../utils/api/ElectionManagement';
 
 export default function ElectionInfo() {
   let { id } = useParams<any>();
   const [isLoading, setLoading] = useState(true);
-  const [election, setElection] = useState<Election>();
+  const [election, setElection] = useState<ElectionDetails | undefined>();
 
   useEffect(() => {
     getElection(id).then((res) => {
-      console.log(res);
       setElection(res);
       setLoading(false);
     });
-
   }, [id]);
 
   //waiting for the response from getEletctionList

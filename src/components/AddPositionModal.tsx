@@ -10,7 +10,7 @@ import {
   Schema,
 } from 'rsuite';
 import { Credentials } from '../utils/Authentication';
-import { createPosition, Election, Position } from '../utils/api/ElectionManagement';
+import { createPosition, ElectionDetails, Position } from '../utils/api/ElectionManagement';
 import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
 import { idText } from 'typescript';
@@ -18,7 +18,7 @@ import { idText } from 'typescript';
 interface APMProps {
   open: boolean;
   setOpen: (open: boolean) => void;
-  election: Election;
+  election: ElectionDetails;
   onCreate: (p: Position) => void;
 }
 

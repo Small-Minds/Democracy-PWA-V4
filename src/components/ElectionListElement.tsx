@@ -16,7 +16,11 @@ const ElectionListElement: FC<ElectionListElementProps> = ({
   return (
     <List.Item key={index} index={index}>
       <h3>{election.title}</h3>
-      <p>{election.description}</p>
+      <p>
+        <b>@{election.election_email_domain}</b>
+        &nbsp;&middot;&nbsp;
+        <span>{election.description}</span>
+      </p>
       <Link to={`/election/${election.id}`}>View Election</Link>
     </List.Item>
   );

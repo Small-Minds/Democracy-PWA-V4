@@ -12,11 +12,14 @@ export default function LanguagePicker() {
     { label: t('languagePicker.cn'), value: 'cn' },
   ];
 
+  const languageArr = i18n.language.split('-')[0];
+  const languageKey = languageArr.length >= 1 ? languageArr[0] : i18n.language;
+
   return (
     <Fragment>
       <Dropdown
         icon={<Icon icon="globe" />}
-        title={t(`languagePicker.${i18n.language || 'en'}`)}
+        title={t(`languagePicker.${languageKey || 'en'}`)}
         onSelect={(key) => i18n.changeLanguage(key)}
         placement="bottomEnd"
       >

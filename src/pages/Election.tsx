@@ -19,12 +19,26 @@ import {
   getElection,
   Election as ElectionType,
 } from '../utils/api/ElectionManagement';
-import { User } from '../utils/api/User';
+import { User, UserDataInterface } from '../utils/api/User';
 import Loading from './Loading';
 
 interface ElectionSubpage {
   id: string | undefined;
+  election: ElectionType | undefined;
+  user: UserDataInterface | null;
 }
+
+const Information: FC<ElectionSubpage> = ({ id, election }) => {
+  if (!id) return null;
+  return (
+    <Fragment>
+      <h3>Information</h3>
+      <code>
+        <pre>{JSON.stringify(election, null, 2)}</pre>
+      </code>
+    </Fragment>
+  );
+};
 
 const Positions: FC<ElectionSubpage> = ({ id }) => {
   if (!id) return null;
@@ -105,7 +119,7 @@ const Election: FC<RouteComponentProps> = ({ match }) => {
                 Apply Now
               </IconButton>
               <Button onClick={() => history.push(match.url)}>
-                Election Info
+                Information
               </Button>
               <Button onClick={() => history.push(`${match.url}/positions`)}>
                 Open Positions
@@ -142,10 +156,15 @@ const Election: FC<RouteComponentProps> = ({ match }) => {
           <Switch>
             {/* Positions*/}
             <Route path={`${match.url}/positions`}>
-              <Positions id={id} />
+              <Positions id={id} election={election} user={user} />
             </Route>
+            {/* Platforms */}
             <Route path={`${match.url}/platforms`}>
-              <Platforms id={id} />
+              <Platforms id={id} election={election} user={user} />
+            </Route>
+            {/* Info */}
+            <Route path={match.url}>
+              <Information id={id} election={election} user={user} />
             </Route>
           </Switch>
         </Fragment>

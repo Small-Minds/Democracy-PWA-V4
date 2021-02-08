@@ -1,4 +1,4 @@
-import React, { Fragment, FC, useState, useEffect } from 'react';
+import React, { Fragment, FC, useState, useEffect, useContext } from 'react';
 import {
   RouteComponentProps,
   useParams,
@@ -7,11 +7,19 @@ import {
   useHistory,
   Link,
 } from 'react-router-dom';
-import { Button, FlexboxGrid } from 'rsuite';
+import {
+  Button,
+  ButtonGroup,
+  ButtonToolbar,
+  FlexboxGrid,
+  Icon,
+  IconButton,
+} from 'rsuite';
 import {
   getElection,
   Election as ElectionType,
 } from '../utils/api/ElectionManagement';
+import { User } from '../utils/api/User';
 import Loading from './Loading';
 
 interface ElectionSubpage {
@@ -39,10 +47,13 @@ const Platforms: FC<ElectionSubpage> = ({ id }) => {
 const Election: FC<RouteComponentProps> = ({ match }) => {
   const { id } = useParams<Record<string, string | undefined>>();
   const history = useHistory();
+  const user = useContext(User);
 
-  const [isLoading, setLoading] = useState(true);
+  const [isLoading, setLoading] = useState<boolean>(true);
+  const [showTools, setShowTools] = useState<boolean>(false);
   const [election, setElection] = useState<ElectionType>();
 
+  // Get Election
   useEffect(() => {
     if (!id) return;
     getElection(id).then((res) => {
@@ -51,6 +62,13 @@ const Election: FC<RouteComponentProps> = ({ match }) => {
       setLoading(false);
     });
   }, [id]);
+
+  // Show Management Tools
+  useEffect(() => {
+    if (!id) return;
+    if (!election) return;
+    setShowTools(user?.user.id === election.manager);
+  }, [id, election, user]);
 
   // Return to the previous page if no ID is provided.
   if (!id || id === undefined) {
@@ -70,28 +88,48 @@ const Election: FC<RouteComponentProps> = ({ match }) => {
           </p>
           <br />
           <Fragment>
-            <Button
-              appearance="primary"
-              onClick={() => history.push(`${match.url}/vote`)}
-            >
-              Vote
-            </Button>
-            <Button appearance="subtle" onClick={() => history.push(match.url)}>
-              Election Info
-            </Button>
-            <Button
-              appearance="subtle"
-              onClick={() => history.push(`${match.url}/positions`)}
-            >
-              Open Positions
-            </Button>
-            <Button
-              appearance="subtle"
-              onClick={() => history.push(`${match.url}/platforms`)}
-            >
-              Candidate Platforms
-            </Button>
+            <ButtonToolbar>
+              <IconButton
+                appearance="primary"
+                icon={<Icon icon="check2" />}
+                onClick={() => history.push(`${match.url}/vote`)}
+              >
+                Vote
+              </IconButton>
+              <IconButton
+                icon={<Icon icon="list" />}
+                onClick={() => history.push(`${match.url}/positions`)}
+              >
+                Apply
+              </IconButton>
+              <Button onClick={() => history.push(match.url)}>
+                Election Info
+              </Button>
+              <Button onClick={() => history.push(`${match.url}/positions`)}>
+                Open Positions
+              </Button>
+              <Button onClick={() => history.push(`${match.url}/platforms`)}>
+                Candidate Platforms
+              </Button>
+            </ButtonToolbar>
           </Fragment>
+          <br />
+          <br />
+          {showTools && (
+            <Fragment>
+              <h5 style={{ marginBottom: 10 }}>Management Tools</h5>
+              <ButtonToolbar>
+                <IconButton icon={<Icon icon="clock-o" />}>
+                  Set Timeline
+                </IconButton>
+                <IconButton icon={<Icon icon="plus" />}>
+                  Add Position
+                </IconButton>
+                <Button>Clear Positions</Button>
+                <Button>Delete Election</Button>
+              </ButtonToolbar>
+            </Fragment>
+          )}
           <br />
           <br />
           <Switch>

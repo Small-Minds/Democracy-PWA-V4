@@ -131,7 +131,6 @@ const Election: FC<RouteComponentProps> = ({ match }) => {
 
   const updateElection = (i: string): Promise<any> => {
     return getElection(i).then((res) => {
-      console.log(res);
       setElection(res);
     });
   };
@@ -140,7 +139,7 @@ const Election: FC<RouteComponentProps> = ({ match }) => {
   useEffect(() => {
     if (!id) return;
     updateElection(id);
-  }, [id, election]);
+  }, [id]);
 
   // Show Management Tools
   useEffect(() => {

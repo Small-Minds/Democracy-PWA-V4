@@ -25,7 +25,7 @@ const ElectionListElement: FC<ElectionListElementProps> = ({
 
   return (
     <List.Item key={index} index={index}>
-      <FlexboxGrid align="middle" justify="space-around">
+      <FlexboxGrid align="middle" justify="space-between">
         <FlexboxGrid.Item componentClass={Col} colspan={24} sm={16}>
           <h3>{election.title}</h3>
           <p>

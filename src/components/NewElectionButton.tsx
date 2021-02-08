@@ -5,10 +5,10 @@ import {
   Form,
   FormControl,
   FormGroup,
-  HelpBlock,
   Modal,
   Notification,
-  Panel,
+  Radio,
+  RadioGroup,
   Schema,
 } from 'rsuite';
 import { Credentials } from '../utils/Authentication';
@@ -32,7 +32,8 @@ function NewElectionButton() {
   //set up required variable for rsuite forms.
   let form: any = undefined;
   //form model setup
-  const msg_required = 'This field is required';
+  const msg_required = t('createElectionBtn.msgRequired');
+  const msg_ivalid_format = t('createElectionBtn.msgInvalidFormat')
   const model = Schema.Model({
     title: Schema.Types.StringType()
       .isRequired(msg_required)
@@ -40,21 +41,26 @@ function NewElectionButton() {
     description: Schema.Types.StringType()
       .isRequired(msg_required)
       .minLength(1, msg_required),
+    enable_multiple_submissions: Schema.Types.BooleanType(),
+    election_email_domain: Schema.Types.StringType()
+      .isRequired(msg_required)
+      .pattern(/^(?!:\/\/)([a-zA-Z0-9-]+\.){0,5}[a-zA-Z0-9-][a-zA-Z0-9-]+\.[a-zA-Z]{2,64}?$/, msg_ivalid_format)
   });
   //form data setup
   const [formData, setFormData] = useState<Record<string, any>>({
     title: '',
-    password: '',
+    description: '',
+    enable_multiple_submissions: false,
+    election_email_domain: 'uottawa.ca'
   });
   const [formErrors, setFormErrors] = useState<Record<string, any>>({});
   const history = useHistory();
 
   /**
    * Creates a new election and navigates to that page.
-   * @param title New title for the election.
-   * @param description New description for the election.
+   * @param electionDetails User input for the election details
    */
-  const createElection = async (title: string, description: string) => {
+  const createElection = async (electionDetails: Record<string,any>) => {
     // If  not authenticated, quit early.
     if (!ctx || !ctx.credentials.authenticated) return;
     // Otherwise, start loading animations.
@@ -72,10 +78,10 @@ function NewElectionButton() {
     }
     // Call the creation endpoint.
     create({
-      title: title,
-      description: description,
-      election_email_domain: 'uottawa.ca',
-      enable_multiple_submissions: false,
+      title: electionDetails.title,
+      description: electionDetails.description,
+      election_email_domain: electionDetails.election_email_domain,
+      enable_multiple_submissions: electionDetails.enable_multiple_submissions,
       submission_end_time: d,
       submission_start_time: d,
       voting_end_time: d,
@@ -110,7 +116,7 @@ function NewElectionButton() {
         {t('createElectionBtn.btnLabel')}
       </Button>
       <Modal size="sm" show={open} onHide={() => setOpen(false)}>
-        <Modal.Title>Create a New Election</Modal.Title>
+        <Modal.Title>{t("createElectionBtn.electionFormTitle")}</Modal.Title>
         <Modal.Body>
           <Form
             onChange={(newData) => setFormData(newData)}
@@ -122,16 +128,35 @@ function NewElectionButton() {
             fluid
           >
             <FormGroup>
-              <ControlLabel>Title</ControlLabel>
+              <ControlLabel>{t("createElectionBtn.electionTitle")}</ControlLabel>
               <FormControl name="title" />
             </FormGroup>
             <FormGroup>
-              <ControlLabel>Description</ControlLabel>
+              <ControlLabel>{t("createElectionBtn.electionDescription")}</ControlLabel>
               <FormControl
                 rows={3}
                 name="description"
                 componentClass="textarea"
               />
+            </FormGroup>
+            <FormGroup>
+              <ControlLabel>{t("createElectionBtn.electionEnableMultiSubs")}</ControlLabel>
+              <FormControl 
+                name="enable_multiple_submissions"
+                accepter={RadioGroup}
+                inline
+              >
+                <Radio value={true}>{t("createElectionBtn.electionMultiSubsTrue")}</Radio>
+                <Radio value={false} checked>{t("createElectionBtn.electionMultiSubsFalse")}</Radio>
+              </FormControl>
+            </FormGroup>
+            <FormGroup>
+              <ControlLabel>{t("createElectionBtn.electionEmailDomain")}</ControlLabel>
+              <FormControl
+                name="election_email_domain"
+              >
+
+              </FormControl>
             </FormGroup>
           </Form>
         </Modal.Body>
@@ -150,7 +175,7 @@ function NewElectionButton() {
             appearance="primary"
             onClick={() => {
               setLoading(true);
-              createElection(formData.title, formData.description);
+              createElection(formData);
             }}
           >
             Create

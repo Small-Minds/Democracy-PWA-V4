@@ -97,10 +97,12 @@ const Election: FC<RouteComponentProps> = ({ match }) => {
                 Vote
               </IconButton>
               <IconButton
+                appearance="primary"
                 icon={<Icon icon="list" />}
                 onClick={() => history.push(`${match.url}/positions`)}
+                color="green"
               >
-                Apply
+                Apply Now
               </IconButton>
               <Button onClick={() => history.push(match.url)}>
                 Election Info
@@ -125,8 +127,13 @@ const Election: FC<RouteComponentProps> = ({ match }) => {
                 <IconButton icon={<Icon icon="plus" />}>
                   Add Position
                 </IconButton>
-                <Button>Clear Positions</Button>
-                <Button>Delete Election</Button>
+                <IconButton
+                  appearance="primary"
+                  icon={<Icon icon="trash" />}
+                  color="red"
+                >
+                  Delete Election
+                </IconButton>
               </ButtonToolbar>
             </Fragment>
           )}

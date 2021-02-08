@@ -12,7 +12,7 @@ export default function LanguagePicker() {
     { label: t('languagePicker.cn'), value: 'cn' },
   ];
 
-  const languageArr = i18n.language.split('-')[0];
+  const languageArr = i18n.language.split('-');
   const languageKey = languageArr.length >= 1 ? languageArr[0] : i18n.language;
 
   return (

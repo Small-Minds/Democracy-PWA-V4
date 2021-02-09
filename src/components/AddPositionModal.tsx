@@ -10,7 +10,11 @@ import {
   Schema,
 } from 'rsuite';
 import { Credentials } from '../utils/Authentication';
-import { createPosition, ElectionDetails, Position } from '../utils/api/ElectionManagement';
+import {
+  createPosition,
+  ElectionDetails,
+  Position,
+} from '../utils/api/ElectionManagement';
 import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
 import { idText } from 'typescript';
@@ -26,7 +30,12 @@ interface APMProps {
  * Modal for adding election positions.
  * Uses open and setOpen props from parent.
  */
-const AddPositionModal: FC<APMProps> = ({ open, setOpen, election, onCreate }) => {
+const AddPositionModal: FC<APMProps> = ({
+  open,
+  setOpen,
+  election,
+  onCreate,
+}) => {
   const ctx = useContext(Credentials);
   const [loading, setLoading] = useState<boolean>(false);
   const [t] = useTranslation();

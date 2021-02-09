@@ -18,6 +18,7 @@ import HomeVote from './pages/HomeVote';
 import HomeSetup from './pages/HomeSetup';
 import './App.css';
 import { User, UserInfo, blankUserInfo, getUserInfo } from './utils/api/User';
+import PositionApply from './pages/PositionApply';
 
 /**
  * Parent for the entire application.
@@ -104,6 +105,10 @@ function App() {
                         <Fragment>
                           {/* Protected Pages */}
                           <Switch>
+                            <Route
+                              path="/apply/:positionId"
+                              component={PositionApply}
+                            />
                             <Route
                               path="/election/:id/positions/:positionId"
                               component={EmptyPage}

@@ -80,7 +80,9 @@ export async function getElectionList(): Promise<AxiosResponse> {
   });
 }
 
-export async function getElection(electionId: string): Promise<ElectionDetails> {
+export async function getElection(
+  electionId: string
+): Promise<ElectionDetails> {
   const token = await preRequestRefreshAuth();
   let config = {
     headers: { Authorization: `JWT ${token}` },

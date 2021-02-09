@@ -18,7 +18,6 @@ export default function PublicElectionList() {
     // If logged in, attempt to get the list of elections.
     getPublicElectionList().then((res) => {
       setElectionList(res.data);
-      console.log(res.data);
     });
   }, [ctx]);
 

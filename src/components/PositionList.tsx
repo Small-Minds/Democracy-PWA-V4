@@ -18,8 +18,8 @@ const PositionList: FC<PLProps> = ({ election }) => {
   const showDelete = user.user.id === election.manager;
 
   //Navigate to the position application form
-  function navToPositionApplyForm(positionId:string): void{
-    history.push(`/apply/${positionId}`)
+  function navToPositionApplyForm(positionId: string): void {
+    history.push(`/apply/${positionId}`);
   }
 
   return (
@@ -56,7 +56,13 @@ const PositionList: FC<PLProps> = ({ election }) => {
                   sm={6}
                   style={{ paddingRight: 20, textAlign: 'right' }}
                 >
-                  <Button block onClick={()=>{navToPositionApplyForm(position.id)}}>
+                  {/*Navigate to the position application form*/}
+                  <Button
+                    block
+                    onClick={() => {
+                      history.push(`/apply/${position.id}`);
+                    }}
+                  >
                     Apply Now
                   </Button>
                 </FlexboxGrid.Item>

@@ -53,7 +53,7 @@ function PositionApply() {
       .catch((err) => {
         console.error(err);
       });
-  }, []);
+  }, [positionId]);
 
   function submitApplication() {
     //Process form input, check for form errors

@@ -14,18 +14,12 @@ import {
   Route,
   useHistory,
 } from 'react-router-dom';
-import {
-  ButtonToolbar,
-  Icon,
-  IconButton,
-} from 'rsuite';
+import { ButtonToolbar, Icon, IconButton } from 'rsuite';
 import AddPositionModal from '../components/AddPositionModal';
+import ElectionTimeline from '../components/ElectionTimeline';
 import PlatformList from '../components/PlatformList';
 import PositionList from '../components/PositionList';
-import {
-  getElection,
-  ElectionDetails,
-} from '../utils/api/ElectionManagement';
+import { getElection, ElectionDetails } from '../utils/api/ElectionManagement';
 import { User, UserDataInterface } from '../utils/api/User';
 import Loading from './Loading';
 
@@ -88,6 +82,8 @@ const Information: FC<ElectionSubpage> = ({ id, election }) => {
   return (
     <Fragment>
       <h3>Information</h3>
+      <br />
+      <ElectionTimeline election={election} />
       <br />
       <h4>Positions</h4>
       <br />

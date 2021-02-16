@@ -44,7 +44,7 @@ const ElectionTimeline: FC<Props> = ({ election }) => {
             <p>
               <b>{new Date(election.voting_end_time).toUTCString()}</b>
             </p>
-            <p>Voting period begins</p>
+            <p>Voting period ends</p>
           </Timeline.Item>
         </Timeline>
       </div>

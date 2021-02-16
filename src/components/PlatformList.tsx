@@ -51,9 +51,11 @@ const PlatformDisplay: FC<PositionDisplayProps> = ({ position }) => {
         {candidates.map((candidate, index) => (
           <List.Item key={index}>
             <h5>{candidate.user.name}</h5>
-            <p>
-              <i>{candidate.platform}</i>
-            </p>
+            {candidate.platform.split('\n').map((line, index) => (
+              <p key={index}>
+                <i>{line}</i>
+              </p>
+            ))}
           </List.Item>
         ))}
       </List>

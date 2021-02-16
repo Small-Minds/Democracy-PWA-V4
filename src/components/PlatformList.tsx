@@ -1,14 +1,22 @@
 import React, { useEffect, useContext, useState, FC, Fragment } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { Button, Col, FlexboxGrid, Icon, List, Loader } from 'rsuite';
+import {
+  Button,
+  Col,
+  FlexboxGrid,
+  Icon,
+  List,
+  Loader,
+  Placeholder,
+} from 'rsuite';
 import PlaceholderParagraph from 'rsuite/lib/Placeholder/PlaceholderParagraph';
 import {
   CandidateWithUserDetails,
   ElectionDetails,
   getPositionDetails,
   Position,
+  Candidate,
 } from '../utils/api/ElectionManagement';
-import { Candidate } from '../utils/api/PositionApplication';
 import { User } from '../utils/api/User';
 import { Credentials } from '../utils/Authentication';
 
@@ -43,9 +51,7 @@ const PlatformDisplay: FC<PositionDisplayProps> = ({ position }) => {
       <List style={{ marginTop: 10, marginBottom: 20 }}>
         {loading && (
           <List.Item>
-            <PlaceholderParagraph rows={2}>
-              <Loader inverse center backdrop content="loading..." vertical />
-            </PlaceholderParagraph>
+            <Placeholder.Paragraph rows={3} active />
           </List.Item>
         )}
         {candidates.map((candidate, index) => (

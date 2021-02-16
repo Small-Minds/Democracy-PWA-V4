@@ -13,19 +13,19 @@ import {
   Switch,
   Route,
   useHistory,
-  Link,
 } from 'react-router-dom';
 import {
-  Button,
-  ButtonGroup,
   ButtonToolbar,
-  FlexboxGrid,
   Icon,
   IconButton,
 } from 'rsuite';
 import AddPositionModal from '../components/AddPositionModal';
+import PlatformList from '../components/PlatformList';
 import PositionList from '../components/PositionList';
-import { getElection, ElectionDetails } from '../utils/api/ElectionManagement';
+import {
+  getElection,
+  ElectionDetails,
+} from '../utils/api/ElectionManagement';
 import { User, UserDataInterface } from '../utils/api/User';
 import Loading from './Loading';
 
@@ -112,11 +112,12 @@ const Positions: FC<ElectionSubpage> = ({ id, election }) => {
   );
 };
 
-const Platforms: FC<ElectionSubpage> = ({ id }) => {
-  if (!id) return null;
+const Platforms: FC<ElectionSubpage> = ({ id, election }) => {
+  if (!id || !election) return null;
   return (
     <Fragment>
-      <h3>Platforms for {id}</h3>
+      <h3>Candidate Platforms</h3>
+      <PlatformList election={election} />
     </Fragment>
   );
 };

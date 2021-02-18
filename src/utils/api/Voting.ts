@@ -1,8 +1,6 @@
 import { AxiosResponse } from 'axios';
 import { api, preRequestRefreshAuth } from '../API';
 import {
-  ElectionDetails,
-  Position,
   PositionDetails,
 } from './ElectionManagement';
 
@@ -48,7 +46,7 @@ export type EmptyBallot = {
 
 const emptyBallotUrl = '/elections/emptyballot/';
 
-export async function getPositionDetails(
+export async function getEmptyBallot(
   electionId: string
 ): Promise<EmptyBallot> {
   const token = await preRequestRefreshAuth();

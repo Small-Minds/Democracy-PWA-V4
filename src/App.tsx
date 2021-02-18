@@ -20,6 +20,7 @@ import './App.css';
 import { User, UserInfo, blankUserInfo, getUserInfo } from './utils/api/User';
 import PositionApply from './pages/PositionApply';
 import ManageAccount from './pages/ManageAccount';
+import Vote from './pages/Vote';
 
 /**
  * Parent for the entire application.
@@ -120,7 +121,7 @@ function App() {
                             />
                             <Route
                               path="/election/:id/vote"
-                              component={EmptyPage}
+                              component={Vote}
                             />
                             <Route path="/election/:id" component={Election} />
                             <Route path="/account" component={ManageAccount} />

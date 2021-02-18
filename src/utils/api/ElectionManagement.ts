@@ -1,5 +1,4 @@
 import { AxiosResponse } from 'axios';
-import { useHistory } from 'react-router-dom';
 import { api, preRequestRefreshAuth } from '../API';
 import { Notification } from 'rsuite';
 import { UserInfo } from './User';

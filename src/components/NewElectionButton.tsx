@@ -77,7 +77,16 @@ function NewElectionButton() {
     setLoading(true);
 
     // Use a fake date until the form is implemented.
+    const now = new Date();
+    const a = new Date();
+    a.setDate(a.getDate() + 1);
+    const b = new Date();
+    b.setDate(b.getDate() + 2);
+    const c = new Date();
+    c.setDate(c.getDate() + 3);
     const d = new Date();
+    d.setDate(d.getDate() + 4);
+
     // Process form input, check for form errors
     if (!form.check()) {
       console.log('New election form has errors.');
@@ -91,10 +100,10 @@ function NewElectionButton() {
       description: electionDetails.description,
       election_email_domain: electionDetails.election_email_domain,
       enable_multiple_submissions: electionDetails.enable_multiple_submissions,
-      submission_end_time: d,
-      submission_start_time: d,
+      submission_start_time: a,
+      submission_end_time: b,
+      voting_start_time: c,
       voting_end_time: d,
-      voting_start_time: d,
     })
       .then((election) => {
         let path = `/election/${election.id}`;

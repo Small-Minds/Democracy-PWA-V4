@@ -16,10 +16,15 @@ import {
 } from 'react-router-dom';
 import { ButtonToolbar, Icon, IconButton } from 'rsuite';
 import AddPositionModal from '../components/AddPositionModal';
+import ConfirmModal from '../components/ConfirmModal';
 import ElectionTimeline from '../components/ElectionTimeline';
 import PlatformList from '../components/PlatformList';
 import PositionList from '../components/PositionList';
-import { getElection, ElectionDetails } from '../utils/api/ElectionManagement';
+import {
+  getElection,
+  ElectionDetails,
+  deleteElection,
+} from '../utils/api/ElectionManagement';
 import { User, UserDataInterface } from '../utils/api/User';
 import Loading from './Loading';
 
@@ -39,7 +44,18 @@ const ManagementTools: FC<ElectionSubpage> = ({
   const [setTimelineOpen, setSetTimelineOpen] = useState<boolean>(false);
   const [addPositionOpen, setAddPositionOpen] = useState<boolean>(false);
   const [deleteElectionOpen, setDeleteElectionOpen] = useState<boolean>(false);
+  const [
+    isDeleteElectionModalOpen,
+    setIsDeleteElectionModalOpen,
+  ] = useState<boolean>(false);
+  const history = useHistory();
 
+  function closeDeleteElectionModal() {
+    setIsDeleteElectionModalOpen(false);
+  }
+  function redirectToHome() {
+    history.push(`/`);
+  }
   if (!id) return null;
   if (!election || election === undefined) return null;
 
@@ -58,11 +74,21 @@ const ManagementTools: FC<ElectionSubpage> = ({
           appearance="primary"
           icon={<Icon icon="trash" />}
           color="red"
+          onClick={() => {
+            setIsDeleteElectionModalOpen(true);
+          }}
         >
           Delete Election
         </IconButton>
       </ButtonToolbar>
-      {/* TODO: Add delete election modal. */}
+      <ConfirmModal
+        modalTitle="Delete Election"
+        modalBody="Do you want to delete this election?"
+        callBackFunc={() => deleteElection(id)}
+        isOpen={isDeleteElectionModalOpen}
+        closeModal={() => closeDeleteElectionModal()}
+        cleanUpFunc={() => redirectToHome()}
+      />
       {/* TODO: Add configure times modal. */}
       <AddPositionModal
         open={addPositionOpen}

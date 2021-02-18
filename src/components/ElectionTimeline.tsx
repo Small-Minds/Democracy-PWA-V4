@@ -7,7 +7,7 @@ interface Props {
   election: ElectionDetails;
 }
 
-const timeformat: string = 'MMMM DD, YYYY, hh:MM A';
+const timeformat: string = 'MMMM DD, YYYY, hh:mm A';
 
 const ElectionTimeline: FC<Props> = ({ election }) => {
   if (!election)

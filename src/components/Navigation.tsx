@@ -1,21 +1,12 @@
-import React, { Fragment, useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
+import Gravatar from 'react-gravatar';
 import { useTranslation } from 'react-i18next';
 import { useHistory, useLocation } from 'react-router-dom';
-import {
-  Dropdown,
-  Navbar,
-  Icon,
-  Nav,
-  Notification,
-  FlexboxGrid,
-  Avatar,
-} from 'rsuite';
-import DropdownMenuItem from 'rsuite/lib/Dropdown/DropdownMenuItem';
+import { Avatar, Dropdown, Icon, Nav, Navbar, Notification } from 'rsuite';
 import { clearTokens } from '../utils/API';
-import { getUserInfo, User, UserInfo } from '../utils/api/User';
+import { User } from '../utils/api/User';
 import { Credentials } from '../utils/Authentication';
 import LanguagePicker from './LanguagePicker';
-import Gravatar from 'react-gravatar';
 
 function AccountMenu() {
   const ctx = useContext(Credentials);

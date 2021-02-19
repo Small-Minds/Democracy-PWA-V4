@@ -37,7 +37,7 @@
       "electionFormTitle": "Create a New Election",
       "electionTitle": "Title",
       "electionDescription": "Description",
-      "electionEnableMultiSubs": "Enable Multiple Submissions",
+      "electionEnableMultiSubs": "Enable Candidates to Apply to Multiple Positions",
       "electionMultiSubsTrue": "Yes",
       "electionMultiSubsFalse": "No",
       "electionEmailDomain": "Election Email Domain"

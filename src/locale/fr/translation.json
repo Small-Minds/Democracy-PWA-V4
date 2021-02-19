@@ -37,7 +37,6 @@
       "electionFormTitle": "Créer une nouvelle élection",
       "electionTitle": "Titre",
       "electionDescription": "La description",
-      "electionEnableMultiSubs": "Activer plusieurs soumissions",
       "electionMultiSubsTrue": "Oui",
       "electionMultiSubsFalse": "Non",
       "electionEmailDomain": "Domaine de messagerie d'élection"

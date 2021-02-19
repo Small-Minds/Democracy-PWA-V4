@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom';
 import {
   Button,
   Col,
+  Container,
   ControlLabel,
   DatePicker,
   Drawer,
@@ -25,6 +26,14 @@ import { Credentials } from '../utils/Authentication';
  * Reminder to self:
  * Max editing this file. Do not edit until his PR is merged.
  */
+
+// By default, use two one-week periods to run the election.
+// Attempts to set time to 9AM to 5pm
+const a = moment().add(7, 'days').hours(9).startOf('hour').toDate();
+const b = moment().add(14, 'days').hours(17).startOf('hour').toDate();
+const c = moment().add(21, 'days').hours(9).startOf('hour').toDate();
+const d = moment().add(28, 'days').hours(17).startOf('hour').toDate();
+const timeformat = 'YYYY-MM-DD HH:mm';
 
 function NewElectionButton() {
   // When the app first starts, it is unauthenticated.
@@ -85,10 +94,10 @@ function NewElectionButton() {
     description: '',
     enable_multiple_submissions: false,
     election_email_domain: 'uottawa.ca',
-    submission_end_time: null,
-    submission_start_time: null,
-    voting_end_time: null,
-    voting_start_time: null,
+    submission_start_time: a,
+    submission_end_time: b,
+    voting_start_time: c,
+    voting_end_time: d,
   });
   const [formErrors, setFormErrors] = useState<Record<string, any>>({});
   const history = useHistory();
@@ -102,13 +111,6 @@ function NewElectionButton() {
     if (!ctx || !ctx.credentials.authenticated) return;
     // Otherwise, start loading animations.
     setLoading(true);
-
-    // By default, use two one-week periods to run the election.
-    // Attempts to set time to 9AM to 5pm
-    /*const a = moment().add(7, 'days').hours(9).startOf('hour');
-    const b = moment().add(14, 'days').hours(17).startOf('hour');
-    const c = moment().add(21, 'days').hours(9).startOf('hour');
-    const d = moment().add(28, 'days').hours(17).startOf('hour');*/
 
     // Process form input, check for form errors
     if (!form.check()) {
@@ -227,63 +229,51 @@ function NewElectionButton() {
                   <ControlLabel>
                     Application starting time and deadline
                   </ControlLabel>
-                  <InputGroup style={{ width: 460 }}>
-                    <FormControl
-                      accepter={DatePicker}
-                      name="submission_start_time"
-                      format="YYYY-MM-DD HH:mm:ss"
-                      placement="topStart"
-                    >
-                      <DatePicker
-                        format="YYYY-MM-DD HH:mm:ss"
-                        block
-                        appearance="subtle"
-                      />
-                    </FormControl>
-                    <InputGroup.Addon>to</InputGroup.Addon>
-                    <FormControl
-                      accepter={DatePicker}
-                      name="submission_end_time"
-                      format="YYYY-MM-DD HH:mm:ss"
-                      placement="topStart"
-                    >
-                      <DatePicker
-                        format="YYYY-MM-DD HH:mm:ss"
-                        block
-                        appearance="subtle"
-                      />
-                    </FormControl>
-                  </InputGroup>
+                  <FlexboxGrid justify="start" align="middle">
+                    <FlexboxGrid.Item>
+                      <FormControl
+                        accepter={DatePicker}
+                        name="submission_start_time"
+                        format={timeformat}
+                        placement="topStart"
+                      ></FormControl>
+                    </FlexboxGrid.Item>
+                    <FlexboxGrid.Item style={{ padding: 10 }}>
+                      to
+                    </FlexboxGrid.Item>
+                    <FlexboxGrid.Item>
+                      <FormControl
+                        accepter={DatePicker}
+                        name="submission_end_time"
+                        format={timeformat}
+                        placement="topStart"
+                      ></FormControl>
+                    </FlexboxGrid.Item>
+                  </FlexboxGrid>
                 </FormGroup>
                 <FormGroup>
                   <ControlLabel>Voting starting time and deadline</ControlLabel>
-                  <InputGroup style={{ width: 460 }}>
-                    <FormControl
-                      accepter={DatePicker}
-                      name="voting_start_time"
-                      format="YYYY-MM-DD HH:mm:ss"
-                      placement="topStart"
-                    >
-                      <DatePicker
-                        format="YYYY-MM-DD HH:mm:ss"
-                        block
-                        appearance="subtle"
-                      />
-                    </FormControl>
-                    <InputGroup.Addon>to</InputGroup.Addon>
-                    <FormControl
-                      accepter={DatePicker}
-                      name="voting_end_time"
-                      format="YYYY-MM-DD HH:mm:ss"
-                      placement="topStart"
-                    >
-                      <DatePicker
-                        format="YYYY-MM-DD HH:mm:ss"
-                        block
-                        appearance="subtle"
-                      />
-                    </FormControl>
-                  </InputGroup>
+                  <FlexboxGrid justify="start" align="middle">
+                    <FlexboxGrid.Item>
+                      <FormControl
+                        accepter={DatePicker}
+                        name="voting_start_time"
+                        format={timeformat}
+                        placement="topStart"
+                      ></FormControl>
+                    </FlexboxGrid.Item>
+                    <FlexboxGrid.Item style={{ padding: 10 }}>
+                      to
+                    </FlexboxGrid.Item>
+                    <FlexboxGrid.Item>
+                      <FormControl
+                        accepter={DatePicker}
+                        name="voting_end_time"
+                        format={timeformat}
+                        placement="topStart"
+                      ></FormControl>
+                    </FlexboxGrid.Item>
+                  </FlexboxGrid>
                 </FormGroup>
               </Form>
             </Drawer.Body>

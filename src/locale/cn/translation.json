@@ -37,7 +37,6 @@
       "electionFormTitle": "建立新的选举",
       "electionTitle": "选举标题",
       "electionDescription": "选举描述",
-      "electionEnableMultiSubs": "是否允许多个提交",
       "electionMultiSubsTrue": "是",
       "electionMultiSubsFalse": "否",
       "electionEmailDomain": "选举电子邮件域名"

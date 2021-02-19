@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useMemo } from 'react';
 import { useEffect } from 'react';
 import Gravatar from 'react-gravatar';
 import { Modal, Button, Avatar } from 'rsuite';
@@ -10,6 +10,15 @@ interface CandidateInfoModalInput {
 }
 export default function CandidateInfo({ candidate }: CandidateInfoModalInput) {
   const [open, setOpen] = useState<boolean>(false);
+
+  const userImage = useMemo(() => {
+    if (!candidate || !candidate.user || !candidate.user.email) return null;
+    return (
+      <Avatar>
+        <Gravatar email={candidate.user.email} size={60} rating="pg" />
+      </Avatar>
+    );
+  }, [candidate]);
 
   return (
     <Fragment>
@@ -28,7 +37,7 @@ export default function CandidateInfo({ candidate }: CandidateInfoModalInput) {
             marginTop: 10,
           }}
         >
-          <Gravatar email={candidate.user.email} size={60} rating="pg" />
+          {userImage}
         </Avatar>
         <h5 style={{ marginTop: 5, textAlign: 'center' }}>
           {candidate.user.name}

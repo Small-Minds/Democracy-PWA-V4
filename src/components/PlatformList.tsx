@@ -1,21 +1,19 @@
-import React, { useEffect, useContext, useState, FC, Fragment } from 'react';
-import { Link, useHistory } from 'react-router-dom';
-import {
-  Button,
-  Col,
-  FlexboxGrid,
-  Icon,
-  List,
-  Loader,
-  Placeholder,
-} from 'rsuite';
-import PlaceholderParagraph from 'rsuite/lib/Placeholder/PlaceholderParagraph';
+import React, {
+  FC,
+  Fragment,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
+import Gravatar from 'react-gravatar';
+import { useHistory } from 'react-router-dom';
+import { Avatar, FlexboxGrid, List, Placeholder } from 'rsuite';
 import {
   CandidateWithUserDetails,
   ElectionDetails,
   getPositionDetails,
   Position,
-  Candidate,
 } from '../utils/api/ElectionManagement';
 import { User } from '../utils/api/User';
 import { Credentials } from '../utils/Authentication';
@@ -27,6 +25,38 @@ interface PLProps {
 interface PositionDisplayProps {
   position: Position;
 }
+
+const CandidateListItem: FC<{ candidate: CandidateWithUserDetails }> = ({
+  candidate,
+}) => {
+  const userImage = useMemo(() => {
+    if (!candidate || !candidate.user || !candidate.user.email) return null;
+    return (
+      <Avatar>
+        <Gravatar email={candidate.user.email} size={40} rating="pg" />
+      </Avatar>
+    );
+  }, [candidate]);
+
+  if (!candidate || !candidate.user || !candidate.user.email) return null;
+  return (
+    <Fragment>
+      <FlexboxGrid justify="start" align="top">
+        <FlexboxGrid.Item style={{ paddingRight: 10 }}>
+          {userImage}
+        </FlexboxGrid.Item>
+        <FlexboxGrid.Item>
+          <h5>{candidate.user.name}</h5>
+          {candidate.platform.split('\n').map((line, index) => (
+            <p key={index}>
+              <i>{line}</i>
+            </p>
+          ))}
+        </FlexboxGrid.Item>
+      </FlexboxGrid>
+    </Fragment>
+  );
+};
 
 const PlatformDisplay: FC<PositionDisplayProps> = ({ position }) => {
   const [candidates, setCandidates] = useState<CandidateWithUserDetails[]>([]);
@@ -56,12 +86,7 @@ const PlatformDisplay: FC<PositionDisplayProps> = ({ position }) => {
         )}
         {candidates.map((candidate, index) => (
           <List.Item key={index}>
-            <h5>{candidate.user.name}</h5>
-            {candidate.platform.split('\n').map((line, index) => (
-              <p key={index}>
-                <i>{line}</i>
-              </p>
-            ))}
+            <CandidateListItem candidate={candidate} />
           </List.Item>
         ))}
       </List>

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useMemo } from 'react';
 import Gravatar from 'react-gravatar';
 import { useTranslation } from 'react-i18next';
 import { useHistory, useLocation } from 'react-router-dom';
@@ -30,16 +30,18 @@ function AccountMenu() {
     return '';
   };
 
+  const userImage = useMemo(() => {
+    if (!user || !user.user || !user.user.email) return null;
+    return <Gravatar email={user?.user.email} size={40} rating="pg" />;
+  }, [user]);
+
   return (
     <Dropdown
       placement="bottomEnd"
       renderTitle={() => (
         <Avatar style={{ margin: 7, marginLeft: 2, marginRight: 2 }}>
           {/** Render initials or avatar as fallback */}
-          <b>
-            {<Gravatar email={user?.user.email} size={40} rating="pg" /> ||
-              initials() || <Icon icon="avatar" />}
-          </b>
+          <b>{userImage || initials() || <Icon icon="avatar" />}</b>
         </Avatar>
       )}
     >

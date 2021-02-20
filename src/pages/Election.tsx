@@ -20,6 +20,7 @@ import ConfirmModal from '../components/ConfirmModal';
 import ElectionTimeline from '../components/ElectionTimeline';
 import PlatformList from '../components/PlatformList';
 import PositionList from '../components/PositionList';
+import SetTimelineModal from '../components/SetTimelineModal';
 import {
   getElection,
   ElectionDetails,
@@ -43,7 +44,6 @@ const ManagementTools: FC<ElectionSubpage> = ({
 }) => {
   const [setTimelineOpen, setSetTimelineOpen] = useState<boolean>(false);
   const [addPositionOpen, setAddPositionOpen] = useState<boolean>(false);
-  const [deleteElectionOpen, setDeleteElectionOpen] = useState<boolean>(false);
   const [
     isDeleteElectionModalOpen,
     setIsDeleteElectionModalOpen,
@@ -62,7 +62,12 @@ const ManagementTools: FC<ElectionSubpage> = ({
     <Fragment>
       <h5 style={{ marginBottom: 10 }}>Management Tools</h5>
       <ButtonToolbar>
-        <IconButton icon={<Icon icon="clock-o" />}>Set Timeline</IconButton>
+        <IconButton
+          icon={<Icon icon="clock-o" />}
+          onClick={() => setSetTimelineOpen(true)}
+        >
+          Set Timeline
+        </IconButton>
         <IconButton
           icon={<Icon icon="plus" />}
           onClick={() => setAddPositionOpen(true)}
@@ -88,7 +93,11 @@ const ManagementTools: FC<ElectionSubpage> = ({
         closeModal={() => closeDeleteElectionModal()}
         cleanUpFunc={() => redirectToHome()}
       />
-      {/* TODO: Add configure times modal. */}
+      <SetTimelineModal
+        election={election}
+        isOpen={setTimelineOpen}
+        closeModal={() => setSetTimelineOpen(false)}
+      />
       <AddPositionModal
         open={addPositionOpen}
         setOpen={setAddPositionOpen}

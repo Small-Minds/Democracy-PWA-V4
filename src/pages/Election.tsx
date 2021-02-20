@@ -28,12 +28,15 @@ import {
 } from '../utils/api/ElectionManagement';
 import { User, UserDataInterface } from '../utils/api/User';
 import Loading from './Loading';
+import moment from 'moment';
+import ElectionResults from '../components/ElectionResults';
 
 interface ElectionSubpage {
   id: string | undefined;
   election: ElectionDetails | undefined;
   user: UserDataInterface | null;
   updateElection?: (id: string) => Promise<any>;
+  finished?: boolean;
 }
 
 const ManagementTools: FC<ElectionSubpage> = ({
@@ -41,6 +44,7 @@ const ManagementTools: FC<ElectionSubpage> = ({
   election,
   user,
   updateElection,
+  finished,
 }) => {
   const [setTimelineOpen, setSetTimelineOpen] = useState<boolean>(false);
   const [addPositionOpen, setAddPositionOpen] = useState<boolean>(false);
@@ -68,12 +72,14 @@ const ManagementTools: FC<ElectionSubpage> = ({
         >
           Set Timeline
         </IconButton>
-        <IconButton
-          icon={<Icon icon="plus" />}
-          onClick={() => setAddPositionOpen(true)}
-        >
-          Add Position
-        </IconButton>
+        {finished !== true && (
+          <IconButton
+            icon={<Icon icon="plus" />}
+            onClick={() => setAddPositionOpen(true)}
+          >
+            Add Position
+          </IconButton>
+        )}
         <IconButton
           appearance="primary"
           icon={<Icon icon="trash" />}
@@ -192,6 +198,35 @@ const Election: FC<RouteComponentProps> = ({ match }) => {
       </Fragment>
     );
 
+  if (moment(election.voting_end_time) < moment()) {
+    return (
+      <Fragment>
+        <h1>{election.title}</h1>
+        <p>
+          <b>@{election.election_email_domain}</b>
+          &nbsp;&middot;&nbsp;
+          <span>{election.description}</span>
+        </p>
+        <br />
+        <h2>Results</h2>
+        {showTools && (
+          <Fragment>
+            <br />
+            <ManagementTools
+              id={id}
+              election={election}
+              user={user}
+              updateElection={updateElection}
+              finished={true}
+            />
+            <br />
+          </Fragment>
+        )}
+        <ElectionResults />
+      </Fragment>
+    );
+  }
+
   return (
     <Fragment>
       <h1>{election.title}</h1>
@@ -203,10 +238,13 @@ const Election: FC<RouteComponentProps> = ({ match }) => {
       <br />
       {election && election.domain_match === false && (
         <Fragment>
-          <Message type="error"
-            description={`You cannot participate in this election because your email domain is not` +
-            `  @${election.election_email_domain}`}
-            />
+          <Message
+            type="error"
+            description={
+              `You cannot participate in this election because your email domain is not` +
+              `  @${election.election_email_domain}`
+            }
+          />
           <br />
         </Fragment>
       )}
@@ -258,6 +296,7 @@ const Election: FC<RouteComponentProps> = ({ match }) => {
             election={election}
             user={user}
             updateElection={updateElection}
+            finished={false}
           />
           <br />
         </Fragment>

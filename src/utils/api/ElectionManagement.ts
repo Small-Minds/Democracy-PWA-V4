@@ -115,6 +115,20 @@ export async function getElection(
   return res.data;
 }
 
+export async function getElectionResult(
+  electionId: string
+): Promise<ElectionDetails> {
+  const token = await preRequestRefreshAuth();
+  let config = {
+    headers: { Authorization: `JWT ${token}` },
+  };
+  const res: AxiosResponse = await api.get(
+    `/elections/results/${electionId}/`,
+    config
+  );
+  return res.data;
+}
+
 export async function deleteElection(electionId: string): Promise<Number> {
   const token = await preRequestRefreshAuth();
   return api

@@ -16,6 +16,7 @@ import {
   Modal,
   Schema,
   Notification,
+  Message,
 } from 'rsuite';
 import {
   ElectionDetails,
@@ -153,6 +154,12 @@ export default function SetTimelineModal({
           fluid
         >
           <FormGroup>
+            <Message
+              type="warning"
+              showIcon
+              description={`Changing the timeline is currently not restricted and can have serious consequences. In the future, starting the election will disable timeline manipulation.`}
+            />
+            <br />
             <ControlLabel>
               <h5>Application starting time and deadline</h5>
             </ControlLabel>

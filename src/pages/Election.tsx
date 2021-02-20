@@ -240,6 +240,7 @@ const Election: FC<RouteComponentProps> = ({ match }) => {
         <Fragment>
           <Message
             type="error"
+            showIcon
             description={
               `You cannot participate in this election because your email domain is not` +
               `  @${election.election_email_domain}`

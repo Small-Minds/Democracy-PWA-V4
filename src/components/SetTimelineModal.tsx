@@ -171,7 +171,7 @@ export default function SetTimelineModal({
                   accepter={DatePicker}
                   name="submission_end_time"
                   format={timeformat}
-                  placement="bottomStart"
+                  placement="bottomEnd"
                 ></FormControl>
               </FlexboxGrid.Item>
             </FlexboxGrid>
@@ -195,7 +195,7 @@ export default function SetTimelineModal({
                   accepter={DatePicker}
                   name="voting_end_time"
                   format={timeformat}
-                  placement="bottomStart"
+                  placement="bottomEnd"
                 ></FormControl>
               </FlexboxGrid.Item>
             </FlexboxGrid>

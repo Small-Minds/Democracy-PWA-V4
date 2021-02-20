@@ -137,7 +137,7 @@ export default function SetTimelineModal({
       backdrop="static"
       show={isOpen}
       onHide={() => closeModal()}
-      size="lg"
+      size="sm"
     >
       <Modal.Header>
         <h4>Election Timeline Setup</h4>

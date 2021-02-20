@@ -98,7 +98,7 @@ function App() {
                   sm={22}
                   xs={24}
                   colspan={24}
-                  style={{ maxWidth: '800px' }}
+                  style={{ maxWidth: '800px', padding: 10 }}
                 >
                   <Container>
                     <br />

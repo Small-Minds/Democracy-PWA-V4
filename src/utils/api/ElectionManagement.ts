@@ -35,7 +35,7 @@ export type ElectionDetails = {
   election_email_domain: string;
   enable_multiple_submissions: boolean;
   id: string;
-  manager: string;
+  manager: UserInfo;
   positions: Array<Position>;
   submission_end_time: string;
   submission_start_time: string;

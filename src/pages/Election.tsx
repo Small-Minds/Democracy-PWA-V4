@@ -30,6 +30,7 @@ import { User, UserDataInterface } from '../utils/api/User';
 import Loading from './Loading';
 import moment from 'moment';
 import ElectionResults from '../components/ElectionResults';
+import ElectionManager from '../components/ElectionManager';
 
 interface ElectionSubpage {
   id: string | undefined;
@@ -123,6 +124,9 @@ const Information: FC<ElectionSubpage> = ({ id, election }) => {
     <Fragment>
       <h3>Information</h3>
       <br />
+      <ElectionManager election={election} />
+      <br />
+      <br />
       <ElectionTimeline election={election} />
       <br />
       <h4>Positions</h4>
@@ -182,7 +186,7 @@ const Election: FC<RouteComponentProps> = ({ match }) => {
   useEffect(() => {
     if (!id) return;
     if (!election) return;
-    setShowTools(user?.user.id === election.manager);
+    setShowTools(user?.user.id === election.manager.id);
   }, [id, election, user]);
 
   // Return to the previous page if no ID is provided.

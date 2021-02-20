@@ -255,7 +255,7 @@ function NewElectionButton() {
                         accepter={DatePicker}
                         name="submission_end_time"
                         format={timeformat}
-                        placement="topStart"
+                        placement="topEnd"
                       ></FormControl>
                     </FlexboxGrid.Item>
                   </FlexboxGrid>
@@ -279,7 +279,7 @@ function NewElectionButton() {
                         accepter={DatePicker}
                         name="voting_end_time"
                         format={timeformat}
-                        placement="topStart"
+                        placement="topEnd"
                       ></FormControl>
                     </FlexboxGrid.Item>
                   </FlexboxGrid>

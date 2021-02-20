@@ -14,7 +14,7 @@ import {
   Route,
   useHistory,
 } from 'react-router-dom';
-import { ButtonToolbar, Icon, IconButton } from 'rsuite';
+import { ButtonToolbar, Icon, IconButton, Message } from 'rsuite';
 import AddPositionModal from '../components/AddPositionModal';
 import ConfirmModal from '../components/ConfirmModal';
 import ElectionTimeline from '../components/ElectionTimeline';
@@ -201,6 +201,15 @@ const Election: FC<RouteComponentProps> = ({ match }) => {
         <span>{election.description}</span>
       </p>
       <br />
+      {election && election.domain_match === false && (
+        <Fragment>
+          <Message type="error"
+            description={`You cannot participate in this election because your email domain is not` +
+            `  @${election.election_email_domain}`}
+            />
+          <br />
+        </Fragment>
+      )}
       <Fragment>
         <ButtonToolbar>
           <IconButton

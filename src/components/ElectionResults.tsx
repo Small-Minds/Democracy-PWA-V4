@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { ElectionDetails, getElectionResult } from '../utils/api/ElectionManagement';
+import {
+  ElectionDetails,
+  getElectionResult,
+} from '../utils/api/ElectionManagement';
 
 export default function ElectionResults() {
   let { id } = useParams<any>();
@@ -22,9 +25,7 @@ export default function ElectionResults() {
   return (
     <div>
       <code>
-        <pre>
-          {JSON.stringify(electionResult, null, 2)}
-        </pre>
+        <pre>{JSON.stringify(electionResult, null, 2)}</pre>
       </code>
     </div>
   );

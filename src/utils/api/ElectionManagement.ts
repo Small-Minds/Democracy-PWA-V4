@@ -109,7 +109,7 @@ export async function getElection(
     headers: { Authorization: `JWT ${token}` },
   };
   const res: AxiosResponse = await api.get(
-    electionParticipationURL + electionId,
+    `${electionParticipationURL}${electionId}/`,
     config
   );
   return res.data;
@@ -132,7 +132,7 @@ export async function getElectionResult(
 export async function deleteElection(electionId: string): Promise<Number> {
   const token = await preRequestRefreshAuth();
   return api
-    .delete(electionURL + electionId, {
+    .delete(`${electionURL}${electionId}/`, {
       headers: { Authorization: `JWT ${token}` },
     })
     .then((res) => {
@@ -151,7 +151,7 @@ export async function updateOldElection(
 ): Promise<Number> {
   const token = await preRequestRefreshAuth();
   return api
-    .patch(electionURL + newElectionDetails.id + `/`, newElectionDetails, {
+    .patch(`${electionURL}${newElectionDetails.id}/`, newElectionDetails, {
       headers: { Authorization: `JWT ${token}` },
     })
     .then((res) => {
@@ -168,7 +168,7 @@ export async function updateOldElection(
 export async function deletePosition(positionId: string): Promise<Number> {
   const token = await preRequestRefreshAuth();
   return api
-    .delete(electionPositionURL + positionId, {
+    .delete(`${electionPositionURL}${positionId}/`, {
       headers: { Authorization: `JWT  ${token}` },
     })
     .then((res) => {
@@ -190,7 +190,7 @@ export async function getPositionDetails(
     headers: { Authorization: `JWT ${token}` },
   };
   const res: AxiosResponse = await api.get(
-    electionParticipationPositionURL + positionId,
+    `${electionParticipationPositionURL}${positionId}/`,
     config
   );
   return res.data;

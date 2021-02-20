@@ -98,7 +98,7 @@ function LoginForm() {
 
         console.log(history.length);
         if (history.length > 1) {
-          console.log("Going back...");
+          console.log('Going back...');
           history.back();
         }
       })

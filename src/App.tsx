@@ -77,7 +77,7 @@ function App() {
     getUserInfo()
       .then((res) => setUser(res))
       .catch((err) => {
-        console.log("Could not get user info.");
+        console.log('Could not get user info.');
         setUser(blankUserInfo);
       });
   }, [credentials]);

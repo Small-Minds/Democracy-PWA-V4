@@ -71,11 +71,13 @@ function App() {
     // Flush user info if unauthenticated.
     if (!credentials.authenticated) {
       setUser(blankUserInfo);
+      return;
     }
+
     getUserInfo()
       .then((res) => setUser(res))
       .catch((err) => {
-        console.error(err);
+        console.log("Could not get user info.");
         setUser(blankUserInfo);
       });
   }, [credentials]);

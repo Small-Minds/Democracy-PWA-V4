@@ -77,7 +77,7 @@ const PositionList: FC<PLProps> = ({ election }) => {
                   {/*Navigate to the position application form*/}
                   <Button
                     block
-                    disabled={!election.applications_open}
+                    disabled={!election.applications_open || !election.domain_match}
                     onClick={() => {
                       history.push(`/apply/${position.id}`);
                     }}

@@ -216,7 +216,7 @@ const Election: FC<RouteComponentProps> = ({ match }) => {
             appearance="primary"
             icon={<Icon icon="check2" />}
             onClick={() => history.push(`${match.url}/vote`)}
-            disabled={!election.voting_open}
+            disabled={!election.voting_open || !election.domain_match}
           >
             Vote
           </IconButton>
@@ -225,7 +225,7 @@ const Election: FC<RouteComponentProps> = ({ match }) => {
             icon={<Icon icon="list" />}
             onClick={() => history.push(`${match.url}/positions`)}
             color="green"
-            disabled={!election.applications_open}
+            disabled={!election.applications_open || !election.domain_match}
           >
             Apply Now
           </IconButton>

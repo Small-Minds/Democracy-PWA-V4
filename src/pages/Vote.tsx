@@ -97,14 +97,14 @@ export default function Vote() {
     });
     console.log(votes);
     submitBallot({
-      election: ballot.id,
+      election: id.toString().trim(),
       votes: votes,
     })
       .then((res: AxiosResponse) => {
         console.log(res);
         setFormData({});
         setFormErrors({});
-        history.push(`/election/${ballot.id}`);
+        history.push(`/election/${id}`);
         Notification['success']({
           title: 'Submitted',
           description:

@@ -112,6 +112,11 @@ export default function Vote() {
         });
       })
       .catch((err) => {
+        Notification['error']({
+          title: 'Failed to Submit',
+          description:
+            'Failed to submit your ballot. The administrator will be notified.',
+        });
         console.log(err);
         if (err && err.response) console.log(err.response);
         if (err && err.response && err.response.data)

@@ -113,6 +113,9 @@ export default function Vote() {
       })
       .catch((err) => {
         console.log(err);
+        if (err && err.response) console.log(err.response);
+        if (err && err.response && err.response.data)
+          console.log(err.response.data);
       });
   };
 
@@ -177,7 +180,14 @@ export default function Vote() {
           <FlexboxGrid justify="end">
             <FlexboxGrid.Item>
               <ButtonToolbar>
-                <Button size="lg">Cancel</Button>
+                <Button
+                  size="lg"
+                  onClick={() => {
+                    history.goBack();
+                  }}
+                >
+                  Cancel
+                </Button>
                 <Button
                   appearance="primary"
                   size="lg"

@@ -13,9 +13,7 @@ function HomeVote() {
       <h1>{t('voteHomePage.title')}</h1>
       <p>{t('voteHomePage.subtitle')}</p>
       <br />
-      <Panel header={<h2>All Elections</h2>} bordered>
-        <PublicElectionList />
-      </Panel>
+      <PublicElectionList filterDomain />
     </Fragment>
   );
 }

@@ -13,13 +13,8 @@ function Home() {
       <h1>{t('mainPage.title')}</h1>
       <p>{t('mainPage.subtitle')}</p>
       <br />
-      <Panel header={<h2>Your Elections</h2>} bordered>
-        <ElectionList />
-      </Panel>
       <br />
-      <Panel header={<h2>All Elections</h2>} bordered>
-        <PublicElectionList />
-      </Panel>
+      <PublicElectionList />
     </Fragment>
   );
 }

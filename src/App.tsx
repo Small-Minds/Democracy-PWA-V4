@@ -21,6 +21,7 @@ import { User, UserInfo, blankUserInfo, getUserInfo } from './utils/api/User';
 import PositionApply from './pages/PositionApply';
 import ManageAccount from './pages/ManageAccount';
 import Vote from './pages/Vote';
+import { alive } from './utils/api/Alive';
 
 /**
  * Parent for the entire application.
@@ -86,6 +87,13 @@ function App() {
   useEffect(() => {
     document.title = t('mainPage.appName');
   }, [t]);
+
+  // Check if backend is up by calling 'alive' endpoint when app starts.
+  useEffect(() => {
+    alive().catch((err) => {
+      console.error(err);
+    });
+  }, []);
 
   return (
     <div>

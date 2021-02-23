@@ -86,7 +86,7 @@ function App() {
 
   // Set Page Title
   useEffect(() => {
-    document.title = t('mainPage.appName');
+    document.title = t('general.app.name');
   }, [t, user, credentials]);
 
   // Check if backend is up by calling 'alive' endpoint when app starts.

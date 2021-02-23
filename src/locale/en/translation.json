@@ -1,6 +1,28 @@
 {
   "translation": {
     "languageName": "English",
+    "compatability": 1.0,
+    "general": {
+      "submit": "Submit",
+      "cancel": "Cancel",
+      "delete": "Delete",
+      "required": "This field is required.",
+      "app": {
+        "name": "Democracy"
+      }
+    },
+    "mainPage": {
+      "subtitle": "Welcome. Vote, register your candidacy, or configure a new election",
+      "slogan": "Sign up and participate in student elections.",
+      "loginButton": "Log In",
+      "logoutButton": "Log Out",
+      "homeLink": "Home",
+      "voteLink": "Vote",
+      "setupLink": "Setup",
+      "logoutSuccessTitle": "Logged Out",
+      "logoutSuccessDescription": "You have successfully logged out of your Democracy session. Enjoy the rest of your day!",
+      "welcome": "Welcome"
+    },
     "signUpForm": {
       "loginErrorMsg": "You are already logged in",
       "msgRequired": "This field is required",
@@ -17,8 +39,8 @@
     },
     "electionList": {
       "button": {
-        "viewElection": "",
-        "manageElection": ""
+        "viewElection": "View",
+        "manageElection": "Manage"
       }
     },
     "signInForm": {
@@ -56,21 +78,6 @@
       "en": "English",
       "fr": "French",
       "cn": "Chinese"
-    },
-    "mainPage": {
-      "title": "Democracy",
-      "subtitle": "Welcome. Vote, register your candidacy, or configure a new election",
-      "appName": "Democracy",
-      "slogan": "Sign up and participate in student elections.",
-      "electionToolSectionTitle": "Election Tools",
-      "loginButton": "Log In",
-      "logoutButton": "Log Out",
-      "homeLink": "Home",
-      "voteLink": "Vote",
-      "setupLink": "Setup",
-      "logoutSuccessTitle": "Logged Out",
-      "logoutSuccessDescription": "You have successfully logged out of your Democracy session. Enjoy the rest of your day!",
-      "welcome": "Welcome"
     },
     "emptyPage": {
       "title": "Empty Page",
@@ -151,6 +158,23 @@
       "candidateName": "Name: ",
       "candidatePersonalStatement": "Personal Statement: ",
       "okBtn": "OK"
+    },
+    "setTimelineModal": {
+      "title": "Election Timeline Configuration",
+      "headings": {
+        "applicationTimes": "Application Start Date and Deadline",
+        "votingTimes": "Voting Start Date and Deadline"
+      },
+      "message": {
+        "changeTimelineWarning": "Changing the timeline is currently not restricted and can have serious consequences. In the future, starting the election will disable timeline manipulation."
+      },
+      "form": {
+        "timeDivider": "to",
+        "heading": {
+          "applicationTimelineControls": "",
+          "votingTimelineControls": ""
+        }
+      }
     }
   }
 }

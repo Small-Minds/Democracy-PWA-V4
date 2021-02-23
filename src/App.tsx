@@ -1,28 +1,28 @@
 import React, { Fragment, useEffect, useState } from 'react';
-import {
-  Credentials,
-  CredentialData,
-  blankCredentialData,
-} from './utils/Authentication';
-import { getAccessToken, getRefreshToken, isAuthenticated } from './utils/API';
 import { useTranslation } from 'react-i18next';
-import { Switch, Route, BrowserRouter } from 'react-router-dom';
-import Loading from './pages/Loading';
-import Base from './pages/Home';
-import Info from './pages/Landing';
-import Navigation from './components/Navigation';
-import EmptyPage from './pages/Empty';
-import Election from './pages/Election';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { Col, Container, Content, FlexboxGrid } from 'rsuite';
-import HomeVote from './pages/HomeVote';
-import HomeSetup from './pages/HomeSetup';
 import './App.css';
-import { User, UserInfo, blankUserInfo, getUserInfo } from './utils/api/User';
-import PositionApply from './pages/PositionApply';
+import Navigation from './components/Navigation';
+import Election from './pages/Election';
+import EmptyPage from './pages/Empty';
+import Base from './pages/Home';
+import HomeSetup from './pages/HomeSetup';
+import HomeVote from './pages/HomeVote';
+import Info from './pages/Landing';
+import Loading from './pages/Loading';
 import ManageAccount from './pages/ManageAccount';
-import Vote from './pages/Vote';
-import { alive } from './utils/api/Alive';
+import PositionApply from './pages/PositionApply';
 import ReturnToLogin from './pages/ReturnToLogin';
+import Vote from './pages/Vote';
+import { getAccessToken, getRefreshToken, isAuthenticated } from './utils/API';
+import { alive } from './utils/api/Alive';
+import { blankUserInfo, getUserInfo, User, UserInfo } from './utils/api/User';
+import {
+  blankCredentialData,
+  CredentialData,
+  Credentials,
+} from './utils/Authentication';
 
 /**
  * Parent for the entire application.
@@ -87,7 +87,7 @@ function App() {
   // Set Page Title
   useEffect(() => {
     document.title = t('mainPage.appName');
-  }, [t]);
+  }, [t, user, credentials]);
 
   // Check if backend is up by calling 'alive' endpoint when app starts.
   useEffect(() => {

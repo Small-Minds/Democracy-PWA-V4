@@ -1,9 +1,12 @@
 import { max } from 'moment';
 import React, { useState, useEffect, FC, Fragment, useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
+import { FlexboxGrid } from 'rsuite';
 import ProgressLine from 'rsuite/lib/Progress/ProgressLine';
 import Loading from '../pages/Loading';
 import {
+  CandidateResult,
   ElectionDetails,
   ElectionResult,
   getElectionResult,
@@ -11,8 +14,13 @@ import {
 } from '../utils/api/ElectionManagement';
 
 const Position: FC<{ position: PositionResult }> = ({ position }) => {
+  const [t] = useTranslation();
   let maxVotes = 0;
-  const sortedResults = useMemo(
+
+  /**
+   * Returns a list of sorted candidates to display for the position.
+   */
+  const sortedResults: CandidateResult[] = useMemo(
     () =>
       position.candidates
         .map((value) => {
@@ -26,12 +34,41 @@ const Position: FC<{ position: PositionResult }> = ({ position }) => {
     [position]
   );
 
+  /**
+   * Calculates if the top two candidates have equal votes.
+   */
+  const draw: boolean = useMemo(() => {
+    if (!sortedResults || sortedResults.length < 2) return false;
+    return sortedResults[0].votes.length === sortedResults[1].votes.length;
+  }, [sortedResults]);
+
+  /**
+   * If no position or candidates, show alternative views.
+   */
   if (!position) return null;
+  if (sortedResults.length === 0)
+    return (
+      <Fragment>
+        <br />
+        <h3>
+          {position.title}: {t('electionResults.noWinner')}
+        </h3>
+        <br />
+      </Fragment>
+    );
+
   return (
     <Fragment>
       <br />
-      <h2>{position.title}</h2>
-      <p>{position.description}</p>
+      {draw ? (
+        <h3>
+          {position.title}: {t('electionResults.draw')}
+        </h3>
+      ) : (
+        <h3>
+          {position.title}: {sortedResults[0].user.name}
+        </h3>
+      )}
       <br />
       {sortedResults.map((res, index) => {
         const percent: number = ((res.voteCount || 0) / maxVotes) * 100;
@@ -39,7 +76,8 @@ const Position: FC<{ position: PositionResult }> = ({ position }) => {
         return (
           <div key={index}>
             <p>
-              {res.user.name} - {res.voteCount || 0}
+              <b>{res.user.name}</b> - {t('electionResults.votes')}:{' '}
+              {res.voteCount || 0}
             </p>
             <ProgressLine
               percent={percent}
@@ -82,9 +120,11 @@ export default function ElectionResults() {
         )
       )}
       <br />
+      {/**
       <code>
         <pre>{JSON.stringify(electionResult, null, 2)}</pre>
       </code>
+       */}
     </div>
   );
 }

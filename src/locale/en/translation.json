@@ -187,6 +187,11 @@
       "subtitle": {
         "emailVerificationError": "Please ensure you have correctly followed the link from the email."
       }
+    },
+    "electionResults": {
+      "noWinner": "No candidates.",
+      "draw": "Draw",
+      "votes": "Votes"
     }
   }
 }

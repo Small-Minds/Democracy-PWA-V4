@@ -145,19 +145,34 @@ function App() {
                             <Route
                               path="/email-verified"
                               component={() => (
-                                <ReturnToLogin msg="Email Verified" />
+                                <ReturnToLogin
+                                  title={t(
+                                    'emailVerification.title.emailVerified'
+                                  )}
+                                />
                               )}
                             />
                             <Route
                               path="/email-already-verified"
                               component={() => (
-                                <ReturnToLogin msg="Email Already Verified" />
+                                <ReturnToLogin
+                                  title={t(
+                                    'emailVerification.title.emailAlreadyVerified'
+                                  )}
+                                />
                               )}
                             />
                             <Route
                               path="/email-verification-error"
                               component={() => (
-                                <ReturnToLogin msg="Email Verification Failed" />
+                                <ReturnToLogin
+                                  title={t(
+                                    'emailVerification.title.emailVerificationError'
+                                  )}
+                                  subtitle={t(
+                                    'emailVerification.subtitle.emailVerificationError'
+                                  )}
+                                />
                               )}
                             />
                             <Route path="/" component={Info} />

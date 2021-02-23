@@ -7,6 +7,7 @@
       "cancel": "Cancel",
       "delete": "Delete",
       "required": "This field is required.",
+      "returnToLogin": "Return to Login and Signup Page",
       "app": {
         "name": "Democracy"
       }
@@ -173,13 +174,22 @@
         "voteStartEarly": "The voting start date must be after the application deadline date!",
         "voteDeadlineEarly": "The voting deadline must be after the voting start date!"
       },
-
       "form": {
         "timeDivider": "to",
         "heading": {
           "applicationTimelineControls": "",
           "votingTimelineControls": ""
         }
+      }
+    },
+    "emailVerification": {
+      "title": {
+        "emailVerified": "Email Verified",
+        "emailAlreadyVerified": "Email Already Verified",
+        "emailVerificationError": "Email Verification Error"
+      },
+      "subtitle": {
+        "emailVerificationError": "Please ensure you have correctly followed the link from the email."
       }
     }
   }

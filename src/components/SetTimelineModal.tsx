@@ -51,7 +51,7 @@ export default function SetTimelineModal({
           return false;
         }
         return true;
-      }, 'The application deadline must be after the start date!'),
+      }, t('setTimelineModal.error.applicationDeadlineEarly')),
     voting_start_time: Schema.Types.DateType()
       .isRequired(msg_required)
       .addRule((value, data) => {
@@ -59,7 +59,7 @@ export default function SetTimelineModal({
           return false;
         }
         return true;
-      }, 'The voting start date must be after the application deadline date!'),
+      }, t('setTimelineModal.error.voteStartEarly')),
     voting_end_time: Schema.Types.DateType()
       .isRequired(msg_required)
       .addRule((value, data) => {
@@ -67,7 +67,7 @@ export default function SetTimelineModal({
           return false;
         }
         return true;
-      }, 'The voting deadline must be after the voting start date!'),
+      }, t('setTimelineModal.error.voteDeadlineEarly')),
   });
   //formData setup
   const [formData, setFormData] = useState<Record<string, any>>({
@@ -85,7 +85,6 @@ export default function SetTimelineModal({
     formData: Record<string, any>
   ) {
     if (!form.check()) {
-      console.log('New election form has errors.');
       console.log(formErrors);
       return;
     }

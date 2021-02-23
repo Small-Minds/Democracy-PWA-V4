@@ -168,6 +168,12 @@
       "message": {
         "changeTimelineWarning": "Changing the timeline is currently not restricted and can have serious consequences. In the future, starting the election will disable timeline manipulation."
       },
+      "error": {
+        "applicationDeadlineEarly": "The application deadline must be after the start date!",
+        "voteStartEarly": "The voting start date must be after the application deadline date!",
+        "voteDeadlineEarly": "The voting deadline must be after the voting start date!"
+      },
+
       "form": {
         "timeDivider": "to",
         "heading": {

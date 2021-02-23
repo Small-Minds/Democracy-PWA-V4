@@ -158,10 +158,12 @@ const Information: FC<ElectionSubpage> = ({ id, election, updateElection }) => {
         }}
       />
       <br />
+      {/**
       <h4>Raw Data</h4>
       <code>
         <pre>{JSON.stringify(election, null, 2)}</pre>
       </code>
+       */}
     </Fragment>
   );
 };

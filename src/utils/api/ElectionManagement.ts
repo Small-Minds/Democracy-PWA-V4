@@ -47,6 +47,34 @@ export type ElectionDetails = {
   domain_match: boolean;
 };
 
+/**
+ * Results
+ */
+
+export type CandidateResult = {
+  id: string;
+  user: UserInfo;
+  platform: string;
+  votes: string[];
+  voteCount?: number;
+};
+
+export type PositionResult = {
+  id: string;
+  title: string;
+  description: string;
+  candidates: CandidateResult[];
+};
+
+export type ElectionResult = {
+  id: string;
+  positions: PositionResult[];
+};
+
+/**
+ * Candidates
+ */
+
 export type CandidateWithUserDetails = {
   id: string;
   user: UserInfo;
@@ -117,7 +145,7 @@ export async function getElection(
 
 export async function getElectionResult(
   electionId: string
-): Promise<ElectionDetails> {
+): Promise<ElectionResult> {
   const token = await preRequestRefreshAuth();
   let config = {
     headers: { Authorization: `JWT ${token}` },

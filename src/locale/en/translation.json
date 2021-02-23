@@ -45,15 +45,6 @@
       "tooManyElectionsErrorTitle": "Too Many Elections",
       "tooManyElectionsErrorBody": "Accounts can run a limit of three elections at once. Please delete old or unused elections."
     },
-    "loggedInInfo": {
-      "sectionTitle": "Authentication Data",
-      "loggedInFieldLabel": "Logged in",
-      "notLoggedIn": "No",
-      "loggedIn": "Yes",
-      "accessTokenFieldLabel": "Access Token",
-      "refreshTokenFieldLabel": "Refresh Token",
-      "noToken": "not set"
-    },
     "languagePicker": {
       "title": "Language Selection",
       "en": "English",

@@ -43,7 +43,6 @@ interface ElectionSubpage {
 const ManagementTools: FC<ElectionSubpage> = ({
   id,
   election,
-  user,
   updateElection,
   finished,
 }) => {
@@ -57,9 +56,6 @@ const ManagementTools: FC<ElectionSubpage> = ({
 
   function closeDeleteElectionModal() {
     setIsDeleteElectionModalOpen(false);
-  }
-  function redirectToHome() {
-    history.push(`/`);
   }
 
   if (!id || !election || election === undefined) return null;
@@ -98,7 +94,8 @@ const ManagementTools: FC<ElectionSubpage> = ({
         callBackFunc={() => deleteElection(id)}
         isOpen={isDeleteElectionModalOpen}
         closeModal={() => closeDeleteElectionModal()}
-        cleanUpFunc={() => redirectToHome()}
+        expectedResult={204}
+        cleanUpFunc={() => history.push(`/`)}
       />
       <SetTimelineModal
         election={election}
@@ -121,7 +118,7 @@ const ManagementTools: FC<ElectionSubpage> = ({
   );
 };
 
-const Information: FC<ElectionSubpage> = ({ id, election }) => {
+const Information: FC<ElectionSubpage> = ({ id, election, updateElection }) => {
   if (!id || !election) return null;
   return (
     <Fragment>
@@ -134,7 +131,12 @@ const Information: FC<ElectionSubpage> = ({ id, election }) => {
       <br />
       <h4>Positions</h4>
       <br />
-      <PositionList election={election} />
+      <PositionList
+        election={election}
+        updateElection={() => {
+          if (updateElection) updateElection(election.id);
+        }}
+      />
       <br />
       <h4>Raw Data</h4>
       <code>
@@ -144,13 +146,18 @@ const Information: FC<ElectionSubpage> = ({ id, election }) => {
   );
 };
 
-const Positions: FC<ElectionSubpage> = ({ id, election }) => {
+const Positions: FC<ElectionSubpage> = ({ id, election, updateElection }) => {
   if (!id || !election) return null;
   return (
     <Fragment>
       <h3>Positions</h3>
       <br />
-      <PositionList election={election} />
+      <PositionList
+        election={election}
+        updateElection={() => {
+          if (updateElection) updateElection(election.id);
+        }}
+      />
     </Fragment>
   );
 };
@@ -313,7 +320,12 @@ const Election: FC<RouteComponentProps> = ({ match }) => {
       <Switch>
         {/* Positions*/}
         <Route path={`${match.url}/positions`}>
-          <Positions id={id} election={election} user={user} />
+          <Positions
+            id={id}
+            election={election}
+            user={user}
+            updateElection={updateElection}
+          />
         </Route>
         {/* Platforms */}
         <Route path={`${match.url}/platforms`}>
@@ -321,7 +333,12 @@ const Election: FC<RouteComponentProps> = ({ match }) => {
         </Route>
         {/* Info */}
         <Route path={match.url}>
-          <Information id={id} election={election} user={user} />
+          <Information
+            id={id}
+            election={election}
+            user={user}
+            updateElection={updateElection}
+          />
         </Route>
       </Switch>
     </Fragment>

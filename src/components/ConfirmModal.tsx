@@ -7,7 +7,6 @@ interface ConfirmModalInput {
   callBackFunc: any;
   isOpen: boolean;
   closeModal: any;
-  expectedResult: number;
   cleanUpFunc: any;
 }
 
@@ -18,7 +17,6 @@ export default function ConfirmModal({
   isOpen,
   closeModal,
   cleanUpFunc,
-  expectedResult,
 }: ConfirmModalInput) {
   return (
     <Modal backdrop="static" show={isOpen} onHide={() => closeModal()}>
@@ -31,9 +29,7 @@ export default function ConfirmModal({
           onClick={() => {
             closeModal();
             callBackFunc().then((res: number) => {
-              if (res == expectedResult) {
-                cleanUpFunc();
-              } else return;
+              cleanUpFunc(res);
             });
           }}
           appearance="primary"

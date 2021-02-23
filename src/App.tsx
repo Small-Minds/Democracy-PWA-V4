@@ -22,6 +22,7 @@ import PositionApply from './pages/PositionApply';
 import ManageAccount from './pages/ManageAccount';
 import Vote from './pages/Vote';
 import { alive } from './utils/api/Alive';
+import ReturnToLogin from './pages/ReturnToLogin';
 
 /**
  * Parent for the entire application.
@@ -141,6 +142,24 @@ function App() {
                         <Fragment>
                           {/* Public Pages */}
                           <Switch>
+                            <Route
+                              path="/email-verified"
+                              component={() => (
+                                <ReturnToLogin msg="Email Verified" />
+                              )}
+                            />
+                            <Route
+                              path="/email-already-verified"
+                              component={() => (
+                                <ReturnToLogin msg="Email Already Verified" />
+                              )}
+                            />
+                            <Route
+                              path="/email-verification-error"
+                              component={() => (
+                                <ReturnToLogin msg="Email Verification Failed" />
+                              )}
+                            />
                             <Route path="/" component={Info} />
                           </Switch>
                         </Fragment>

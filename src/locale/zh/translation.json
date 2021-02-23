@@ -1,5 +1,6 @@
 {
   "translation": {
+    "languageName": "中文",
     "signUpForm": {
       "loginErrorMsg": "您已登入",
       "msgRequired": "此为必填字段",

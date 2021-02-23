@@ -1,5 +1,6 @@
 {
   "translation": {
+    "languageName": "English",
     "signUpForm": {
       "loginErrorMsg": "You are already logged in",
       "msgRequired": "This field is required",

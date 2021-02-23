@@ -15,6 +15,12 @@
       "passwordInputFieldHint": "Please enter your password twice",
       "submitBtn": "Submit"
     },
+    "electionList": {
+      "button": {
+        "viewElection": "",
+        "manageElection": ""
+      }
+    },
     "signInForm": {
       "alreadyLogInMsg": "You are already logged in",
       "msgRequired": "This field is required",

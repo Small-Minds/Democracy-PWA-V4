@@ -2,11 +2,11 @@ import i18n from 'i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import { initReactI18next } from 'react-i18next';
 
-import languageEN from './locale/en/translation.json';
-import languageZH from './locale/zh/translation.json';
-import languageFR from './locale/fr/translation.json';
-import languageAR from './locale/ar/translation.json';
-import languageHI from './locale/hi/translation.json';
+import languageEN from './locale/en.json';
+import languageZH from './locale/zh.json';
+import languageFR from './locale/fr.json';
+import languageAR from './locale/ar.json';
+import languageHI from './locale/hi.json';
 
 export type LanguageDef = {
   name: string;

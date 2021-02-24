@@ -1,0 +1,265 @@
+{
+  "translation": {
+    "languageName": "Anglais",
+    "compatability": 1.1,
+    "general": {
+      "submit": "Nous faire parvenir",
+      "cancel": "Annuler",
+      "close": "Fermer",
+      "delete": "Effacer",
+      "required": "Ce champ est requis.",
+      "returnToLogin": "Revenir à la page de connexion et d'inscription",
+      "app": {
+        "name": "La démocratie"
+      }
+    },
+    "mainPage": {
+      "subtitle": "Bienvenue. Votez, enregistrez votre candidature ou configurez une nouvelle élection",
+      "slogan": "Inscrivez-vous et participez aux élections étudiantes.",
+      "loginButton": "Connexion",
+      "logoutButton": "Se déconnecter",
+      "homeLink": "Maison",
+      "voteLink": "Voter",
+      "setupLink": "Installer",
+      "logoutSuccessTitle": "Déconnecté",
+      "logoutSuccessDescription": "Vous vous êtes déconnecté avec succès de votre session Démocratie. Bonne fin de journée!",
+      "welcome": "Bienvenue",
+      "accountSetting": "Paramètres du compte"
+    },
+    "signUpForm": {
+      "loginErrorMsg": "Vous êtes déjà connecté",
+      "msgRequired": "Ce champ est requis",
+      "invalidEmailFormatMsg": "Veuillez utiliser une adresse mail valide",
+      "signUpSuccessTitle": "Vérifiez votre boîte de réception",
+      "signUpSuccessDescription": "Vérifiez votre compte en ouvrant l'e-mail que nous vous avons envoyé et en cliquant sur le lien. Merci pour votre inscription!",
+      "sectionTitle": "S'inscrire",
+      "nameInputLabel": "Prénom et nom",
+      "usernameInputLabel": "Nom d'utilisateur",
+      "emailInputLabel": "E-mail",
+      "passwordInputLabel": "Mot de passe",
+      "passwordInputFieldHint": "Veuillez entrer votre mot de passe deux fois",
+      "submitBtn": "Nous faire parvenir"
+    },
+    "electionList": {
+      "noMatchingElections": "Aucune élection n'a été trouvée. En créer un vous-même?",
+      "button": {
+        "viewElection": "Vue",
+        "manageElection": "Gérer"
+      }
+    },
+    "signInForm": {
+      "alreadyLogInMsg": "Vous êtes déjà connecté",
+      "msgRequired": "Ce champ est requis",
+      "ctxErrorMsg": "Veuillez actualiser la page",
+      "invalidEmailFormatMsg": "Veuillez utiliser une adresse mail valide",
+      "logInSuccessTitle": "Connecté",
+      "logInSuccessDescription": "Bienvenue à nouveau dans Democracy by Small Minds",
+      "sectionTitle": "Connexion",
+      "usernameInputLabel": "Nom d'utilisateur",
+      "passwordInputLabel": "Mot de passe",
+      "submitBtn": "Nous faire parvenir"
+    },
+    "createElectionBtn": {
+      "maxLength200": "La longueur maximale de ce champ est de 200 caractères.",
+      "btnLabel": "Créer une nouvelle élection",
+      "successMsgTitle": "Succès",
+      "successMsg": "Créer une nouvelle élection avec ID",
+      "failMsgTitle": "Erreur",
+      "failMsg": "Échec du lancement d'une nouvelle élection",
+      "msgRequired": "Ce champ est requis",
+      "msgInvalidFormat": "Le format du domaine n'est pas valide",
+      "electionFormTitle": "Créer une nouvelle élection",
+      "electionTitle": "Titre",
+      "electionDescriptionAndSubmissionInfo": "Description et instructions de soumission",
+      "electionSubtitle": "Sous-titre",
+      "electionEnableMultiSubs": "Permettre aux candidats de postuler à plusieurs postes",
+      "electionMultiSubsTrue": "Oui",
+      "electionMultiSubsFalse": "Non",
+      "electionEmailDomain": "Domaine de messagerie d'élection",
+      "tooManyElectionsErrorTitle": "Trop d'élections",
+      "tooManyElectionsErrorBody": "Les comptes peuvent exécuter une limite de trois élections à la fois. Veuillez supprimer les élections anciennes ou inutilisées.",
+      "applicationPeriod": "Heure de début et date limite de candidature",
+      "betweenDates": "à",
+      "votingPeriod": "Heure de début et date limite du vote",
+      "createBtn": "Créer",
+      "cancelBtn": "Annuler"
+    },
+    "languagePicker": {
+      "title": "Sélection de la langue",
+      "en": "Anglais",
+      "fr": "français",
+      "cn": "chinois"
+    },
+    "emptyPage": {
+      "title": "Page vide",
+      "body": "Ceci est une page d'espace réservé et sera remplacée."
+    },
+    "voteHomePage": {
+      "title": "Voter",
+      "subtitle": "Votez à une élection publique de votre domaine"
+    },
+    "setupHomePage": {
+      "title": "Installer",
+      "subtitle": "Configurer une élection nouvelle ou existante",
+      "electionPanelTitle": "Vos élections"
+    },
+    "electionPage": {
+      "deleteElectionModalTitle": "Supprimer l'élection",
+      "deleteElectionModalBody": "Voulez-vous supprimer ce choix?",
+      "infoSubpageTitle": "Informations",
+      "infoSubpagePostionSectionTitle": "Positions",
+      "positionSectionTilte": "Positions",
+      "platformSectionTitle": "Plateformes candidates",
+      "resultSectionTitle": "Résultat",
+      "electionDomainErrorMsg": "Vous ne pouvez pas participer à cette élection car votre domaine de messagerie n'est pas",
+      "voteBtn": "Voter",
+      "applyBtn": "Appliquer maintenant",
+      "infoBtn": "Informations",
+      "openPositionBtn": "Postes ouverts",
+      "platformBtn": "Plateformes candidates",
+      "setTimelineBtn": "Définir la chronologie",
+      "addPositionBtn": "Ajouter une position",
+      "deleteEletionBtn": "Supprimer l'élection",
+      "managementToolsSectionTitle": "Outils de gestion"
+    },
+    "manageAccountPage": {
+      "title": "Compte",
+      "instruction": "Mettez à jour ou supprimez votre compte Democracy.",
+      "changeProfileBtn": "Changer l'image de profil avec Gravatar",
+      "form": {
+        "title": "Mettre à jour les informations utilisateur",
+        "name": "Nom"
+      }
+    },
+    "positionApplyPage": {
+      "fieldIsRequiredMsg": "Ce champ est requis",
+      "subSuccessModalTitle": "félicitations",
+      "subSuccessModalBody": "Vous avez soumis votre candidature avec succès",
+      "subLimitationModalTitle": "Limite d'application atteinte",
+      "subLimitationModalBody": "Vous ne pouvez postuler qu'à un seul poste au cours de cette élection.",
+      "subFailModalTitle": "Manqué",
+      "subFailModalBody": "Échec de l'envoi de votre demande",
+      "positionSectionTitle": "Description du poste",
+      "posAppFormTitle": "Formulaire de candidature",
+      "posAppFormPlatform": "Plateforme électorale",
+      "posAppFormSubBtn": "Nous faire parvenir",
+      "posAppFormCancelBtn": "Annuler"
+    },
+    "votePage": {
+      "ballotSubSuccessModalTitle": "Soumis",
+      "ballotSubSuccessModalBody": "Votre bulletin de vote est en route! Revenez bientôt pour les résultats.",
+      "ballotSubFailModalTitle": "Échec de la soumission",
+      "ballotSubFailModalBody": "Échec de la soumission de votre bulletin de vote. L'administrateur sera averti.",
+      "ballotElectionTitle": "Bulletin de vote officiel pour",
+      "ballotPositionTitle": "Élire un candidat pour ces postes:",
+      "ballotViewCandidateInfo": "Cliquez sur les candidats pour voir leur plateforme.",
+      "ballotPosDescriptionTitle": "Description",
+      "ballotPosCandidateTitle": "Candidats",
+      "ballotVoteSectionTitle": "Sélectionnez un candidat",
+      "ballotVoteOption": "abstention",
+      "ballotSubBtn": "Nous faire parvenir",
+      "ballotCancelBtn": "Annuler"
+    },
+    "addPositionModalComp": {
+      "fieldRequiredMsg": "Ce champ est requis",
+      "title": "Ajouter un nouveau poste",
+      "posTitle": "Titre",
+      "posDescription": "Description",
+      "createBtn": "Créer",
+      "cancelBtn": "Annuler"
+    },
+    "candidateInfoComp": {
+      "modalTitle": "Informations sur le candidat",
+      "candidateName": "Nom:",
+      "candidatePlatform": "Plateforme électorale"
+    },
+    "setTimelineModal": {
+      "title": "Configuration de la chronologie des élections",
+      "headings": {
+        "applicationTimes": "Date de début et date limite de candidature",
+        "votingTimes": "Date de début et date limite du vote"
+      },
+      "message": {
+        "changeTimelineWarning": "La modification de la chronologie n'est actuellement pas limitée et peut avoir de graves conséquences. À l'avenir, le lancement de l'élection désactivera la manipulation de la chronologie."
+      },
+      "error": {
+        "applicationDeadlineEarly": "La date limite de candidature doit être postérieure à la date de début!",
+        "voteStartEarly": "La date de début du vote doit être postérieure à la date limite de candidature!",
+        "voteDeadlineEarly": "La date limite de vote doit être postérieure à la date de début du vote!"
+      },
+      "form": {
+        "timeDivider": "à"
+      },
+      "updateNotification": {
+        "successTitle": "Succès",
+        "successBody": "La chronologie des élections a été mise à jour avec succès.",
+        "errorTitle": "Erreur",
+        "errorBody": "Échec de la mise à jour de la chronologie des élections."
+      }
+    },
+    "emailVerification": {
+      "title": {
+        "emailVerified": "Email verifié",
+        "emailAlreadyVerified": "Courriel déjà vérifié",
+        "emailVerificationError": "Erreur de vérification de l'e-mail"
+      },
+      "subtitle": {
+        "emailVerificationError": "Veuillez vous assurer que vous avez correctement suivi le lien de l'e-mail."
+      }
+    },
+    "electionResults": {
+      "noWinner": "Aucun candidat.",
+      "draw": "Tirer",
+      "votes": "Votes",
+      "noResult": "Aucun résultat."
+    },
+    "confirmModal": {
+      "okBtn": "d'accord",
+      "cancelBtn": "Annuler"
+    },
+    "electionInfo": {
+      "loading": "Chargement...",
+      "id": "ID de l'élection:",
+      "creatationDate": "Date de création de l'élection:"
+    },
+    "electionManager": {
+      "manager": "Exécuté par"
+    },
+    "electionTimeline": {
+      "appBegin": "Début de la période d'application",
+      "appEnd": "La période de candidature se termine",
+      "review": "Examen des candidatures par le directeur des élections",
+      "voteBegin": "Début de la période de vote",
+      "voteEnd": "Fin de la période de vote"
+    },
+    "platformList": {
+      "title": "Candidats",
+      "emptyTitle": "Aucun candidat",
+      "emptyPosition": "Aucun poste affiché pour le moment. Revenez bientôt pour les mises à jour."
+    },
+    "positionList": {
+      "deleteNotification": {
+        "successTitle": "Succès",
+        "successBody": "Le poste a été supprimé avec succès",
+        "errorTitle": "Erreur",
+        "errorBody": "Échec de la suppression du poste"
+      },
+      "emptyPosition": "Aucun poste affiché pour le moment. Revenez bientôt pour les mises à jour.",
+      "applyBtn": "Appliquer maintenant",
+      "deleteBtn": "Effacer",
+      "confirmModalTitle": "Supprimer la position",
+      "confirmModalBody": "Voulez-vous supprimer ce poste?"
+    },
+    "resetPassword": {
+      "title": "réinitialiser le mot de passe",
+      "form": {
+        "password1": "Mot de passe",
+        "password2": "Entrez à nouveau le mot de passe"
+      }
+    },
+    "semiLegal": {
+      "termsOfService": "En utilisant ce système, vous acceptez de ne pas utiliser le site pour des activités illégales, de spammer d'autres utilisateurs, de violer les lois applicables ou d'être un connard général.",
+      "privacyPolicy": "En utilisant ce service, vous acceptez d'autoriser la publication de votre nom et de votre adresse e-mail sur le site Web."
+    }
+  }
+}

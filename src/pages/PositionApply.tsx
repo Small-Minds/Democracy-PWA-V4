@@ -115,11 +115,7 @@ function PositionApply() {
               <ControlLabel>
                 {t('positionApplyPage.posAppFormPlatform')}
               </ControlLabel>
-              <FormControl
-                row={5}
-                name="platform"
-                componentClass="textarea"
-              />
+              <FormControl row={5} name="platform" componentClass="textarea" />
             </FormGroup>
             <ButtonToolbar>
               <Button appearance="primary" onClick={() => submitApplication()}>

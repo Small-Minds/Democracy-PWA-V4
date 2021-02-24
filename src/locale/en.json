@@ -260,6 +260,25 @@
     "semiLegal": {
       "termsOfService": "By using this system, you agree not to use the site for illegal activities, spam other users, violate any applicable laws, or be a general dickhead.",
       "privacyPolicy": "By using this service, you agree to allow the public release of your name and email address on the website."
+    },
+    "v2": {
+      "passwordResetRequest": {
+        "title": "Request a Password Reset",
+        "description": "We'll send you an email with a link you can use to change your password.",
+        "form": {
+          "email": "Email Address",
+          "submit": "Request Key"
+        }
+      },
+      "passwordResetChange": {
+        "title": "Reset Password",
+        "description": "Please enter your new password to continue.",
+        "form": {
+          "password1": "New Password",
+          "password2": "Re-Enter New Password",
+          "submit": "Change Password and Log In"
+        }
+      }
     }
   }
 }

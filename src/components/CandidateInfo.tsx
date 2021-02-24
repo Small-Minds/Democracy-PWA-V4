@@ -42,7 +42,6 @@ export default function CandidateInfo({ candidate }: CandidateInfoModalInput) {
         </h5>
       </Button>
       <Modal
-        backdrop={'static'}
         show={open}
         onHide={() => {
           setOpen(false);

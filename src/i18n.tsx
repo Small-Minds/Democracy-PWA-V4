@@ -3,14 +3,14 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 import { initReactI18next } from 'react-i18next';
 
 import EN from './locale/en.json';
-import ZH from './locale/zh.json';
+// import ZH from './locale/zh.json';
 import FR from './locale/fr.json';
-import AR from './locale/ar.json';
-import HI from './locale/hi.json';
-import BN from './locale/bn.json';
-import DE from './locale/de.json';
-import ES from './locale/es.json';
-import PL from './locale/pl.json';
+// import AR from './locale/ar.json';
+// import HI from './locale/hi.json';
+// import BN from './locale/bn.json';
+// import DE from './locale/de.json';
+// import ES from './locale/es.json';
+// import PL from './locale/pl.json';
 
 export type LanguageDef = {
   name: string;

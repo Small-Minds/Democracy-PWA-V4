@@ -71,11 +71,6 @@ function App() {
         })
         .catch((err) => {
           console.log("Couldn't authenticate.");
-          Notification['error']({
-            title: t('v2.errors.title'),
-            description: t('v2.errors.pleaseLogInAgain'),
-          });
-          history.push('/');
         })
         .finally(() => {
           setWorking(false);

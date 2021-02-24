@@ -262,6 +262,13 @@
       "privacyPolicy": "By using this service, you agree to allow the public release of your name and email address on the website."
     },
     "v2": {
+      "infoModal": {
+        "titles": {
+          "tos": "Terms of Service",
+          "privacy": "Privacy Policy",
+          "contributors": "Contributors"
+        }
+      },
       "passwordResetRequest": {
         "title": "Request a Password Reset",
         "description": "We'll send you an email with a link you can use to change your password.",

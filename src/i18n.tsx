@@ -52,6 +52,7 @@ i18n
     /*default language*/
     lng: 'en',
     /*fallback language*/
+    fallbackLng: 'en',
     debug: dev,
     ns: ['translations'],
     defaultNS: 'translation',

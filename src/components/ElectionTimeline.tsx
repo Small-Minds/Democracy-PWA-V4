@@ -31,7 +31,6 @@ const ElectionTimeline: FC<Props> = ({ election }) => {
           <Timeline.Item dot={<Icon icon="eye" size="2x" />}>
             <p>
               <b>{moment(election.submission_start_time).format(timeformat)}</b>
-              <p>Application period begins</p>
             </p>
             <p>{t('electionTimeline.appBegin')}</p>
           </Timeline.Item>

@@ -5,12 +5,19 @@ import { initReactI18next } from 'react-i18next';
 import EN from './locale/en.json';
 // import ZH from './locale/zh.json';
 import FR from './locale/fr.json';
-// import AR from './locale/ar.json';
+import AR from './locale/ar.json';
 // import HI from './locale/hi.json';
 // import BN from './locale/bn.json';
 // import DE from './locale/de.json';
 // import ES from './locale/es.json';
 // import PL from './locale/pl.json';
+
+/**
+ * Languages need to be updated in three places:
+ *  1. Import
+ *  2. Locales variable
+ *  3. Resources object in config
+ */
 
 export type LanguageDef = {
   name: string;
@@ -24,7 +31,7 @@ export const locales = [
   // { name: 'Español', key: 'es' },
   // { name: 'Deutsch', key: 'de' },
   // { name: 'Język polski', key: 'pl' },
-  // { name: 'العربية', key: 'ar' },
+  { name: 'العربية', key: 'ar' },
   // { name: 'বাংলা', key: 'bn' },
   // { name: 'हिन्दी', key: 'hi' },
 ];
@@ -42,7 +49,7 @@ i18n
       en: EN,
       // zh: ZH,
       fr: FR,
-      // ar: AR,
+      ar: AR,
       // hi: HI,
       // bn: BN,
       // de: DE,

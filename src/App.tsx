@@ -1,8 +1,9 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { Col, Container, Content, FlexboxGrid } from 'rsuite';
+import { Col, Container, Content, FlexboxGrid, Icon, IconButton } from 'rsuite';
 import './App.css';
+import InfoModal from './components/InfoModal';
 import Navigation from './components/Navigation';
 import Election from './pages/Election';
 import EmptyPage from './pages/Empty';
@@ -36,6 +37,7 @@ function App() {
   const [user, setUser] = useState<UserInfo>(blankUserInfo);
   // If processing credentials, be working.
   const [working, setWorking] = useState<boolean>(true);
+  const [info, showInfo] = useState<boolean>(false);
   //Set Up Localization Hook
   const [t] = useTranslation();
 
@@ -113,7 +115,7 @@ function App() {
                 >
                   <Container>
                     <br />
-                    <Content>
+                    <Content style={{ minHeight: '70vh' }}>
                       {credentials && credentials.authenticated ? (
                         <Fragment>
                           {/* Protected Pages */}
@@ -180,6 +182,17 @@ function App() {
                         </Fragment>
                       )}
                     </Content>
+                    <InfoModal open={info} setOpen={showInfo} />
+                    <FlexboxGrid justify="center" align="middle">
+                      <FlexboxGrid.Item>
+                        <IconButton
+                          appearance="subtle"
+                          size="lg"
+                          icon={<Icon icon="info-circle" />}
+                          onClick={() => showInfo(true)}
+                        ></IconButton>
+                      </FlexboxGrid.Item>
+                    </FlexboxGrid>
                     <br />
                   </Container>
                 </FlexboxGrid.Item>

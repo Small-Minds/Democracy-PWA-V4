@@ -50,7 +50,6 @@ i18n
       // pl: PL,
     },
     /*default language*/
-    lng: 'en',
     /*fallback language*/
     fallbackLng: 'en',
     debug: dev,
@@ -70,7 +69,6 @@ i18n
       // order and from where user language should be detected
       order: [
         'querystring',
-        'cookie',
         'localStorage',
         'sessionStorage',
         'navigator',
@@ -88,7 +86,7 @@ i18n
       lookupFromSubdomainIndex: 0,
 
       // cache user language on
-      caches: ['localStorage', 'cookie'],
+      caches: ['localStorage', 'sessionStorage'],
       excludeCacheFor: ['cimode'], // languages to not persist (cookie, localStorage)
 
       // optional expire and domain for set cookie

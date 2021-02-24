@@ -59,6 +59,7 @@
       "submitBtn": "Submit"
     },
     "createElectionBtn": {
+      "maxLength200": "The maximum length of this field is 200 characters.",
       "btnLabel": "Create New Election",
       "successMsgTitle": "Success",
       "successMsg": "Create new Election with ID",
@@ -68,7 +69,8 @@
       "msgInvalidFormat": "The domain format is invalid",
       "electionFormTitle": "Create a New Election",
       "electionTitle": "Title",
-      "electionDescription": "Description",
+      "electionDescriptionAndSubmissionInfo": "Description and Submission Instructions",
+      "electionSubtitle": "Subtitle",
       "electionEnableMultiSubs": "Enable Candidates to Apply to Multiple Positions",
       "electionMultiSubsTrue": "Yes",
       "electionMultiSubsFalse": "No",

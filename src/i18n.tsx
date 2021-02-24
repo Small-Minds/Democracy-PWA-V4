@@ -20,13 +20,13 @@ export type LanguageDef = {
 export const locales = [
   { name: 'English', key: 'en' },
   { name: 'Français', key: 'fr' },
-  { name: '中文', key: 'zh' },
-  { name: 'Español', key: 'es' },
-  { name: 'Deutsch', key: 'de' },
-  { name: 'Język polski', key: 'pl' },
-  { name: 'العربية', key: 'ar' },
-  { name: 'বাংলা', key: 'bn' },
-  { name: 'हिन्दी', key: 'hi' },
+  // { name: '中文', key: 'zh' },
+  // { name: 'Español', key: 'es' },
+  // { name: 'Deutsch', key: 'de' },
+  // { name: 'Język polski', key: 'pl' },
+  // { name: 'العربية', key: 'ar' },
+  // { name: 'বাংলা', key: 'bn' },
+  // { name: 'हिन्दी', key: 'hi' },
 ];
 // Returns true in development.
 const dev: boolean =
@@ -40,14 +40,14 @@ i18n
   .init({
     resources: {
       en: EN,
-      zh: ZH,
+      // zh: ZH,
       fr: FR,
-      ar: AR,
-      hi: HI,
-      bn: BN,
-      de: DE,
-      es: ES,
-      pl: PL,
+      // ar: AR,
+      // hi: HI,
+      // bn: BN,
+      // de: DE,
+      // es: ES,
+      // pl: PL,
     },
     /*default language*/
     lng: 'en',

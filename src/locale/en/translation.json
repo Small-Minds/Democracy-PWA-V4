@@ -1,7 +1,7 @@
 {
   "translation": {
     "languageName": "English",
-    "compatability": 1.0,
+    "compatability": 1.1,
     "general": {
       "submit": "Submit",
       "cancel": "Cancel",
@@ -23,7 +23,8 @@
       "setupLink": "Setup",
       "logoutSuccessTitle": "Logged Out",
       "logoutSuccessDescription": "You have successfully logged out of your Democracy session. Enjoy the rest of your day!",
-      "welcome": "Welcome"
+      "welcome": "Welcome",
+      "accountSetting": "Account Settings"
     },
     "signUpForm": {
       "loginErrorMsg": "You are already logged in",
@@ -76,7 +77,12 @@
       "electionMultiSubsFalse": "No",
       "electionEmailDomain": "Election Email Domain",
       "tooManyElectionsErrorTitle": "Too Many Elections",
-      "tooManyElectionsErrorBody": "Accounts can run a limit of three elections at once. Please delete old or unused elections."
+      "tooManyElectionsErrorBody": "Accounts can run a limit of three elections at once. Please delete old or unused elections.",
+      "applicationPeriod": "Application starting time and deadline",
+      "betweenDates": "to",
+      "votingPeriod": "Voting starting time and deadline",
+      "createBtn": "Create",
+      "cancelBtn": "Cancel"
     },
     "languagePicker": {
       "title": "Language Selection",
@@ -183,6 +189,12 @@
       },
       "form": {
         "timeDivider": "to"
+      },
+      "updateNotification": {
+        "successTitle": "Success",
+        "successBody": "The election timeline has been successfully updated.",
+        "errorTitle": "Error",
+        "errorBody": "Failed to update the election timeline."
       }
     },
     "emailVerification": {
@@ -198,7 +210,45 @@
     "electionResults": {
       "noWinner": "No candidates.",
       "draw": "Draw",
-      "votes": "Votes"
+      "votes": "Votes",
+      "noResult": "No results."
+    },
+    "confirmModal": {
+      "okBtn": "OK",
+      "cancelBtn": "Cancel"
+    },
+    "electionInfo": {
+      "loading": "Loading...",
+      "id": "Election Id:",
+      "creatationDate": "Election Creatation Date:"
+    },
+    "electionManager": {
+      "manager": "Run by "
+    },
+    "electionTimeline": {
+      "appBegin": "Application period begins",
+      "appEnd": "Application period ends",
+      "review": "Review of applications by election manager",
+      "voteBegin": "Voting period begins",
+      "voteEnd": "Voting period ends"
+    },
+    "platformList": {
+      "title": "Candidates",
+      "emptyTitle": "No Candidates",
+      "emptyPosition": "No positions posted yet. Check back soon for updates."
+    },
+    "positionList": {
+      "deleteNotification": {
+        "successTitle": "Success",
+        "successBody": "The position has been successfully deleted",
+        "errorTitle": "Error",
+        "errorBody": "Failed to delete the position"
+      },
+      "emptyPosition": "No positions posted yet. Check back soon for updates.",
+      "applyBtn": "Apply Now",
+      "deleteBtn": "Delete",
+      "confirmModalTitle": "Delete Position",
+      "confirmModalBody": "Do you want to delete this Position?"
     },
     "resetPassword": {
       "title": "Reset Password",

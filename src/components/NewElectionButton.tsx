@@ -253,7 +253,7 @@ function NewElectionButton() {
                 </FormGroup>
                 <FormGroup>
                   <ControlLabel>
-                    Application starting time and deadline
+                    {t('createElectionBtn.applicationPeriod')}
                   </ControlLabel>
                   <FlexboxGrid justify="start" align="middle">
                     <FlexboxGrid.Item>
@@ -265,7 +265,7 @@ function NewElectionButton() {
                       ></FormControl>
                     </FlexboxGrid.Item>
                     <FlexboxGrid.Item style={{ padding: 10 }}>
-                      to
+                      {t('createElectionBtn.betweenDates')}
                     </FlexboxGrid.Item>
                     <FlexboxGrid.Item>
                       <FormControl
@@ -278,7 +278,9 @@ function NewElectionButton() {
                   </FlexboxGrid>
                 </FormGroup>
                 <FormGroup>
-                  <ControlLabel>Voting starting time and deadline</ControlLabel>
+                  <ControlLabel>
+                    {t('createElectionBtn.votingPeriod')}
+                  </ControlLabel>
                   <FlexboxGrid justify="start" align="middle">
                     <FlexboxGrid.Item>
                       <FormControl
@@ -289,7 +291,7 @@ function NewElectionButton() {
                       ></FormControl>
                     </FlexboxGrid.Item>
                     <FlexboxGrid.Item style={{ padding: 10 }}>
-                      to
+                      {t('createElectionBtn.betweenDates')}
                     </FlexboxGrid.Item>
                     <FlexboxGrid.Item>
                       <FormControl
@@ -307,21 +309,21 @@ function NewElectionButton() {
               <Button
                 disabled={!ctx?.credentials.authenticated}
                 loading={loading}
-                appearance="subtle"
-                onClick={() => setOpen(false)}
-              >
-                Cancel
-              </Button>
-              <Button
-                disabled={!ctx?.credentials.authenticated}
-                loading={loading}
                 appearance="primary"
                 onClick={() => {
                   setLoading(true);
                   createElection(formData);
                 }}
               >
-                Create
+                {t('createElectionBtn.createBtn')}
+              </Button>
+              <Button
+                disabled={!ctx?.credentials.authenticated}
+                loading={loading}
+                appearance="subtle"
+                onClick={() => setOpen(false)}
+              >
+                {t('createElectionBtn.cancelBtn')}
               </Button>
             </Drawer.Footer>
           </FlexboxGrid.Item>

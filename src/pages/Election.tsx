@@ -247,7 +247,7 @@ const Election: FC<RouteComponentProps> = ({ match }) => {
   if (!id || !election || election === undefined)
     return (
       <Fragment>
-        <Loading />
+        <Loading half />
       </Fragment>
     );
 

@@ -133,7 +133,7 @@ export default function Vote() {
   if (!ballot)
     return (
       <Fragment>
-        <Loading />
+        <Loading half />
       </Fragment>
     );
 

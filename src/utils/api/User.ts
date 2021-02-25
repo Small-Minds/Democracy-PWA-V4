@@ -5,6 +5,8 @@ import { api, preRequestRefreshAuth } from '../API';
 const meUrl = `/api/users/me/`;
 const userUrl = `/api/users/`;
 const updatePasswordUrl = `/rest-auth/password/change/`;
+const resetPasswordUrl = `/rest-auth/password/reset/confirm/`;
+const requestPasswordResetUrl = `/rest-auth/password/reset/`;
 
 export type UserInfo = {
   id: string | undefined;
@@ -40,6 +42,18 @@ export async function updatePassword(formData: any): Promise<AxiosResponse> {
   return api.post(updatePasswordUrl, formData, {
     headers: { Authorization: `JWT ${token}` },
   });
+}
+
+export async function requestPasswordReset(
+  formData: any
+): Promise<AxiosResponse> {
+  const token = await preRequestRefreshAuth();
+  return api.post(requestPasswordResetUrl, formData, {});
+}
+
+export async function resetPassword(formData: any): Promise<AxiosResponse> {
+  const token = await preRequestRefreshAuth();
+  return api.post(resetPasswordUrl, formData, {});
 }
 
 /**

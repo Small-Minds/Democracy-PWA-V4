@@ -2,9 +2,9 @@ body {
   /* Use System Fonts */
   /* Default: Apple-System, Arial, Helvetica, "PingFang SC", "Hiragino Sans GB",
 "Microsoft YaHei", STXihei, sans-serif */
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
+  /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
     Arial, sans-serif, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei',
-    STXihei, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+    STXihei, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; */
   text-rendering: optimizeLegibility;
 
   /* To prevent jank, always show the scrollbar. */

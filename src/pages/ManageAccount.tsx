@@ -23,8 +23,6 @@ export default function ManageAccount() {
       <h1>{t('manageAccountPage.title')}</h1>
       <p>{t('manageAccountPage.instruction')}</p>
       <br />
-      <br />
-      <h3>Profile Details</h3>
       <div>
         <Avatar size="lg" style={{ marginTop: 20, marginBottom: 20 }}>
           {userImage}
@@ -39,10 +37,13 @@ export default function ManageAccount() {
       </a>
       <br />
       <br />
+      <br />
+      <h3>{t('signUpForm.nameInputLabel')}</h3>
+      <br />
       <ChangeNameForm />
       <br />
       <br />
-      <h3>Password</h3>
+      <h3>{t('resetPassword.form.password1')}</h3>
       <br />
       <ChangePasswordForm />
       <br />

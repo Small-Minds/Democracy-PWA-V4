@@ -8,13 +8,9 @@ import {
   FormControl,
   FormGroup,
   Notification,
-  Panel,
   Schema,
 } from 'rsuite';
-import { getAccessToken, getRefreshToken } from '../utils/API';
-import { login } from '../utils/api/Login';
-import { updateName, User } from '../utils/api/User';
-import { CredentialData, Credentials } from '../utils/Authentication';
+import { updateName, User, UserInfo } from '../utils/api/User';
 
 /**
  * This form can be placed anywhere below the Credentials context provider.
@@ -25,7 +21,6 @@ function ChangeNameForm() {
   let form: any = undefined;
   // Set up localization hook
   const [t] = useTranslation();
-  const ctx = useContext(Credentials);
   const user = useContext(User);
 
   const [loading, setLoading] = useState<boolean>(false);
@@ -39,8 +34,8 @@ function ChangeNameForm() {
 
   useEffect(() => {
     if (!user || !user.user || !user.user.name) return;
-    setFormData({name: user?.user.name})
-  },[user])
+    setFormData({ name: user.user.name });
+  }, [user]);
 
   //form model set up
   const msg_required = t('signInForm.msgRequired');
@@ -51,6 +46,7 @@ function ChangeNameForm() {
   });
 
   const submitFormData = async () => {
+    if (!user) return;
     // Remove errors and set button to loading state.
     setLoading(true);
     setMiscErrors('');
@@ -70,7 +66,12 @@ function ChangeNameForm() {
         console.log(res);
         setLoading(false);
         setDisabled(true);
+        const newInfo: UserInfo = res.data;
         // Perform updates to local state:
+        user.setUser({ ...user.user, name: newInfo.name });
+        Notification['success']({
+          title: t('setTimelineModal.updateNotification.successTitle'),
+        });
       })
       .catch((err) => {
         // If errors occur, set them to display on the form.
@@ -99,7 +100,7 @@ function ChangeNameForm() {
       ref={(ref: any) => (form = ref)}
     >
       <FormGroup>
-        <ControlLabel>{'Name'}</ControlLabel>
+        <ControlLabel>{t('signUpForm.nameInputLabel')}</ControlLabel>
         <FormControl name="name" disabled={disabled} />
       </FormGroup>
       <FormGroup>
@@ -110,7 +111,7 @@ function ChangeNameForm() {
             disabled={disabled}
             onClick={submitFormData}
           >
-            {'Update Name'}
+            {t('general.submit')}
           </Button>
           {miscErrors ? (
             <Button

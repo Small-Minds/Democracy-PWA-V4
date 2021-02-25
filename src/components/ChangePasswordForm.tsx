@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Button,
@@ -7,10 +7,10 @@ import {
   Form,
   FormControl,
   FormGroup,
+  Notification,
   Schema,
 } from 'rsuite';
 import { updatePassword } from '../utils/api/User';
-import { Credentials } from '../utils/Authentication';
 
 /**
  * This form can be placed anywhere below the Credentials context provider.
@@ -21,7 +21,6 @@ function ChangePasswordForm() {
   let form: any = undefined;
   // Set up localization hook
   const [t] = useTranslation();
-  const ctx = useContext(Credentials);
 
   const [loading, setLoading] = useState<boolean>(false);
   const [disabled, setDisabled] = useState<boolean>(false);
@@ -65,6 +64,9 @@ function ChangePasswordForm() {
         setLoading(false);
         setDisabled(true);
         // Perform updates to local state:
+        Notification['success']({
+          title: t('setTimelineModal.updateNotification.successTitle'),
+        });
       })
       .catch((err) => {
         // If errors occur, set them to display on the form.
@@ -93,11 +95,11 @@ function ChangePasswordForm() {
       ref={(ref: any) => (form = ref)}
     >
       <FormGroup>
-        <ControlLabel>{'Password 1'}</ControlLabel>
+        <ControlLabel>{t('resetPassword.form.password1')}</ControlLabel>
         <FormControl name="new_password1" type="password" disabled={disabled} />
       </FormGroup>
       <FormGroup>
-        <ControlLabel>{'Password 2'}</ControlLabel>
+        <ControlLabel>{t('resetPassword.form.password2')}</ControlLabel>
         <FormControl name="new_password2" type="password" disabled={disabled} />
       </FormGroup>
       <FormGroup>
@@ -108,7 +110,7 @@ function ChangePasswordForm() {
             disabled={disabled}
             onClick={submitFormData}
           >
-            {'Update Password'}
+            {t('general.submit')}
           </Button>
           {miscErrors ? (
             <Button

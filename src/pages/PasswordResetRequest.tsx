@@ -83,7 +83,7 @@ const PasswordResetRequest: FC = () => {
   return (
     <div style={{ textAlign: 'center', padding: 20 }}>
       <br />
-      <h2>{t('v2.passwordResetRequest.title')}</h2>
+      <h3>{t('v2.passwordResetRequest.title')}</h3>
       <br />
       <p>{t('v2.passwordResetRequest.description')}</p>
       <br />

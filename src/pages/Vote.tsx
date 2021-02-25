@@ -4,8 +4,8 @@ import { useTranslation } from 'react-i18next';
 import { useHistory, useParams } from 'react-router-dom';
 import {
   Button,
-  ButtonGroup,
   ButtonToolbar,
+  Col,
   Divider,
   FlexboxGrid,
   Form,
@@ -170,9 +170,12 @@ export default function Vote() {
               <br />
 
               {
-                <FlexboxGrid>
+                <FlexboxGrid align="middle">
                   {pos.candidates.map((candidate, index) => (
-                    <FlexboxGrid.Item colspan={8}>
+                    <FlexboxGrid.Item
+                      key={index}
+                      style={{ paddingRight: 10, width: 180 }}
+                    >
                       <CandidateInfo candidate={candidate} />
                     </FlexboxGrid.Item>
                   ))}

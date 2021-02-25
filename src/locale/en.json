@@ -285,10 +285,10 @@
         "form": {
           "email": "Email Address",
           "submit": "Request Key"
-        },
-        "candidateInfoComp": {
-          "btnTip": "Click me"
         }
+      },
+      "candidateInfoComp": {
+        "btnTip": "Click me"
       },
       "passwordResetChange": {
         "title": "Reset Password",

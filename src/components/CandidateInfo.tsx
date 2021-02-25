@@ -38,9 +38,9 @@ export default function CandidateInfo({ candidate }: CandidateInfoModalInput) {
         <h5 style={{ marginTop: 5, textAlign: 'center' }}>
           {candidate.user.name}
         </h5>
-        <p>
+        <small>
           <Icon icon="info" /> {t('v2.candidateInfoComp.btnTip')}
-        </p>
+        </small>
       </Button>
       <Modal
         show={open}

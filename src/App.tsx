@@ -1,6 +1,12 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { BrowserRouter, Route, Switch, useHistory } from 'react-router-dom';
+import {
+  BrowserRouter,
+  Redirect,
+  Route,
+  Switch,
+  useHistory,
+} from 'react-router-dom';
 import {
   Col,
   Container,
@@ -131,6 +137,14 @@ function App() {
                         <Fragment>
                           {/* Protected Pages */}
                           <Switch>
+                            <Route
+                              path="/password-reset*"
+                              render={() => <Redirect to="/" />}
+                            />
+                            <Route
+                              path="/email-*"
+                              render={() => <Redirect to="/" />}
+                            />
                             <Route
                               path="/apply/:positionId"
                               component={PositionApply}

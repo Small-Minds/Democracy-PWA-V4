@@ -22,6 +22,10 @@ h6 {
   font-weight: 600;
 }
 
+.rs-btn-toolbar .rs-btn {
+  margin-bottom: 6px;
+}
+
 /* Apple-System is the strange/blurry font. */
 
 /* On mobile, reduce padding on navbar buttons. */

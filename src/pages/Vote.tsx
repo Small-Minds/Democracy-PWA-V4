@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useHistory, useParams } from 'react-router-dom';
 import {
   Button,
+  ButtonGroup,
   ButtonToolbar,
   Divider,
   FlexboxGrid,
@@ -167,24 +168,28 @@ export default function Vote() {
               <br />
               <h5>{t('votePage.ballotPosCandidateTitle')}</h5>
               <br />
-              <FlexboxGrid justify="start" align="middle">
-                {pos.candidates.map((candidate, index) => (
-                  <FlexboxGrid.Item key={index}>
-                    <CandidateInfo candidate={candidate} />
-                  </FlexboxGrid.Item>
-                ))}
-              </FlexboxGrid>
+
+              {
+                <FlexboxGrid>
+                  {pos.candidates.map((candidate, index) => (
+                    <FlexboxGrid.Item colspan={8}>
+                      <CandidateInfo candidate={candidate} />
+                    </FlexboxGrid.Item>
+                  ))}
+                </FlexboxGrid>
+              }
+
               <br />
               <h5>{t('votePage.ballotVoteSectionTitle')}</h5>
               <br />
               <FormControl name={pos.id} accepter={RadioGroup} required>
                 {pos.candidates.map((candidate, index) => (
-                  <div key={index}>
-                    <Radio value={candidate.id}>{candidate.user.name}</Radio>
-                  </div>
+                  <Radio value={candidate.id}>
+                    <b>{candidate.user.name}</b>
+                  </Radio>
                 ))}
                 <Radio value={`abstain`}>
-                  {t('votePage.ballotVoteOption')}
+                  <b>{t('votePage.ballotVoteOption')}</b>
                 </Radio>
               </FormControl>
             </div>

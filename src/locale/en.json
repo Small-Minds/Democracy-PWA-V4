@@ -171,7 +171,8 @@
     "candidateInfoComp": {
       "modalTitle": "Candidate Information",
       "candidateName": "Name: ",
-      "candidatePlatform": "Election Platform"
+      "candidatePlatform": "Election Platform",
+      "btnTip": "Click me"
     },
     "setTimelineModal": {
       "title": "Election Timeline Configuration",
@@ -284,6 +285,9 @@
         "form": {
           "email": "Email Address",
           "submit": "Request Key"
+        },
+        "candidateInfoComp": {
+          "btnTip": "Click me"
         }
       },
       "passwordResetChange": {

@@ -11,8 +11,6 @@ import {
 import { ButtonToolbar, Icon, IconButton, Message, Notification } from 'rsuite';
 import AddPositionModal from '../components/AddPositionModal';
 import ConfirmModal from '../components/ConfirmModal';
-import ElectionManager from '../components/ElectionManager';
-import ElectionResults from '../components/ElectionResults';
 import ElectionTimeline from '../components/ElectionTimeline';
 import PlatformList from '../components/PlatformList';
 import PositionList from '../components/PositionList';
@@ -24,6 +22,9 @@ import {
 } from '../utils/api/ElectionManagement';
 import { User, UserDataInterface } from '../utils/api/User';
 import Loading from './Loading';
+import ElectionResults from '../components/ElectionResults';
+import ElectionManager from '../components/ElectionManager';
+import EditWhiteListModal from '../components/EditWhiteListModal';
 
 interface ElectionSubpage {
   id: string | undefined;
@@ -41,6 +42,7 @@ const ManagementTools: FC<ElectionSubpage> = ({
 }) => {
   const [setTimelineOpen, setSetTimelineOpen] = useState<boolean>(false);
   const [addPositionOpen, setAddPositionOpen] = useState<boolean>(false);
+  const [editWhiteListOpen, setEditWhiteListOpen] = useState<boolean>(false);
   const [
     isDeleteElectionModalOpen,
     setIsDeleteElectionModalOpen,
@@ -90,6 +92,12 @@ const ManagementTools: FC<ElectionSubpage> = ({
           </IconButton>
         )}
         <IconButton
+          icon={<Icon icon="edit2" />}
+          onClick={() => setEditWhiteListOpen(true)}
+        >
+          {t('v2.electionPage.editWhitelistBtn')}
+        </IconButton>
+        <IconButton
           appearance="primary"
           icon={<Icon icon="trash" />}
           color="red"
@@ -124,6 +132,11 @@ const ManagementTools: FC<ElectionSubpage> = ({
           if (updateElection) updateElection(election.id);
           setAddPositionOpen(false);
         }}
+      />
+      <EditWhiteListModal
+        closeModal={() => setEditWhiteListOpen(false)}
+        isOpen={editWhiteListOpen}
+        electionId={election.id}
       />
     </Fragment>
   );

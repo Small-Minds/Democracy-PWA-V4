@@ -1,4 +1,4 @@
-import { AxiosResponse } from 'axios';
+import { AxiosError, AxiosResponse } from 'axios';
 import React, { Fragment, useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useHistory, useParams } from 'react-router-dom';
@@ -118,15 +118,26 @@ export default function Vote() {
           description: t('votePage.ballotSubSuccessModalBody'),
         });
       })
-      .catch((err) => {
+      .catch((err: AxiosError) => {
+        if (err.response && err.response.status) {
+          if (err.response.status === 417) {
+            Notification['error']({
+              title: t('v2.errors.notOnWhitelist.title'),
+              description: t('v2.errors.notOnWhitelist.description'),
+            });
+            return;
+          } else if (err.response.status === 406) {
+            Notification['error']({
+              title: t('v2.errors.alreadySubmittedBallot.title'),
+              description: t('v2.errors.alreadySubmittedBallot.description'),
+            });
+            return;
+          }
+        }
         Notification['error']({
           title: t('votePage.ballotSubFailModalTitle'),
           description: t('votePage.ballotSubFailModalBody'),
         });
-        console.log(err);
-        if (err && err.response) console.log(err.response);
-        if (err && err.response && err.response.data)
-          console.log(err.response.data);
       });
   };
 

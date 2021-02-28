@@ -77,11 +77,18 @@ function PositionApply() {
         history.goBack();
       })
       .catch((x: AxiosError) => {
-        if (x.response && x.response.status === 424) {
+        if (x.response && x.response.status === 406) {
           // If the code is 424,
           Notification['error']({
             title: t('positionApplyPage.subLimitationModalTitle'),
             description: t('positionApplyPage.subLimitationModalBody'),
+          });
+          return;
+        }
+        else if (x.response && x.response.status === 417) {
+          Notification['error']({
+            title: t('v2.errors.notOnWhitelist.title'),
+            description: t('v2.errors.notOnWhitelist.description'),
           });
           return;
         }

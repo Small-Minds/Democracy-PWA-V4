@@ -8,6 +8,7 @@ import {
   FormControl,
   FormGroup,
   Loader,
+  Message,
   Modal,
   Notification,
   Schema,
@@ -83,7 +84,7 @@ export default function EditWhiteListModal({
       backdrop="static"
       show={isOpen}
       onHide={() => closeModal()}
-      size="lg"
+      size="sm"
     >
       <Modal.Header>
         <h5>{t('v2.editWhitelistModal.title')}</h5>
@@ -101,6 +102,14 @@ export default function EditWhiteListModal({
             ref={(ref: any) => (form = ref)}
             fluid
           >
+            <Message
+              type="warning"
+              showIcon
+              description={t('v2.editWhitelistModal.warning')}
+            />
+            <br />
+            <p>{t('v2.editWhitelistModal.instructions')}</p>
+            <br />
             <FormGroup>
               <ControlLabel>
                 {t('v2.editWhitelistModal.formLabel')}
@@ -108,7 +117,7 @@ export default function EditWhiteListModal({
               <FormControl
                 name="whitelist"
                 componentClass="textarea"
-                rows={100}
+                rows={20}
                 placeholder="whitelist"
                 type="string"
               />

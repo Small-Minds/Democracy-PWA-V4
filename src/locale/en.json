@@ -270,7 +270,15 @@
         "error": "Error",
         "pleaseLogInAgain": "Your credentials are invalid, please log in again.",
         "electionInvalid": "Sorry, we can't find that election.",
-        "cantDelete": "Sorry, we couldn't delete that. Please try again later."
+        "cantDelete": "Sorry, we couldn't delete that. Please try again later.",
+        "notOnWhitelist": {
+          "title": "Permission Error",
+          "description": "You are not on the whitelist for this election. If you think this is a mistake, please contact the organizer."
+        },
+        "alreadySubmittedBallot": {
+          "title": "Only One Vote Allowed",
+          "description": "You have already voted in this election. Please contact the election organizer if you think this is a mistake."
+        }
       },
       "infoModal": {
         "titles": {
@@ -308,6 +316,8 @@
       },
       "editWhitelistModal": {
         "title": "Edit Whitelist",
+        "warning": "Adding emails to the whitelist will restrict who can participate in your election.",
+        "instructions": "Paste a list of plaintext emails into the box below, and it will be scanned when a user attempts to apply to a position or vote. Users not in the list will be restricted from participating.",
         "formLabel": "Whitelist: ",
         "submitBtn": "Submit",
         "cancelBtn": "Cancel",

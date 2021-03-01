@@ -2,10 +2,10 @@ body {
   /* Use System Fonts */
   /* Default: Apple-System, Arial, Helvetica, "PingFang SC", "Hiragino Sans GB",
 "Microsoft YaHei", STXihei, sans-serif */
-  font-family: Apple-System, -apple-system, BlinkMacSystemFont, avenir next,
-    avenir, helvetica neue, helvetica, Ubuntu, roboto, noto, segoe ui,
-    sans-serif, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', STXihei,
-    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  font-family: 'Montserrat', Apple-System, -apple-system, BlinkMacSystemFont,
+    avenir next, avenir, helvetica neue, helvetica, Ubuntu, roboto, noto,
+    segoe ui, sans-serif, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei',
+    STXihei, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
   text-rendering: optimizeLegibility;
 
   /* To prevent jank, always show the scrollbar. */
@@ -20,6 +20,7 @@ h4,
 h5,
 h6 {
   font-weight: 600;
+  font-family: 'Newsreader';
 }
 
 .rs-btn-toolbar .rs-btn {

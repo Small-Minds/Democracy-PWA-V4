@@ -9,7 +9,7 @@ import React, {
 import Gravatar from 'react-gravatar';
 import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
-import { Avatar, Container, FlexboxGrid, List, Placeholder } from 'rsuite';
+import { Avatar, Container, FlexboxGrid, Icon, IconButton, List, Placeholder } from 'rsuite';
 import {
   CandidateWithUserDetails,
   ElectionDetails,
@@ -111,6 +111,22 @@ const PlatformList: FC<PLProps> = ({ election }) => {
 
   const showDelete = user.user.id === election.manager.id;
   const [t] = useTranslation();
+
+  if (election.applications_open)
+    return (
+      <div>
+        <p>{t('v2.platformList.willShowAfterApplications')}</p>
+        <br />
+        <IconButton
+          size="lg"
+          icon={<Icon icon="cubes" />}
+          onClick={() => history.push(`/election/${election.id}/positions`)}
+        >
+          {t('electionPage.openPositionBtn')}
+        </IconButton>
+      </div>
+    );
+
   return (
     <div>
       {election.positions.length !== 0 ? (

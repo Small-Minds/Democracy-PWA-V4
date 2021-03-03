@@ -298,6 +298,9 @@
       "candidateInfoComp": {
         "btnTip": "Click me"
       },
+      "platformList": {
+        "willShowAfterApplications": "Applications are currently open. Platforms will be shown after the application period has ended."
+      },
       "passwordResetChange": {
         "title": "Reset Password",
         "description": "Please enter your new password to continue.",

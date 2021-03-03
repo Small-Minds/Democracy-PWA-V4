@@ -1,3 +1,4 @@
+import moment from 'moment';
 import React, {
   FC,
   Fragment,
@@ -9,7 +10,15 @@ import React, {
 import Gravatar from 'react-gravatar';
 import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
-import { Avatar, Container, FlexboxGrid, Icon, IconButton, List, Placeholder } from 'rsuite';
+import {
+  Avatar,
+  FlexboxGrid,
+  Icon,
+  IconButton,
+  List,
+  Message,
+  Placeholder,
+} from 'rsuite';
 import {
   CandidateWithUserDetails,
   ElectionDetails,
@@ -18,7 +27,6 @@ import {
 } from '../utils/api/ElectionManagement';
 import { User } from '../utils/api/User';
 import { Credentials } from '../utils/Authentication';
-import moment from 'moment';
 
 interface PLProps {
   election: ElectionDetails;
@@ -106,14 +114,20 @@ const PlatformList: FC<PLProps> = ({ election }) => {
   const ctx = useContext(Credentials);
   const user = useContext(User);
   const history = useHistory();
+  const [t] = useTranslation();
 
   // Ensure all prerequisites are met.
   if (!user || !ctx || !election) return null;
 
-  const showDelete = user.user.id === election.manager.id;
-  const [t] = useTranslation();
+  const manager = user.user.id === election.manager.id;
+  const hide =
+    election.applications_open &&
+    moment(election.submission_end_time).isAfter(moment());
 
-  if (election.applications_open && moment(election.submission_end_time).isAfter(moment()))
+  /**
+   * Hide platforms from users during application period.
+   */
+  if (!manager && hide)
     return (
       <div>
         <p>{t('v2.platformList.willShowAfterApplications')}</p>
@@ -130,6 +144,17 @@ const PlatformList: FC<PLProps> = ({ election }) => {
 
   return (
     <div>
+      {hide && manager && (
+        <Fragment>
+          <br />
+          <Message
+            type="warning"
+            showIcon
+            description={t('v2.platformList.notVisibleWarning')}
+          />
+          <br />
+        </Fragment>
+      )}
       {election.positions.length !== 0 ? (
         <Fragment>
           {election.positions.map((position, index) => (

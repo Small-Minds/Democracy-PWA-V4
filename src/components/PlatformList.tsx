@@ -18,6 +18,7 @@ import {
 } from '../utils/api/ElectionManagement';
 import { User } from '../utils/api/User';
 import { Credentials } from '../utils/Authentication';
+import moment from 'moment';
 
 interface PLProps {
   election: ElectionDetails;
@@ -112,7 +113,7 @@ const PlatformList: FC<PLProps> = ({ election }) => {
   const showDelete = user.user.id === election.manager.id;
   const [t] = useTranslation();
 
-  if (election.applications_open)
+  if (election.applications_open && moment(election.submission_end_time).isAfter(moment()))
     return (
       <div>
         <p>{t('v2.platformList.willShowAfterApplications')}</p>

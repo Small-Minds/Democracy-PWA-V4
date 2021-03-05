@@ -13,6 +13,8 @@ import {
   Form,
   FormControl,
   FormGroup,
+  Icon,
+  IconButton,
   Notification,
   Radio,
   RadioGroup,
@@ -141,8 +143,8 @@ function NewElectionButton() {
 
     // Process form input, check for form errors
     if (!form.check()) {
-      console.log('New election form has errors.');
-      console.log(formErrors);
+      // console.log('New election form has errors.');
+      // console.log(formErrors);
       setLoading(false);
       return;
     }
@@ -188,7 +190,8 @@ function NewElectionButton() {
 
   return (
     <Fragment>
-      <Button
+      <IconButton
+        icon={<Icon icon="plus"></Icon>}
         appearance="primary"
         size="lg"
         disabled={!ctx?.credentials.authenticated}
@@ -196,7 +199,7 @@ function NewElectionButton() {
         onClick={() => setOpen(true)}
       >
         {t('createElectionBtn.btnLabel')}
-      </Button>
+      </IconButton>
       <Drawer
         full
         show={open}

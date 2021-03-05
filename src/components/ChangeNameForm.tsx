@@ -53,17 +53,17 @@ function ChangeNameForm() {
 
     // First, check the form for errors.
     if (!form.check()) {
-      console.log('Form has errors.');
-      console.log(formErrors);
+      // console.log('Form has errors.');
+      // console.log(formErrors);
       setLoading(false);
       return;
     }
 
     // Then, submit the form to the backend.
-    console.log(formData);
+    // console.log(formData);
     updateName(formData)
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         setLoading(false);
         setDisabled(true);
         const newInfo: UserInfo = res.data;
@@ -85,7 +85,7 @@ function ChangeNameForm() {
         } else if (detail) {
           setMiscErrors(err.response.data['detail']);
         }
-        console.log(err.response);
+        // console.log(err.response);
         setLoading(false);
       });
   };

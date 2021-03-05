@@ -64,8 +64,8 @@ const AddPositionModal: FC<APMProps> = ({
 
     // Process form input, check for form errors
     if (!form.check()) {
-      console.log('New election form has errors.');
-      console.log(formErrors);
+      // console.log('New election form has errors.');
+      // console.log(formErrors);
       setLoading(false);
       return;
     }

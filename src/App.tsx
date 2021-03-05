@@ -61,7 +61,7 @@ function App() {
   // Load JWTs and validate.
   useEffect(() => {
     if (credentials.authenticated === undefined) {
-      console.log('Checking for pre-existing credentials...');
+      // console.log('Checking for pre-existing credentials...');
       isAuthenticated()
         .then((b) => {
           if (b) {
@@ -78,7 +78,7 @@ function App() {
           }
         })
         .catch((err) => {
-          console.log("Couldn't authenticate.");
+          // console.log("Couldn't authenticate.");
         })
         .finally(() => {
           setWorking(false);
@@ -98,7 +98,7 @@ function App() {
     getUserInfo()
       .then((res) => setUser(res))
       .catch((err) => {
-        console.log('Could not get user info.');
+        // console.log('Could not get user info.');
         setUser(blankUserInfo);
       });
   }, [credentials]);

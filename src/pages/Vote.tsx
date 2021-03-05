@@ -42,7 +42,7 @@ export default function Vote() {
   const [ballot, setBallot] = useState<EmptyBallot>();
 
   useEffect(() => {
-    console.log('Getting ballot...');
+    // console.log('Getting ballot...');
     //Return early if no context is provided.
     if (!ctx || !ctx.credentials.authenticated) return;
     if (ballot) return;
@@ -62,7 +62,7 @@ export default function Vote() {
     // First, check the form for errors.
     if (!ballot) return;
     const formDataKeys = Object.keys(formData);
-    console.log(formData);
+    // console.log(formData);
 
     // Place all missing keys into an array.
     const missingPositions: PositionDetails[] = [];
@@ -74,26 +74,26 @@ export default function Vote() {
 
     // Add all missing keys to the form errors.
     if (missingPositions.length !== 0) {
-      console.log('Missing positions detected.');
+      // console.log('Missing positions detected.');
       const errors: any = {};
       missingPositions.forEach((position) => {
         errors[position.id] = 'Required.';
       });
       setFormErrors(errors);
-      console.log('Form is missing election fields.');
-      console.log(errors);
+      // console.log('Form is missing election fields.');
+      // console.log(errors);
       return;
     } else {
       setFormErrors({});
     }
 
     if (!form.check()) {
-      console.log('Form has errors.');
-      console.log(formErrors);
+      // console.log('Form has errors.');
+      // console.log(formErrors);
       return;
     }
 
-    console.log('Form has NO ERRORS, submitting...');
+    // console.log('Form has NO ERRORS, submitting...');
     const votes: VoteParams[] = [];
     ballot.positions.forEach((position) => {
       const choice = formData[position.id];
@@ -103,13 +103,13 @@ export default function Vote() {
         candidate: choice,
       });
     });
-    console.log(votes);
+    // console.log(votes);
     submitBallot({
       election: id.toString().trim(),
       votes: votes,
     })
       .then((res: AxiosResponse) => {
-        console.log(res);
+        // console.log(res);
         setFormData({});
         setFormErrors({});
         history.push(`/election/${id}`);

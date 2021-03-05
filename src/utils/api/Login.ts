@@ -6,8 +6,8 @@ const loginURL = `/jwt-auth/token/obtain/`;
 export async function login(formData: any): Promise<AxiosResponse> {
   // Make the API call to the login endpoint.
   return api.post(loginURL, formData).then((response) => {
-    console.log('Got login response from backend:');
-    console.log(response);
+    // console.log('Got login response from backend:');
+    // console.log(response);
     if (
       response.data &&
       response.data.access !== null &&

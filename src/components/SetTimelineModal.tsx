@@ -103,7 +103,7 @@ export default function SetTimelineModal({
     formData: Record<string, any>
   ) {
     if (!form.check()) {
-      console.log(formErrors);
+      // console.log(formErrors);
       return;
     }
     //Pass the formData the the endpoint

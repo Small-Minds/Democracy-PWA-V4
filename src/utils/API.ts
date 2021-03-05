@@ -66,7 +66,7 @@ export function setNewRefreshToken(token: string) {
 }
 
 export async function clearTokens(): Promise<void> {
-  console.log('Clearing credentials from storage...');
+  // console.log('Clearing credentials from storage...');
   localStorage.removeItem('token');
   localStorage.removeItem('token-expiry');
   localStorage.removeItem('refresh-token');
@@ -96,7 +96,7 @@ export async function isAuthenticated(): Promise<boolean> {
   }
   // If the refresh token is valid, attempt to get a new access token.
   if (isRefreshTokenValid()) {
-    console.log('Getting new access token using refresh token...');
+    // console.log('Getting new access token using refresh token...');
     const refreshToken = localStorage.getItem('refresh-token') || null;
     if (refreshToken == null) throw new Error('No stored refresh token.');
 
@@ -106,11 +106,11 @@ export async function isAuthenticated(): Promise<boolean> {
       });
       // Response should contain new access token.
       if (response.data.access) {
-        console.log('Success, got new access token.');
+        // console.log('Success, got new access token.');
         setNewAccessToken(response.data.access);
         return true;
       } else {
-        console.log('Failure, please log in again.');
+        // console.log('Failure, please log in again.');
         throw new Error('No access token in refresh response.');
       }
     } catch (err) {
@@ -118,7 +118,7 @@ export async function isAuthenticated(): Promise<boolean> {
       throw new Error('Could not fetch new token.');
     }
   }
-  console.log('Refresh token not valid, user is not authenticated.');
+  // console.log('Refresh token not valid, user is not authenticated.');
   clearTokens();
   return false;
 }

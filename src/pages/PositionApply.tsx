@@ -68,7 +68,7 @@ function PositionApply() {
   function submitApplication() {
     //Process form input, check for form errors
     if (!form.check()) {
-      console.log('Application form has errors.');
+      // console.log('Application form has errors.');
       console.error(formErrors);
       return;
     }

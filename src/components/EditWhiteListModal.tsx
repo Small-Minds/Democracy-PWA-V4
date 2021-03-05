@@ -57,7 +57,7 @@ export default function EditWhiteListModal({
     if (electionDetail) {
       //Pass the formData the the endpoint
       updateOldElection(formData, electionId).then((res: Number) => {
-        console.log(res);
+        // console.log(res);
         if (res == 200) {
           Notification['success']({
             title: t('v2.editWhitelistModal.successNotificationTitle'),

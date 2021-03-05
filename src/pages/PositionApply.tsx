@@ -152,14 +152,21 @@ function PositionApply() {
         </FormGroup>
         <FlexboxGrid justify="space-between">
           <FlexboxGrid.Item>
-            ~ {platformWords}w, {platformCharacters}ch
+            <p>
+              ~ <b>{platformWords}w</b> &middot;{' '}
+              <small>{platformCharacters}ch</small>
+            </p>
           </FlexboxGrid.Item>
           <FlexboxGrid.Item>
             <ButtonToolbar>
-              <Button appearance="primary" onClick={() => submitApplication()}>
+              <Button
+                appearance="primary"
+                size="lg"
+                onClick={() => submitApplication()}
+              >
                 {t('positionApplyPage.posAppFormSubBtn')}
               </Button>
-              <Button onClick={() => history.goBack()}>
+              <Button size="lg" onClick={() => history.goBack()}>
                 {t('positionApplyPage.posAppFormCancelBtn')}
               </Button>
             </ButtonToolbar>

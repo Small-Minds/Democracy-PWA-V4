@@ -16,7 +16,7 @@ import {
 import {
   getManagedElectionDetails,
   ManagedElectionDetails,
-  updateManagedElection,
+  updateOldElection,
 } from '../utils/api/ElectionManagement';
 
 interface EditWhiteListModalInput {
@@ -55,27 +55,22 @@ export default function EditWhiteListModal({
 
   function submitWhitelist(input: string): void {
     if (electionDetail) {
-      const newManagedElectionDetails: ManagedElectionDetails = {
-        ...electionDetail,
-        whitelist: input,
-      };
-      updateManagedElection(newManagedElectionDetails, electionId).then(
-        (res: number) => {
-          console.log(res);
-          if (res == 200) {
-            Notification['success']({
-              title: t('v2.editWhitelistModal.successNotificationTitle'),
-              description: t('v2.editWhitelistModal.successNotificationBody'),
-            });
-            closeModal();
-          } else {
-            Notification['error']({
-              title: t('v2.editWhitelistModal.errorNotificationTitle'),
-              description: t('v2.editWhitelistModal.errorNotificationBody'),
-            });
-          }
+      //Pass the formData the the endpoint
+      updateOldElection(formData, electionId).then((res: Number) => {
+        console.log(res);
+        if (res == 200) {
+          Notification['success']({
+            title: t('v2.editWhitelistModal.successNotificationTitle'),
+            description: t('v2.editWhitelistModal.successNotificationBody'),
+          });
+          closeModal();
+        } else {
+          Notification['error']({
+            title: t('v2.editWhitelistModal.errorNotificationTitle'),
+            description: t('v2.editWhitelistModal.errorNotificationBody'),
+          });
         }
-      );
+      });
     }
   }
 

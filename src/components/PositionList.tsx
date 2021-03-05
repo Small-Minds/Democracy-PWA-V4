@@ -56,16 +56,21 @@ const PositionList: FC<PLProps> = ({ election, updateElection }) => {
           {election.positions.map((position, index) => (
             <List.Item key={index}>
               <FlexboxGrid align="middle" justify="space-between">
-                <FlexboxGrid.Item componentClass={Col} colspan={24} sm={12}>
+                <FlexboxGrid.Item
+                  componentClass={Col}
+                  colspan={24}
+                  sm={showDelete ? 12 : 16}
+                >
                   <h5>{position.title}</h5>
-                  <p>{position.description}</p>
+                  {position.description.split('\n').map((line, index) => (
+                    <p key={index}>{line}</p>
+                  ))}
                 </FlexboxGrid.Item>
                 {showDelete && (
                   <FlexboxGrid.Item
                     componentClass={Col}
-                    colspan={12}
+                    colspan={showDelete ? 12 : 24}
                     sm={6}
-                    style={{ paddingRight: 20, textAlign: 'right' }}
                   >
                     <Button
                       appearance="primary"
@@ -82,9 +87,8 @@ const PositionList: FC<PLProps> = ({ election, updateElection }) => {
                 )}
                 <FlexboxGrid.Item
                   componentClass={Col}
-                  colspan={12}
+                  colspan={showDelete ? 12 : 24}
                   sm={6}
-                  style={{ paddingRight: 20, textAlign: 'right' }}
                 >
                   {/*Navigate to the position application form*/}
                   <Button

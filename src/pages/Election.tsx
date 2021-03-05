@@ -25,6 +25,7 @@ import Loading from './Loading';
 import ElectionResults from '../components/ElectionResults';
 import ElectionManager from '../components/ElectionManager';
 import EditWhiteListModal from '../components/EditWhiteListModal';
+import EditElectionModal from '../components/EditElectionModal';
 
 interface ElectionSubpage {
   id: string | undefined;
@@ -43,6 +44,7 @@ const ManagementTools: FC<ElectionSubpage> = ({
   const [setTimelineOpen, setSetTimelineOpen] = useState<boolean>(false);
   const [addPositionOpen, setAddPositionOpen] = useState<boolean>(false);
   const [editWhiteListOpen, setEditWhiteListOpen] = useState<boolean>(false);
+  const [editElectionOpen, setEditElectionOpen] = useState<boolean>(false);
   const [
     isDeleteElectionModalOpen,
     setIsDeleteElectionModalOpen,
@@ -98,6 +100,12 @@ const ManagementTools: FC<ElectionSubpage> = ({
           {t('v2.electionPage.editWhitelistBtn')}
         </IconButton>
         <IconButton
+          icon={<Icon icon="edit2" />}
+          onClick={() => setEditElectionOpen(true)}
+        >
+          {t('v2.electionPage.editElectionBtn')}
+        </IconButton>
+        <IconButton
           appearance="primary"
           icon={<Icon icon="trash" />}
           color="red"
@@ -137,6 +145,14 @@ const ManagementTools: FC<ElectionSubpage> = ({
         closeModal={() => setEditWhiteListOpen(false)}
         isOpen={editWhiteListOpen}
         electionId={election.id}
+      />
+      <EditElectionModal
+        closeModal={() => setEditElectionOpen(false)}
+        isOpen={editElectionOpen}
+        electionDetails={election}
+        cleanupFunc={() => {
+          if (updateElection) updateElection(election.id);
+        }}
       />
     </Fragment>
   );

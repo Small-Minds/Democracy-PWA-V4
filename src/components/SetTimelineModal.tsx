@@ -89,10 +89,14 @@ export default function SetTimelineModal({
   const [formData, setFormData] = useState<Record<string, any>>({
     submission_start_time: moment(election.submission_start_time).toDate(),
     submission_end_time: moment(election.submission_end_time).toDate(),
-    submission_release_time: election.submission_release_time ? moment(election.submission_release_time).toDate() : moment(election.submission_end_time).toDate(),
+    submission_release_time: election.submission_release_time
+      ? moment(election.submission_release_time).toDate()
+      : moment(election.submission_end_time).toDate(),
     voting_start_time: moment(election.voting_start_time).toDate(),
     voting_end_time: moment(election.voting_end_time).toDate(),
-    voting_release_time: election.voting_release_time ? moment(election.voting_release_time).toDate() : moment(election.voting_end_time).toDate(),
+    voting_release_time: election.voting_release_time
+      ? moment(election.voting_release_time).toDate()
+      : moment(election.voting_end_time).toDate(),
   });
 
   const [formErrors, setFormErrors] = useState<Record<string, any>>({});

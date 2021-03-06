@@ -300,7 +300,8 @@
       },
       "platformList": {
         "notVisibleWarning": "The positions are currently not visible to users. They will be visible when the application period ends.",
-        "willShowAfterApplications": "Applications are currently open. Platforms will be shown after the application period has ended."
+        "willShowAfterApplications": "Applications are currently open. Platforms will be shown after the application period has ended.",
+        "willShowAfterReview": "Applications are currently closed. Platforms are being reviewed."
       },
       "passwordResetChange": {
         "title": "Reset Password",

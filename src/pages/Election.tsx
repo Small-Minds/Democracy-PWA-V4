@@ -237,7 +237,7 @@ const Election: FC<RouteComponentProps> = ({ match }) => {
       .then((res) => {
         setElection(res);
       })
-      .catch((err) => {
+      .catch(() => {
         Notification['error']({
           title: t('v2.errors.title'),
           description: t('v2.errors.electionInvalid'),

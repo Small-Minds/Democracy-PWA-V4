@@ -37,10 +37,12 @@ function ChangePasswordForm() {
   const model = Schema.Model({
     new_password1: Schema.Types.StringType()
       .isRequired(msg_required)
-      .minLength(1, msg_required),
+      .minLength(1, msg_required)
+      .maxLength(200, 'max 200 characters'),
     new_password2: Schema.Types.StringType()
       .isRequired(msg_required)
-      .minLength(1, msg_required),
+      .minLength(1, msg_required)
+      .maxLength(200, 'max 200 characters'),
   });
 
   const submitFormData = async () => {

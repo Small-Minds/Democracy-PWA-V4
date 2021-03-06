@@ -46,10 +46,12 @@ const AddPositionModal: FC<APMProps> = ({
   const model = Schema.Model({
     title: Schema.Types.StringType()
       .isRequired(msg_required)
-      .minLength(1, msg_required),
+      .minLength(1, msg_required)
+      .maxLength(200, 'max 200 characters'),
     description: Schema.Types.StringType()
       .isRequired(msg_required)
-      .minLength(1, msg_required),
+      .minLength(1, msg_required)
+      .maxLength(20000, 'max length reached, 20,000 characters'),
   });
   //form data setup
   const [formData, setFormData] = useState<Record<string, any>>({

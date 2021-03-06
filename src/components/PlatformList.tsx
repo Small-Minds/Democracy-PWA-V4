@@ -119,10 +119,38 @@ const PlatformList: FC<PLProps> = ({ election }) => {
   // Ensure all prerequisites are met.
   if (!user || !ctx || !election) return null;
 
-  const manager = user.user.id === election.manager.id;
-  const hide =
-    election.applications_open &&
-    moment(election.submission_end_time).isAfter(moment());
+  const manager = useMemo(() => user.user.id === election.manager.id, [
+    election,
+    user,
+  ]);
+
+  const hide: boolean = useMemo(() => {
+    if (election.submission_release_time) {
+      return moment(election.submission_release_time).isAfter(moment());
+    } else {
+      return moment(election.submission_end_time).isAfter(moment());
+    }
+  }, [election]);
+
+  const review: boolean = useMemo(() => {
+    if (election.submission_release_time) {
+      return (
+        moment(election.submission_release_time).isAfter(moment()) &&
+        moment(election.submission_end_time).isBefore(moment())
+      );
+    }
+    return false;
+  }, [election]);
+
+  /**
+   * Hide platforms from users during review period.
+   */
+  if (!manager && hide && review)
+    return (
+      <div>
+        <p>{t('v2.platformList.willShowAfterReview')}</p>
+      </div>
+    );
 
   /**
    * Hide platforms from users during application period.

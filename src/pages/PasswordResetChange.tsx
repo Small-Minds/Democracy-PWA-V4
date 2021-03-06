@@ -45,9 +45,11 @@ const PasswordResetChange: FC = () => {
   const model = Schema.Model({
     new_password1: Schema.Types.StringType()
       .isRequired(msg_required)
+      .maxLength(200, 'max 200 characters')
       .minLength(1, msg_required),
     new_password2: Schema.Types.StringType()
       .isRequired(msg_required)
+      .maxLength(200, 'max 200 characters')
       .minLength(1, msg_required),
   });
 

@@ -37,9 +37,18 @@ export default function EditElectionModal({
   });
   const msg_required = 'This field is required';
   const model = Schema.Model({
-    title: Schema.Types.StringType().isRequired(msg_required),
-    subtitle: Schema.Types.StringType().isRequired(msg_required),
-    description: Schema.Types.StringType().isRequired(msg_required),
+    title: Schema.Types.StringType()
+      .isRequired(msg_required)
+      .minLength(1, msg_required)
+      .maxLength(200, 'max 200 characters'),
+    subtitle: Schema.Types.StringType()
+      .isRequired(msg_required)
+      .minLength(1, msg_required)
+      .maxLength(200, 'max 200 characters'),
+    description: Schema.Types.StringType()
+      .isRequired(msg_required)
+      .minLength(1, msg_required)
+      .maxLength(20000, 'max length reached, 20,000 characters'),
   });
   const [t] = useTranslation();
   async function submitNewDetails() {

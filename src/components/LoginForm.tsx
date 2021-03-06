@@ -37,9 +37,11 @@ function LoginForm() {
     username: Schema.Types.StringType()
       .isEmail(t('signInForm.invalidEmailFormatMsg'))
       .isRequired(msg_required)
+      .maxLength(200, 'max 200 characters')
       .minLength(1, msg_required),
     password: Schema.Types.StringType()
       .isRequired(msg_required)
+      .maxLength(200, 'max 200 characters')
       .minLength(1, msg_required),
   });
   // When the app first starts, it is unauthenticated.
@@ -106,6 +108,15 @@ function LoginForm() {
         }
       })
       .catch((err) => {
+        if (!err.response || !err.response.data) {
+          setLoading(false);
+          console.error('Backend is down. Please try again later.');
+          Notification['error']({
+            title: 'Backend Down',
+            description: 'Please try to log in again in a minute.',
+          });
+          return;
+        }
         // If errors occur, set them to display on the form.
         setFormErrors(err.response.data);
         const errKeys = Object.keys(err.response.data);

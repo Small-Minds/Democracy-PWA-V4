@@ -42,7 +42,8 @@ function ChangeNameForm() {
   const model = Schema.Model({
     name: Schema.Types.StringType()
       .isRequired(msg_required)
-      .minLength(1, msg_required),
+      .minLength(1, msg_required)
+      .maxLength(200, 'max 200 characters'),
   });
 
   const submitFormData = async () => {

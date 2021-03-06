@@ -29,16 +29,20 @@ function SignupForm() {
   const model = Schema.Model({
     name: Schema.Types.StringType()
       .isRequired(msg_required)
+      .maxLength(200, 'max 200 characters')
       .minLength(1, msg_required),
     email: Schema.Types.StringType()
       .isEmail(t('signInForm.invalidEmailFormatMsg'))
       .isRequired(msg_required)
+      .maxLength(200, 'max 200 characters')
       .minLength(1, msg_required),
     password1: Schema.Types.StringType()
       .isRequired(msg_required)
+      .maxLength(200, 'max 200 characters')
       .minLength(1, msg_required),
     password2: Schema.Types.StringType()
       .isRequired(msg_required)
+      .maxLength(200, 'max 200 characters')
       .minLength(1, msg_required),
   });
   // When the app first starts, it is unauthenticated.

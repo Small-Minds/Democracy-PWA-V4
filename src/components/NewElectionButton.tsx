@@ -64,6 +64,7 @@ function NewElectionButton() {
       .maxLength(200, msg_max_length_200),
     description: Schema.Types.StringType()
       .isRequired(msg_required)
+      .maxLength(20000, 'max 20,000 characters')
       .minLength(1, msg_required),
     enable_multiple_submissions: Schema.Types.BooleanType(),
     election_email_domain: Schema.Types.StringType()

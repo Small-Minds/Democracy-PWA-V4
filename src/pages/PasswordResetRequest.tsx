@@ -35,6 +35,7 @@ const PasswordResetRequest: FC = () => {
     email: Schema.Types.StringType()
       .isEmail(t('signInForm.invalidEmailFormatMsg'))
       .isRequired(msg_required)
+      .maxLength(200, 'max 200 characters')
       .minLength(1, msg_required),
   });
 

@@ -47,7 +47,7 @@ const ElectionListElement: FC<ElectionListElementProps> = ({
   return (
     <List.Item key={index} index={index}>
       <FlexboxGrid align="middle" justify="space-between">
-        <FlexboxGrid.Item componentClass={Col} colspan={24} sm={16}>
+        <FlexboxGrid.Item componentClass={Col} colspan={24} sm={18}>
           <h3>{election.title}</h3>
           <p>
             <b>@{election.election_email_domain}</b>
@@ -58,13 +58,15 @@ const ElectionListElement: FC<ElectionListElementProps> = ({
         <FlexboxGrid.Item
           componentClass={Col}
           colspan={24}
-          sm={8}
-          style={{ paddingRight: 20, textAlign: 'right' }}
+          sm={6}
+          style={{ paddingTop: 5, paddingBottom: 5 }}
         >
           <Button
             size="lg"
+            appearance="default"
             color={manager ? 'green' : undefined}
             onClick={() => history.push(`/election/${election.id}`)}
+            block
           >
             {buttonName}
           </Button>

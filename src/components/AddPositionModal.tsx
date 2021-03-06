@@ -56,8 +56,9 @@ const AddPositionModal: FC<APMProps> = ({
   //form data setup
   const [formData, setFormData] = useState<Record<string, any>>({
     title: '',
-    password: '',
+    description: '',
   });
+
   const [formErrors, setFormErrors] = useState<Record<string, any>>({});
 
   const createNewPosition = async (title: string, description: string) => {
@@ -116,7 +117,7 @@ const AddPositionModal: FC<APMProps> = ({
                 {t('addPositionModalComp.posDescription')}
               </ControlLabel>
               <FormControl
-                rows={3}
+                rows={8}
                 name="description"
                 componentClass="textarea"
               />

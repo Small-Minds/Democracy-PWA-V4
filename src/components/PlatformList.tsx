@@ -160,13 +160,17 @@ const PlatformList: FC<PLProps> = ({ election }) => {
       <div>
         <p>{t('v2.platformList.willShowAfterApplications')}</p>
         <br />
-        <IconButton
-          size="lg"
-          icon={<Icon icon="cubes" />}
-          onClick={() => history.push(`/election/${election.id}/positions`)}
-        >
-          {t('electionPage.openPositionBtn')}
-        </IconButton>
+        <FlexboxGrid justify="center">
+          <FlexboxGrid.Item style={{ padding: 30 }}>
+            <IconButton
+              size="lg"
+              icon={<Icon icon="cubes" />}
+              onClick={() => history.push(`/election/${election.id}/positions`)}
+            >
+              {t('electionPage.openPositionBtn')}
+            </IconButton>
+          </FlexboxGrid.Item>
+        </FlexboxGrid>
       </div>
     );
 

@@ -49,6 +49,7 @@ export type ElectionDetails = {
   voting_open: boolean;
   applications_open: boolean;
   domain_match: boolean;
+  candidate_count?: number;
 };
 
 export type ManagedElectionDetails = {

@@ -8,7 +8,14 @@ import {
   useHistory,
   useParams,
 } from 'react-router-dom';
-import { ButtonToolbar, Icon, IconButton, Message, Notification } from 'rsuite';
+import {
+  Badge,
+  ButtonToolbar,
+  Icon,
+  IconButton,
+  Message,
+  Notification,
+} from 'rsuite';
 import AddPositionModal from '../components/AddPositionModal';
 import ConfirmModal from '../components/ConfirmModal';
 import ElectionTimeline from '../components/ElectionTimeline';
@@ -362,12 +369,14 @@ const Election: FC<RouteComponentProps> = ({ match }) => {
           >
             {t('electionPage.openPositionBtn')}
           </IconButton>
-          <IconButton
-            icon={<Icon icon="speaker" />}
-            onClick={() => history.push(`${match.url}/platforms`)}
-          >
-            {t('electionPage.platformBtn')}
-          </IconButton>
+          <Badge content={election.candidate_count || 0}>
+            <IconButton
+              icon={<Icon icon="speaker" />}
+              onClick={() => history.push(`${match.url}/platforms`)}
+            >
+              {t('electionPage.platformBtn')}
+            </IconButton>
+          </Badge>
         </ButtonToolbar>
       </Fragment>
       <br />

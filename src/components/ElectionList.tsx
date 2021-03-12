@@ -44,7 +44,6 @@ export default function ElectionList() {
 
   return (
     <div>
-      <List>
         {electionList.map((election, index) => (
           <ElectionListElement
             key={index}
@@ -53,7 +52,6 @@ export default function ElectionList() {
             managerList
           />
         ))}
-      </List>
     </div>
   );
 }

@@ -81,3 +81,7 @@ p {
 .custom-timeline .rs-timeline-item-content {
   margin-left: 24px;
 }
+
+a:hover {
+  text-decoration: none;
+}

@@ -7,7 +7,7 @@ import React, {
   useState,
 } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FlexboxGrid, List } from 'rsuite';
+import { Col, FlexboxGrid, List, Row } from 'rsuite';
 import Loading from '../pages/Loading';
 import {
   Election,
@@ -77,11 +77,9 @@ const PublicElectionList: FC<PELProps> = ({ filterDomain = false }) => {
     );
   return (
     <div>
-      <List>
-        {electionList.map((election, index) => (
-          <ElectionListElement key={index} index={index} election={election} />
-        ))}
-      </List>
+      {electionList.map((election, index) => (
+        <ElectionListElement key={index} index={index} election={election} />
+      ))}
       <br />
     </div>
   );

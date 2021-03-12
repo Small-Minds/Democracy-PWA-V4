@@ -1,7 +1,19 @@
-import React, { FC, useContext, useMemo } from 'react';
+import moment from 'moment';
+import React, { FC, Fragment, useContext, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useHistory } from 'react-router-dom';
-import { Button, Col, FlexboxGrid, Icon, List } from 'rsuite';
+import {
+  Button,
+  Col,
+  Container,
+  FlexboxGrid,
+  Icon,
+  List,
+  Panel,
+  Row,
+  Tag,
+  TagGroup,
+} from 'rsuite';
 import { Election } from '../utils/api/ElectionManagement';
 import { User } from '../utils/api/User';
 
@@ -11,6 +23,11 @@ interface ElectionListElementProps {
   managerList?: boolean;
 }
 
+type TimeInfo = {
+  period: string;
+  color: string | undefined;
+};
+
 const ElectionListElement: FC<ElectionListElementProps> = ({
   index,
   election,
@@ -18,7 +35,7 @@ const ElectionListElement: FC<ElectionListElementProps> = ({
 }) => {
   const user = useContext(User);
   const [t] = useTranslation();
-  const history = useHistory();
+  // const history = useHistory();
 
   const manager: boolean = useMemo(() => {
     if (managerList) return true;
@@ -26,13 +43,13 @@ const ElectionListElement: FC<ElectionListElementProps> = ({
     return user.user.id === election.manager;
   }, [user, election]);
 
-  const buttonName: string = useMemo(() => {
-    if (!user || !user.user || !user.user.id)
-      return t('electionList.button.viewElection');
-    if (managerList || user.user.id === election.manager)
-      return t('electionList.button.manageElection');
-    return t('electionList.button.viewElection');
-  }, [user, election]);
+  // const buttonName: string = useMemo(() => {
+  //   if (!user || !user.user || !user.user.id)
+  //     return t('electionList.button.viewElection');
+  //   if (managerList || user.user.id === election.manager)
+  //     return t('electionList.button.manageElection');
+  //   return t('electionList.button.viewElection');
+  // }, [user, election]);
 
   /** Fall back on the election description if no subtitle is available. */
   const subtitle: string = useMemo(() => {
@@ -44,35 +61,67 @@ const ElectionListElement: FC<ElectionListElementProps> = ({
     return '';
   }, [election]);
 
+  const timeInfo: TimeInfo | undefined = useMemo(() => {
+    if (!election) return undefined;
+    const now = moment();
+    if (now.isAfter(moment(election.voting_release_time)))
+      return {
+        period: t('v2.timespans.resultsReleased'),
+        color: 'violet',
+      };
+
+    if (now.isAfter(moment(election.voting_end_time)))
+      return {
+        period: t('v2.timespans.processingResults'),
+        color: 'cyan',
+      };
+
+    if (now.isAfter(moment(election.voting_start_time)))
+      return {
+        period: t('v2.timespans.votingOpen'),
+        color: 'blue',
+      };
+
+    if (now.isAfter(moment(election.submission_release_time)))
+      return {
+        period: t('v2.timespans.campaigningPeriod'),
+        color: 'green',
+      };
+
+    if (now.isAfter(moment(election.submission_end_time)))
+      return {
+        period: t('v2.timespans.submissionReview'),
+        color: 'yellow',
+      };
+
+    if (now.isAfter(moment(election.submission_start_time)))
+      return {
+        period: t('v2.timespans.submissionsOpen'),
+        color: 'orange',
+      };
+
+    return {
+      period: t('v2.timespans.preElection'),
+      color: undefined,
+    };
+  }, [election]);
+
+  const electionLink = `/election/${election.id}`;
   return (
-    <List.Item key={index} index={index}>
-      <FlexboxGrid align="middle" justify="space-between">
-        <FlexboxGrid.Item componentClass={Col} colspan={24} sm={18}>
+    <Fragment>
+      <Panel key={index} index={index} bordered>
+        <Link to={electionLink}>
           <h3>{election.title}</h3>
-          <p>
-            <b>@{election.election_email_domain}</b>
-            &nbsp;&middot;&nbsp;
-            <span>{subtitle}</span>
-          </p>
-        </FlexboxGrid.Item>
-        <FlexboxGrid.Item
-          componentClass={Col}
-          colspan={24}
-          sm={6}
-          style={{ paddingTop: 5, paddingBottom: 5 }}
-        >
-          <Button
-            size="lg"
-            appearance="default"
-            color={manager ? 'green' : undefined}
-            onClick={() => history.push(`/election/${election.id}`)}
-            block
-          >
-            {buttonName}
-          </Button>
-        </FlexboxGrid.Item>
-      </FlexboxGrid>
-    </List.Item>
+        </Link>
+        <TagGroup style={{ marginBottom: 10 }}>
+          <Tag>@{election.election_email_domain}</Tag>
+          {timeInfo && <Tag color={timeInfo.color}>{timeInfo.period}</Tag>}
+          {manager && <Tag color="green">{t('v2.general.manager')}</Tag>}
+        </TagGroup>
+        <p>{subtitle}</p>
+      </Panel>
+      <br />
+    </Fragment>
   );
 };
 

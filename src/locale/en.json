@@ -351,6 +351,18 @@
           "abstain": "Abstain",
           "noConfidence": "Vote of No Confidence"
         }
+      },
+      "timespans": {
+        "preElection": "Future Election",
+        "submissionsOpen": "Submissions Open",
+        "submissionReview": "Reviewing Submissions",
+        "campaigningPeriod": "Campaigning Period",
+        "votingOpen": "Voting Open",
+        "processingResults": "Processing Results",
+        "resultsReleased": "Results Released"
+      },
+      "general": {
+        "manager": "Manager"
       }
     }
   }

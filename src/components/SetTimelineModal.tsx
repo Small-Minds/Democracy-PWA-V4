@@ -36,7 +36,7 @@ export default function SetTimelineModal({
   cleanupFunc,
 }: setTimelineModalInput) {
   const [t] = useTranslation();
-
+  const [loading, setLoading] = useState<boolean>(false);
   //set up required variable for rsuite forms.
   let form: any = undefined;
   //form model setup
@@ -106,26 +106,32 @@ export default function SetTimelineModal({
     election: ElectionDetails,
     formData: Record<string, any>
   ) {
+    setLoading(true);
     if (!form.check()) {
       // console.log(formErrors);
+      setLoading(false);
       return;
     }
     //Pass the formData the the endpoint
-    updateOldElection(formData, election.id).then((res) => {
-      if (res == 200) {
-        cleanupFunc();
-        Notification['success']({
-          title: t('setTimelineModal.updateNotification.successTitle'),
-          description: t('setTimelineModal.updateNotification.successBody'),
-        });
-      } else {
-        Notification['error']({
-          title: t('setTimelineModal.updateNotification.errorTitle'),
-          description: t('setTimelineModal.updateNotification.errorBody'),
-        });
-      }
-      closeModal();
-    });
+    updateOldElection(formData, election.id)
+      .then((res) => {
+        if (res == 200) {
+          cleanupFunc();
+          Notification['success']({
+            title: t('setTimelineModal.updateNotification.successTitle'),
+            description: t('setTimelineModal.updateNotification.successBody'),
+          });
+        } else {
+          Notification['error']({
+            title: t('setTimelineModal.updateNotification.errorTitle'),
+            description: t('setTimelineModal.updateNotification.errorBody'),
+          });
+        }
+      })
+      .finally(() => {
+        setLoading(false);
+        closeModal();
+      });
   }
 
   return (
@@ -232,13 +238,15 @@ export default function SetTimelineModal({
                 <Button
                   appearance="primary"
                   type="submit"
+                  loading={loading}
+                  disabled={loading}
                   onClick={() => {
                     updateElection(election, formData);
                   }}
                 >
                   {t('general.submit')}
                 </Button>
-                <Button onClick={() => closeModal()}>
+                <Button disabled={loading} onClick={() => closeModal()}>
                   {t('general.cancel')}
                 </Button>
               </ButtonToolbar>

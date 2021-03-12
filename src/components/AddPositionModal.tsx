@@ -64,7 +64,6 @@ const AddPositionModal: FC<APMProps> = ({
   const createNewPosition = async (title: string, description: string) => {
     if (!ctx || !ctx.credentials.authenticated) return;
     setLoading(true);
-
     // Process form input, check for form errors
     if (!form.check()) {
       // console.log('New election form has errors.');
@@ -126,7 +125,7 @@ const AddPositionModal: FC<APMProps> = ({
         </Modal.Body>
         <Modal.Footer>
           <Button
-            disabled={!ctx?.credentials.authenticated}
+            disabled={!ctx?.credentials.authenticated || loading}
             loading={loading}
             appearance="primary"
             onClick={() => {
@@ -137,8 +136,7 @@ const AddPositionModal: FC<APMProps> = ({
             {t('addPositionModalComp.createBtn')}
           </Button>
           <Button
-            disabled={!ctx?.credentials.authenticated}
-            loading={loading}
+            disabled={!ctx?.credentials.authenticated || loading}
             appearance="subtle"
             onClick={() => setOpen(false)}
           >

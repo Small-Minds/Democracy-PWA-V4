@@ -30,6 +30,7 @@ export default function EditWhiteListModal({
   isOpen,
   electionId,
 }: EditWhiteListModalInput) {
+  const [processing, setProcessing] = useState<boolean>(false);
   let form: any = undefined;
   const [isLoading, setIsLoading] = useState<boolean>();
   const [formErrors, setFormErrors] = useState<Record<string, any>>({});
@@ -54,23 +55,28 @@ export default function EditWhiteListModal({
   }, [electionId]);
 
   function submitWhitelist(input: string): void {
+    setProcessing(true);
     if (electionDetail) {
       //Pass the formData the the endpoint
-      updateOldElection(formData, electionId).then((res: Number) => {
-        // console.log(res);
-        if (res == 200) {
-          Notification['success']({
-            title: t('v2.editWhitelistModal.successNotificationTitle'),
-            description: t('v2.editWhitelistModal.successNotificationBody'),
-          });
+      updateOldElection(formData, electionId)
+        .then((res: Number) => {
+          // console.log(res);
+          if (res == 200) {
+            Notification['success']({
+              title: t('v2.editWhitelistModal.successNotificationTitle'),
+              description: t('v2.editWhitelistModal.successNotificationBody'),
+            });
+          } else {
+            Notification['error']({
+              title: t('v2.editWhitelistModal.errorNotificationTitle'),
+              description: t('v2.editWhitelistModal.errorNotificationBody'),
+            });
+          }
+        })
+        .finally(() => {
+          setProcessing(false);
           closeModal();
-        } else {
-          Notification['error']({
-            title: t('v2.editWhitelistModal.errorNotificationTitle'),
-            description: t('v2.editWhitelistModal.errorNotificationBody'),
-          });
-        }
-      });
+        });
     }
   }
 
@@ -123,12 +129,17 @@ export default function EditWhiteListModal({
       <Modal.Footer>
         <Button
           appearance="primary"
-          disabled={isLoading}
+          disabled={isLoading || processing}
+          loading={processing}
           onClick={() => submitWhitelist(formData.whitelist)}
         >
           {t('v2.editWhitelistModal.submitBtn')}
         </Button>
-        <Button appearance="default" onClick={() => closeModal()}>
+        <Button
+          appearance="default"
+          disabled={isLoading || processing}
+          onClick={() => closeModal()}
+        >
           {t('v2.editWhitelistModal.cancelBtn')}
         </Button>
       </Modal.Footer>

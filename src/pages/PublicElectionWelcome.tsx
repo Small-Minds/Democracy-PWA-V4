@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useHistory, useParams } from 'react-router-dom';
 import { Container, FlexboxGrid, Icon, IconButton, Panel } from 'rsuite';
 import { api } from '../utils/API';
+import Loading from './Loading';
 
 type SparseElectionDetails = {
   title: string;
@@ -30,6 +31,8 @@ const PublicElectionWelcome: FC = () => {
       });
   }, [id]);
 
+  if (!sparseElectionDetails) return <Loading half />;
+
   return (
     <Container>
       <FlexboxGrid align="middle" justify="center">
@@ -41,8 +44,8 @@ const PublicElectionWelcome: FC = () => {
               <br />
               <Panel bordered>
                 <br />
-                <h2>{sparseElectionDetails && sparseElectionDetails.title}</h2>
-                <p>{sparseElectionDetails && sparseElectionDetails.subtitle}</p>
+                <h2>{sparseElectionDetails.title}</h2>
+                <p>{sparseElectionDetails.subtitle}</p>
                 <br />
               </Panel>
               <br />

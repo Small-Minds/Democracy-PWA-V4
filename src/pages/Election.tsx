@@ -276,9 +276,8 @@ const Election: FC<RouteComponentProps> = ({ match }) => {
 
   // Show Management Tools
   useEffect(() => {
-    if (!id) return;
-    if (!election) return;
-    setShowTools(user?.user.id === election.manager.id);
+    if (!id || !election || !user) return;
+    setShowTools(user.user.id === election.manager.id);
   }, [id, election, user]);
 
   // Return to the previous page if no ID is provided.

@@ -80,6 +80,7 @@ const PlatformDisplay: FC<PositionDisplayProps> = ({ position }) => {
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
+    if (!position) return;
     getPositionDetails(position.id).then((details) => {
       setCandidates(details.candidates);
       setLoading(false);

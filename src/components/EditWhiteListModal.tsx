@@ -47,6 +47,7 @@ export default function EditWhiteListModal({
   const [t] = useTranslation();
 
   useEffect(() => {
+    if (!electionId) return;
     getManagedElectionDetails(electionId).then((res) => {
       setElectionDetail(res);
       setFormData({ whitelist: res.whitelist });

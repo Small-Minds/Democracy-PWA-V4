@@ -36,6 +36,7 @@ const PasswordResetChange: FC = () => {
   });
 
   useEffect(() => {
+    if (!uid || !token) return;
     setFormData({ uid: uid, token: token });
   }, [uid, token]);
 

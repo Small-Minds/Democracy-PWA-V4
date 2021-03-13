@@ -14,7 +14,7 @@ export default function ElectionList() {
 
   useEffect(() => {
     // Return early if no context is provided.
-    if (!ctx || !ctx.credentials.authenticated) return;
+    if (!ctx || !ctx.credentials || !ctx.credentials.authenticated) return;
     // Return if the list has already been populated.
     if (electionList.length > 0) return;
     // If logged in, attempt to get the list of elections.

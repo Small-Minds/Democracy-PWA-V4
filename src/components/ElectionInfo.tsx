@@ -9,6 +9,7 @@ export default function ElectionInfo() {
   const [election, setElection] = useState<ElectionDetails | undefined>();
   const [t] = useTranslation();
   useEffect(() => {
+    if (!id) return;
     getElection(id).then((res) => {
       setElection(res);
       setLoading(false);

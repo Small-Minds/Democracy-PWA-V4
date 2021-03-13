@@ -101,6 +101,7 @@ export default function ElectionResults() {
   const [electionResult, setElection] = useState<ElectionResult>();
   const [t] = useTranslation();
   useEffect(() => {
+    if (!id) return;
     getElectionResult(id).then((res) => {
       console.log(res); // TODO: Remove me!
       setElection(res);

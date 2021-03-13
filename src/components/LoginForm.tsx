@@ -54,7 +54,7 @@ function LoginForm() {
 
   // Disable the form if the user is logged in.
   useEffect(() => {
-    if (ctx === undefined) return;
+    if (!ctx || ctx === undefined) return;
     if (ctx?.credentials.authenticated) {
       setDisabled(true);
       setMiscErrors(t('signInForm.alreadyLogInMsg'));

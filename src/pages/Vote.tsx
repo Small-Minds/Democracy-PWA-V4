@@ -45,8 +45,7 @@ export default function Vote() {
   useEffect(() => {
     // console.log('Getting ballot...');
     //Return early if no context is provided.
-    if (!ctx || !ctx.credentials.authenticated) return;
-    if (ballot) return;
+    if (!id || !ctx || !ctx.credentials.authenticated || ballot) return;
     //If logged in, attempt to get the position details
     getEmptyBallot(id).then((ballot: EmptyBallot) => {
       // Shuffle candidates within ballot:
@@ -54,10 +53,9 @@ export default function Vote() {
         position.candidates = random.shuffle(position.candidates);
         return position;
       });
-
       setBallot(ballot);
     });
-  }, []);
+  }, [id]);
 
   const submit = () => {
     // First, check the form for errors.

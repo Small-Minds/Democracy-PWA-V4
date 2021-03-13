@@ -21,6 +21,7 @@ const PublicElectionWelcome: FC = () => {
   ] = useState<SparseElectionDetails>();
 
   useEffect(() => {
+    if (!id) return;
     api
       .get(`/elections/participate/public-details/${id}/`)
       .then((res) => {

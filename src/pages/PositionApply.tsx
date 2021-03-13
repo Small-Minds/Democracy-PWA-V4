@@ -50,7 +50,7 @@ function PositionApply() {
 
   useEffect(() => {
     //Return early if no context is provided.
-    if (!ctx || !ctx.credentials.authenticated) return;
+    if (!positionId || !ctx || !ctx.credentials.authenticated) return;
     //If logged in, attempt to get the position details
     getPosition(positionId)
       .then((res) => {

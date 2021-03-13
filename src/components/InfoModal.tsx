@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import { Fade } from 'react-awesome-reveal';
 import { useTranslation } from 'react-i18next';
 import { Modal, Button, Content } from 'rsuite';
 

@@ -29,17 +29,21 @@ const PublicElectionWelcome: FC = () => {
       })
       .catch((res) => {
         console.error(res);
+        setSparseElectionDetails({
+          title: 'Bad ID?',
+          subtitle: "We couldn't find that Election.",
+        });
       });
   }, [id]);
 
-  if (!sparseElectionDetails) return <Loading half />;
+  if (!id || !sparseElectionDetails) return <Loading half />;
 
   return (
     <Container>
       <FlexboxGrid align="middle" justify="center">
         <FlexboxGrid.Item colspan={24}>
           <div style={{ textAlign: 'center' }}>
-            <Fade cascade triggerOnce duration={300} damping={0.2} delay={100}>
+            <Fade cascade triggerOnce duration={300} damping={0.2} delay={500}>
               <div>
                 <br />
                 <p>{t('v2.labels.invitedToViewElection')}</p>

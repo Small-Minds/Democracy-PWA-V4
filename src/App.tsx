@@ -1,4 +1,5 @@
 import React, { Fragment, useEffect, useState } from 'react';
+import { Fade } from 'react-awesome-reveal';
 import { useTranslation } from 'react-i18next';
 import {
   BrowserRouter,
@@ -215,12 +216,16 @@ function App() {
                     <InfoModal open={info} setOpen={showInfo} />
                     <FlexboxGrid justify="center" align="middle">
                       <FlexboxGrid.Item>
-                        <IconButton
-                          appearance="subtle"
-                          size="lg"
-                          icon={<Icon icon="info-circle" />}
-                          onClick={() => showInfo(true)}
-                        ></IconButton>
+                        <Fade delay={1500} duration={1000} triggerOnce>
+                          <div>
+                            <IconButton
+                              appearance="subtle"
+                              size="lg"
+                              icon={<Icon icon="info-circle" />}
+                              onClick={() => showInfo(true)}
+                            ></IconButton>
+                          </div>
+                        </Fade>
                       </FlexboxGrid.Item>
                     </FlexboxGrid>
                     <br />

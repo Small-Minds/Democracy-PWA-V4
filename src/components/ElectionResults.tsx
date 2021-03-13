@@ -46,17 +46,15 @@ const Position: FC<{ position: PositionResult }> = ({ position }) => {
   if (!position) return null;
   if (sortedResults.length === 0)
     return (
-      <Fragment>
-        <br />
+      <div style={{ marginBottom: 30 }}>
         <h4>
           {position.title}: {t('electionResults.noWinner')}
         </h4>
-        <br />
-      </Fragment>
+      </div>
     );
 
   return (
-    <Fragment>
+    <div style={{ marginBottom: 30 }}>
       <br />
       {draw ? (
         <h4>
@@ -91,7 +89,7 @@ const Position: FC<{ position: PositionResult }> = ({ position }) => {
         <br />
         Votes of No Confidence: <code>{position.no_confidence}</code>
       </p>
-    </Fragment>
+    </div>
   );
 };
 
@@ -120,15 +118,13 @@ export default function ElectionResults() {
 
   return (
     <div>
-      <Fade duration={500} triggerOnce>
-        <div>
-          {electionResult.positions.map(
-            (position: PositionResult, index: number) => (
-              <Position position={position} key={index} />
-            )
-          )}
-          <br />
-        </div>
+      <Fade cascade duration={400} triggerOnce damping={0.2}>
+        {electionResult.positions.map(
+          (position: PositionResult, index: number) => (
+            <Position position={position} key={index} />
+          )
+        )}
+        <br />
       </Fade>
     </div>
   );

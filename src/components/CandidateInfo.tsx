@@ -34,7 +34,11 @@ export default function CandidateInfo({ candidate }: CandidateInfoModalInput) {
             marginTop: 10,
           }}
         >
-          {userImage && <Fade triggerOnce duration={600}>{userImage}</Fade>}
+          {userImage && (
+            <Fade triggerOnce duration={600}>
+              {userImage}
+            </Fade>
+          )}
         </Avatar>
         <h5 style={{ marginTop: 5, textAlign: 'center' }}>
           {candidate.user.name}
@@ -61,7 +65,11 @@ export default function CandidateInfo({ candidate }: CandidateInfoModalInput) {
                   marginRight: 'auto',
                 }}
               >
-                {userImage && <Fade triggerOnce duration={600}>{userImage}</Fade>}
+                {userImage && (
+                  <Fade triggerOnce duration={600}>
+                    {userImage}
+                  </Fade>
+                )}
               </Avatar>
             </FlexboxGrid.Item>
             <FlexboxGrid.Item style={{ padding: 10 }}>

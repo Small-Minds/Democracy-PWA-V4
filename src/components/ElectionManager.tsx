@@ -24,7 +24,11 @@ const ElectionManager: FC<EMProps> = ({ election }) => {
       <FlexboxGrid align="middle">
         <FlexboxGrid.Item>
           <Avatar style={{ margin: 7, marginLeft: 2, marginRight: 2 }}>
-            {userImage && <Fade triggerOnce duration={600}>{userImage}</Fade>}
+            {userImage && (
+              <Fade triggerOnce duration={600}>
+                {userImage}
+              </Fade>
+            )}
           </Avatar>
         </FlexboxGrid.Item>
         <FlexboxGrid.Item style={{ padding: 10 }}>

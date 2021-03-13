@@ -23,7 +23,11 @@ export default function ManageAccount() {
       <br />
       <div>
         <Avatar size="lg" style={{ marginTop: 20, marginBottom: 20 }}>
-          {userImage && <Fade triggerOnce duration={600}>{userImage}</Fade>}
+          {userImage && (
+            <Fade triggerOnce duration={600}>
+              {userImage}
+            </Fade>
+          )}
         </Avatar>
       </div>
       <a

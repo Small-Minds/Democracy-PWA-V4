@@ -51,7 +51,13 @@ const CandidateListItem: FC<{ candidate: CandidateWithUserDetails }> = ({
     <Fragment>
       <FlexboxGrid justify="start" align="middle" style={{ marginBottom: 10 }}>
         <FlexboxGrid.Item style={{ paddingRight: 10 }}>
-          <Avatar>{userImage && <Fade triggerOnce duration={600}>{userImage}</Fade>}</Avatar>
+          <Avatar>
+            {userImage && (
+              <Fade triggerOnce duration={600}>
+                {userImage}
+              </Fade>
+            )}
+          </Avatar>
         </FlexboxGrid.Item>
         <FlexboxGrid.Item componentClass={'div'}>
           <h5>{candidate.user.name}</h5>

@@ -63,9 +63,10 @@ const PublicElectionList: FC<PELProps> = ({ filterDomain = false }) => {
       });
   }, [ctx]);
 
-  if (!user || !user.user || !user.user.email) return null;
-  if (loading) return <Loading half />;
-  if (!electionList || electionList.length === 0)
+  if (loading || !electionList || !user || !user.user || !user.user.email)
+    return <Loading half />;
+
+  if (electionList.length === 0)
     return (
       <Fragment>
         <br />
@@ -83,6 +84,7 @@ const PublicElectionList: FC<PELProps> = ({ filterDomain = false }) => {
         <br />
       </Fragment>
     );
+
   return (
     <div>
       <Fade cascade duration={250} triggerOnce delay={0} damping={0.1}>

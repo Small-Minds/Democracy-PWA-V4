@@ -30,29 +30,27 @@ export default function ElectionList() {
       });
   }, [ctx]);
 
-  if (loading) return <Loading half />;
-  if (!electionList || electionList.length === 0)
+  if (loading || !electionList) return <Loading half />;
+  if (electionList.length === 0)
     return (
-      <Fragment>
+      <div>
         <br />
         <p>{t('electionList.noMatchingElections')}</p>
         <br />
-      </Fragment>
+      </div>
     );
 
   return (
     <div>
-      <Fade duration={500} triggerOnce delay={10}>
-        <div>
-          {electionList.map((election, index) => (
-            <ElectionListElement
-              key={index}
-              index={index}
-              election={election}
-              managerList
-            />
-          ))}
-        </div>
+      <Fade cascade duration={250} triggerOnce delay={0} damping={0.1}>
+        {electionList.map((election, index) => (
+          <ElectionListElement
+            key={index}
+            index={index}
+            election={election}
+            managerList
+          />
+        ))}
       </Fade>
       <br />
     </div>

@@ -7,15 +7,7 @@ import {
   Switch,
   useHistory,
 } from 'react-router-dom';
-import {
-  Col,
-  Container,
-  Content,
-  FlexboxGrid,
-  Icon,
-  IconButton,
-  Notification,
-} from 'rsuite';
+import { Col, Container, Content, FlexboxGrid, Icon, IconButton } from 'rsuite';
 import './App.css';
 import InfoModal from './components/InfoModal';
 import Navigation from './components/Navigation';

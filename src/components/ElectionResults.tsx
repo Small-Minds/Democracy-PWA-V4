@@ -1,13 +1,10 @@
-import { max } from 'moment';
-import React, { useState, useEffect, FC, Fragment, useMemo } from 'react';
+import React, { FC, Fragment, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
-import { FlexboxGrid } from 'rsuite';
 import ProgressLine from 'rsuite/lib/Progress/ProgressLine';
 import Loading from '../pages/Loading';
 import {
   CandidateResult,
-  ElectionDetails,
   ElectionResult,
   getElectionResult,
   PositionResult,
@@ -89,7 +86,8 @@ const Position: FC<{ position: PositionResult }> = ({ position }) => {
       })}
       <br />
       <p>
-        Votes of Abstention: <code>{position.abstain}</code><br />
+        Votes of Abstention: <code>{position.abstain}</code>
+        <br />
         Votes of No Confidence: <code>{position.no_confidence}</code>
       </p>
     </Fragment>

@@ -1,19 +1,17 @@
 import { AxiosError } from 'axios';
-import React, { useEffect } from 'react';
-import { useState } from 'react';
-import { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useHistory, useParams } from 'react-router-dom';
 import {
   Button,
   ButtonToolbar,
-  Notification,
   ControlLabel,
+  FlexboxGrid,
   Form,
   FormControl,
   FormGroup,
+  Notification,
   Schema,
-  FlexboxGrid,
 } from 'rsuite';
 import {
   ElectionDetails,

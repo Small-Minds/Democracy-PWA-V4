@@ -264,7 +264,8 @@
     },
     "v2": {
       "labels": {
-        "forgotPassword": "Forgot password?"
+        "forgotPassword": "Forgot password?",
+        "processingResults": "Results are being reviewed, thank-you for your patience."
       },
       "errors": {
         "error": "Error",

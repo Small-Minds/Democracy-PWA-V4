@@ -1,8 +1,7 @@
-import React, { useContext, useState, FC } from 'react';
+import React, { FC, useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
 import { Button, Col, FlexboxGrid, List, Notification } from 'rsuite';
-
 import {
   deletePosition,
   ElectionDetails,

@@ -1,12 +1,9 @@
-import React, { useEffect, useContext, useState, Fragment } from 'react';
+import React, { Fragment, useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
-import { FlexboxGrid, List } from 'rsuite';
 import Loading from '../pages/Loading';
-import { getElectionList, Election } from '../utils/api/ElectionManagement';
+import { Election, getElectionList } from '../utils/api/ElectionManagement';
 import { Credentials } from '../utils/Authentication';
 import ElectionListElement from './ElectionListElement';
-import NewElectionButton from './NewElectionButton';
 
 export default function ElectionList() {
   const ctx = useContext(Credentials);
@@ -44,14 +41,14 @@ export default function ElectionList() {
 
   return (
     <div>
-        {electionList.map((election, index) => (
-          <ElectionListElement
-            key={index}
-            index={index}
-            election={election}
-            managerList
-          />
-        ))}
+      {electionList.map((election, index) => (
+        <ElectionListElement
+          key={index}
+          index={index}
+          election={election}
+          managerList
+        />
+      ))}
     </div>
   );
 }

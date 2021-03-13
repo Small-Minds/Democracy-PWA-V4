@@ -1,7 +1,7 @@
 import { Fragment, useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
-import { Button, Container, Notification, Panel } from 'rsuite';
+import { Button, Notification } from 'rsuite';
 import { clearTokens } from '../utils/API';
 import { Credentials } from '../utils/Authentication';
 

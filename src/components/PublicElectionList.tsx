@@ -7,7 +7,7 @@ import React, {
   useState,
 } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Col, FlexboxGrid, List, Row } from 'rsuite';
+import { FlexboxGrid } from 'rsuite';
 import Loading from '../pages/Loading';
 import {
   Election,

@@ -1,5 +1,12 @@
 import moment from 'moment';
-import React, { FC, Fragment, useContext, useEffect, useState } from 'react';
+import React, {
+  FC,
+  Fragment,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Route,
@@ -18,6 +25,10 @@ import {
 } from 'rsuite';
 import AddPositionModal from '../components/AddPositionModal';
 import ConfirmModal from '../components/ConfirmModal';
+import EditElectionModal from '../components/EditElectionModal';
+import EditWhiteListModal from '../components/EditWhiteListModal';
+import ElectionManager from '../components/ElectionManager';
+import ElectionResults from '../components/ElectionResults';
 import ElectionTimeline from '../components/ElectionTimeline';
 import PlatformList from '../components/PlatformList';
 import PositionList from '../components/PositionList';
@@ -29,10 +40,6 @@ import {
 } from '../utils/api/ElectionManagement';
 import { User, UserDataInterface } from '../utils/api/User';
 import Loading from './Loading';
-import ElectionResults from '../components/ElectionResults';
-import ElectionManager from '../components/ElectionManager';
-import EditWhiteListModal from '../components/EditWhiteListModal';
-import EditElectionModal from '../components/EditElectionModal';
 
 interface ElectionSubpage {
   id: string | undefined;
@@ -253,6 +260,11 @@ const Election: FC<RouteComponentProps> = ({ match }) => {
       });
   };
 
+  const manager: boolean = useMemo(() => {
+    if (!user || !user.user || !election || !election.manager) return false;
+    return user.user.id === election.manager.id;
+  }, [user, election]);
+
   // Get Election
   useEffect(() => {
     if (!id) return;
@@ -279,7 +291,7 @@ const Election: FC<RouteComponentProps> = ({ match }) => {
       </Fragment>
     );
 
-  if (moment(election.voting_end_time) < moment()) {
+  if (moment(election.voting_end_time).isBefore(moment())) {
     return (
       <Fragment>
         <h2>{election.title}</h2>
@@ -307,7 +319,20 @@ const Election: FC<RouteComponentProps> = ({ match }) => {
             <br />
           </Fragment>
         )}
-        <ElectionResults />
+        <br />
+        {manager ||
+        (election.voting_release_time &&
+          moment(election.voting_release_time).isBefore(moment())) ? (
+          <ElectionResults />
+        ) : (
+          <Fragment>
+            <p>{t('v2.labels.processingResults')}</p>
+          </Fragment>
+        )}
+        <br />
+        <br />
+        <ElectionManager election={election} />
+        <br />
       </Fragment>
     );
   }

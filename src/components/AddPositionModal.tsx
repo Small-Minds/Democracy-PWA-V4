@@ -1,4 +1,5 @@
 import React, { FC, Fragment, useContext, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
   Button,
   ControlLabel,
@@ -9,15 +10,12 @@ import {
   Notification,
   Schema,
 } from 'rsuite';
-import { Credentials } from '../utils/Authentication';
 import {
   createPosition,
   ElectionDetails,
   Position,
 } from '../utils/api/ElectionManagement';
-import { useTranslation } from 'react-i18next';
-import { useHistory } from 'react-router-dom';
-import { idText } from 'typescript';
+import { Credentials } from '../utils/Authentication';
 
 interface APMProps {
   open: boolean;

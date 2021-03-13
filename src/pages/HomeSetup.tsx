@@ -1,10 +1,8 @@
 import React, { Fragment } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Col, Container, Content, FlexboxGrid, Panel } from 'rsuite';
-
+import { Panel } from 'rsuite';
 import ElectionList from '../components/ElectionList';
 import NewElectionButton from '../components/NewElectionButton';
-import PublicElectionList from '../components/PublicElectionList';
 
 function HomeSetup() {
   const [t, i18n] = useTranslation();

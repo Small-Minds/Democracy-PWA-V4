@@ -1,19 +1,8 @@
 import moment from 'moment';
 import React, { FC, Fragment, useContext, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link, useHistory } from 'react-router-dom';
-import {
-  Button,
-  Col,
-  Container,
-  FlexboxGrid,
-  Icon,
-  List,
-  Panel,
-  Row,
-  Tag,
-  TagGroup,
-} from 'rsuite';
+import { Link } from 'react-router-dom';
+import { Panel, Tag, TagGroup } from 'rsuite';
 import { Election } from '../utils/api/ElectionManagement';
 import { User } from '../utils/api/User';
 

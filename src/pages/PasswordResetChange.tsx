@@ -5,7 +5,6 @@ import {
   Button,
   ButtonToolbar,
   ControlLabel,
-  FlexboxGrid,
   Form,
   FormControl,
   FormGroup,
@@ -14,7 +13,7 @@ import {
   Notification,
   Schema,
 } from 'rsuite';
-import { requestPasswordReset, resetPassword } from '../utils/api/User';
+import { resetPassword } from '../utils/api/User';
 
 const PasswordResetChange: FC = () => {
   const [t] = useTranslation();

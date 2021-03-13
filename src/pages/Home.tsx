@@ -1,8 +1,5 @@
 import React, { Fragment } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Col, Container, Content, FlexboxGrid, Panel } from 'rsuite';
-
-import ElectionList from '../components/ElectionList';
 import PublicElectionList from '../components/PublicElectionList';
 
 function Home() {

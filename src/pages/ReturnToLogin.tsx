@@ -1,7 +1,7 @@
-import React, { Fragment, FC } from 'react';
+import React, { FC, Fragment } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
-import { Button, FlexboxGrid, Icon, IconButton } from 'rsuite';
+import { FlexboxGrid, Icon, IconButton } from 'rsuite';
 
 const ReturnToLogin: FC<{ title: string; subtitle?: string }> = ({
   title,

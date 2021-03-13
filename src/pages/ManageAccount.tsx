@@ -1,16 +1,13 @@
-import React, { Fragment, useMemo } from 'react';
-import { useContext } from 'react';
+import React, { Fragment, useContext, useMemo } from 'react';
 import Gravatar from 'react-gravatar';
 import { useTranslation } from 'react-i18next';
-import { useHistory } from 'react-router-dom';
-import { Avatar, Button, FlexboxGrid, Icon, IconButton } from 'rsuite';
+import { Avatar } from 'rsuite';
 import ChangeNameForm from '../components/ChangeNameForm';
 import ChangePasswordForm from '../components/ChangePasswordForm';
 import { User } from '../utils/api/User';
 
 export default function ManageAccount() {
   const user = useContext(User);
-  const history = useHistory();
   const [t] = useTranslation();
 
   const userImage = useMemo(() => {

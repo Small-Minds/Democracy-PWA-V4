@@ -1,7 +1,7 @@
 import { AxiosResponse } from 'axios';
-import { createNoSubstitutionTemplateLiteral } from 'typescript';
 import { api, preRequestRefreshAuth } from '../API';
 import { UserInfo } from './User';
+
 const electionURL = `/elections/manage/election/`;
 const electionPositionURL = `/elections/manage/position/`;
 const electionParticipationURL = `/elections/participate/election/`;

@@ -1,6 +1,5 @@
-import axios, { AxiosResponse } from 'axios';
+import axios from 'axios';
 import axiosRetry from 'axios-retry';
-import { createContext } from 'react';
 import { getBackendURL } from './Urls';
 
 export const add = (a: number, b: number): number => {

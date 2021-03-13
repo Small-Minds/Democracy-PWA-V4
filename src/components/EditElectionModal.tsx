@@ -7,8 +7,8 @@ import {
   FormControl,
   FormGroup,
   Modal,
-  Schema,
   Notification,
+  Schema,
 } from 'rsuite';
 import {
   ElectionDetails,

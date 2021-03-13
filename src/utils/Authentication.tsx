@@ -1,4 +1,4 @@
-import { createContext, useState } from 'react';
+import { createContext } from 'react';
 
 export const add = (a: number, b: number): number => {
   return a + b;

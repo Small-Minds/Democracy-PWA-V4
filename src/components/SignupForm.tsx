@@ -1,19 +1,19 @@
 import { useContext, useEffect, useState } from 'react';
-import { Credentials } from '../utils/Authentication';
+import { useTranslation } from 'react-i18next';
 import {
-  Form,
-  FormGroup,
-  FormControl,
-  ControlLabel,
-  HelpBlock,
-  ButtonToolbar,
   Button,
+  ButtonToolbar,
+  ControlLabel,
+  Form,
+  FormControl,
+  FormGroup,
+  HelpBlock,
+  Notification,
   Panel,
   Schema,
-  Notification,
 } from 'rsuite';
 import { signup } from '../utils/api/Signup';
-import { useTranslation } from 'react-i18next';
+import { Credentials } from '../utils/Authentication';
 
 /**
  * This form can be placed anywhere below the Credentials context provider.

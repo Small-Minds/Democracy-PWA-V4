@@ -1,24 +1,20 @@
 import { useContext, useEffect, useState } from 'react';
-import { CredentialData, Credentials } from '../utils/Authentication';
-import {
-  Form,
-  FormGroup,
-  FormControl,
-  ControlLabel,
-  HelpBlock,
-  ButtonToolbar,
-  Button,
-  Panel,
-  Schema,
-  Notification,
-  ErrorMessage,
-} from 'rsuite';
-import { signup, signupFormData } from '../utils/api/Signup';
-import { login } from '../utils/api/Login';
-import { couldStartTrivia } from 'typescript';
-import { getAccessToken, getRefreshToken } from '../utils/API';
 import { useTranslation } from 'react-i18next';
 import { Link, useHistory } from 'react-router-dom';
+import {
+  Button,
+  ButtonToolbar,
+  ControlLabel,
+  Form,
+  FormControl,
+  FormGroup,
+  Notification,
+  Panel,
+  Schema,
+} from 'rsuite';
+import { getAccessToken, getRefreshToken } from '../utils/API';
+import { login } from '../utils/api/Login';
+import { CredentialData, Credentials } from '../utils/Authentication';
 
 /**
  * This form can be placed anywhere below the Credentials context provider.

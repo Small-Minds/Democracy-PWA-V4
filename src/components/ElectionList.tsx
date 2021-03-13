@@ -52,6 +52,7 @@ export default function ElectionList() {
           />
         ))}
       </Fade>
+      <br />
     </div>
   );
 }

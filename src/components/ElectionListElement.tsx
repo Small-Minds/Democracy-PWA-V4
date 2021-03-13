@@ -97,7 +97,7 @@ const ElectionListElement: FC<ElectionListElementProps> = ({
 
   const electionLink = `/election/${election.id}`;
   return (
-    <Fragment>
+    <div>
       <Panel key={index} index={index} bordered>
         <Link to={electionLink}>
           <h3>{election.title}</h3>
@@ -111,7 +111,7 @@ const ElectionListElement: FC<ElectionListElementProps> = ({
         <p>{subtitle}</p>
       </Panel>
       <br />
-    </Fragment>
+    </div>
   );
 };
 

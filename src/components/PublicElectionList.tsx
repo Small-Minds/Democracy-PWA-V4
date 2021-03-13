@@ -78,7 +78,7 @@ const PublicElectionList: FC<PELProps> = ({ filterDomain = false }) => {
     );
   return (
     <div>
-      <Fade duration={500} triggerOnce delay={10}>
+      <Fade duration={500} triggerOnce delay={4}>
         {electionList.map((election, index) => (
           <ElectionListElement key={index} index={index} election={election} />
         ))}

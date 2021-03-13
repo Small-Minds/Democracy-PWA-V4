@@ -11,7 +11,9 @@ ReactDOM.render(
   <React.StrictMode>
     <I18nextProvider i18n={i18n}>
       <Fade triggerOnce delay={100} duration={800}>
-        <App />
+        <div>
+          <App />
+        </div>
       </Fade>
     </I18nextProvider>
   </React.StrictMode>,

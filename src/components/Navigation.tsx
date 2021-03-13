@@ -44,7 +44,7 @@ function AccountMenu() {
           <Avatar style={{ margin: 7, marginLeft: 2, marginRight: 2 }}>
             {/** Render initials or avatar as fallback */}
             {userImage && (
-              <Fade triggerOnce duration={600}>
+              <Fade triggerOnce duration={600} delay={1}>
                 {userImage}
               </Fade>
             )}

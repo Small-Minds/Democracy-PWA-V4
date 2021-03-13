@@ -22,6 +22,7 @@ import ManageAccount from './pages/ManageAccount';
 import PasswordResetChange from './pages/PasswordResetChange';
 import PasswordResetRequest from './pages/PasswordResetRequest';
 import PositionApply from './pages/PositionApply';
+import PublicElectionWelcome from './pages/PublicElectionWelcome';
 import ReturnToLogin from './pages/ReturnToLogin';
 import Vote from './pages/Vote';
 import { getAccessToken, getRefreshToken, isAuthenticated } from './utils/API';
@@ -161,6 +162,10 @@ function App() {
                         <Fragment>
                           {/* Public Pages */}
                           <Switch>
+                            <Route
+                              path="/election/:id"
+                              component={PublicElectionWelcome}
+                            />
                             <Route
                               path="/password-reset/:uid/:token"
                               component={PasswordResetChange}

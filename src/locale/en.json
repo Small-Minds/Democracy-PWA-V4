@@ -265,7 +265,9 @@
     "v2": {
       "labels": {
         "forgotPassword": "Forgot password?",
-        "processingResults": "Results are being reviewed, thank-you for your patience."
+        "processingResults": "Results are being reviewed, thank-you for your patience.",
+        "invitedToViewElection": "Welcome to the platform. You have been invited to view an Election.",
+        "loginToContinue": "Please login to view this page."
       },
       "errors": {
         "error": "Error",

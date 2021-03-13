@@ -1,4 +1,5 @@
 import React, { FC, Fragment, useEffect, useMemo, useState } from 'react';
+import { Fade } from 'react-awesome-reveal';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import ProgressLine from 'rsuite/lib/Progress/ProgressLine';
@@ -118,17 +119,19 @@ export default function ElectionResults() {
 
   return (
     <div>
-      {electionResult.positions.map(
-        (position: PositionResult, index: number) => (
-          <Position position={position} key={index} />
-        )
-      )}
-      <br />
-      {/**
+      <Fade duration={500} triggerOnce>
+        {electionResult.positions.map(
+          (position: PositionResult, index: number) => (
+            <Position position={position} key={index} />
+          )
+        )}
+        <br />
+        {/**
       <code>
         <pre>{JSON.stringify(electionResult, null, 2)}</pre>
       </code>
        */}
+      </Fade>
     </div>
   );
 }

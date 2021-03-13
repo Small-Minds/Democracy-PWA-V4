@@ -6,6 +6,7 @@ import React, {
   useMemo,
   useState,
 } from 'react';
+import { Fade } from 'react-awesome-reveal';
 import { useTranslation } from 'react-i18next';
 import { FlexboxGrid } from 'rsuite';
 import Loading from '../pages/Loading';
@@ -77,9 +78,11 @@ const PublicElectionList: FC<PELProps> = ({ filterDomain = false }) => {
     );
   return (
     <div>
-      {electionList.map((election, index) => (
-        <ElectionListElement key={index} index={index} election={election} />
-      ))}
+      <Fade duration={500} triggerOnce>
+        {electionList.map((election, index) => (
+          <ElectionListElement key={index} index={index} election={election} />
+        ))}
+      </Fade>
       <br />
     </div>
   );

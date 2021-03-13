@@ -7,6 +7,7 @@ import React, {
   useMemo,
   useState,
 } from 'react';
+import { Fade } from 'react-awesome-reveal';
 import { useTranslation } from 'react-i18next';
 import {
   Route,
@@ -178,36 +179,32 @@ const Information: FC<ElectionSubpage> = ({ id, election, updateElection }) => {
   const [t] = useTranslation();
   return (
     <Fragment>
-      <h3>{t('electionPage.infoSubpageTitle')}</h3>
-      <br />
-      <div>
-        {election.description.split('\n').map((line, index) => (
-          <p key={index}>{line}</p>
-        ))}
-      </div>
-      <br />
-      <br />
-      <ElectionManager election={election} />
-      <br />
-      <br />
-      <ElectionSteps election={election} />
-      {/* <ElectionTimeline election={election} /> */}
-      <br />
-      <h4>{t('electionPage.infoSubpagePostionSectionTitle')}</h4>
-      <br />
-      <PositionList
-        election={election}
-        updateElection={() => {
-          if (updateElection) updateElection(election.id);
-        }}
-      />
-      <br />
-      {/**
-      <h4>Raw Data</h4>
-      <code>
-        <pre>{JSON.stringify(election, null, 2)}</pre>
-      </code>
-       */}
+      <Fade cascade triggerOnce damping={0.1} duration={200}>
+        <h3>{t('electionPage.infoSubpageTitle')}</h3>
+        <br />
+        <div>
+          {election.description.split('\n').map((line, index) => (
+            <p key={index}>{line}</p>
+          ))}
+        </div>
+        <br />
+        <br />
+        <ElectionManager election={election} />
+        <br />
+        <br />
+        <ElectionSteps election={election} />
+        {/* <ElectionTimeline election={election} /> */}
+        <br />
+        <h4>{t('electionPage.infoSubpagePostionSectionTitle')}</h4>
+        <br />
+        <PositionList
+          election={election}
+          updateElection={() => {
+            if (updateElection) updateElection(election.id);
+          }}
+        />
+        <br />
+      </Fade>
     </Fragment>
   );
 };
@@ -217,14 +214,16 @@ const Positions: FC<ElectionSubpage> = ({ id, election, updateElection }) => {
   const [t] = useTranslation();
   return (
     <Fragment>
-      <h3>{t('electionPage.positionSectionTilte')}</h3>
-      <br />
-      <PositionList
-        election={election}
-        updateElection={() => {
-          if (updateElection) updateElection(election.id);
-        }}
-      />
+      <Fade cascade triggerOnce damping={0.1} duration={200}>
+        <h3>{t('electionPage.positionSectionTilte')}</h3>
+        <br />
+        <PositionList
+          election={election}
+          updateElection={() => {
+            if (updateElection) updateElection(election.id);
+          }}
+        />
+      </Fade>
     </Fragment>
   );
 };
@@ -234,8 +233,10 @@ const Platforms: FC<ElectionSubpage> = ({ id, election }) => {
   const [t] = useTranslation();
   return (
     <Fragment>
-      <h3>{t('electionPage.platformSectionTitle')}</h3>
-      <PlatformList election={election} />
+      <Fade cascade triggerOnce damping={0.1} duration={200}>
+        <h3>{t('electionPage.platformSectionTitle')}</h3>
+        <PlatformList election={election} />
+      </Fade>
     </Fragment>
   );
 };

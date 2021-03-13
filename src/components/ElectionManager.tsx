@@ -1,4 +1,5 @@
 import React, { FC, Fragment, useMemo } from 'react';
+import { Fade } from 'react-awesome-reveal';
 import Gravatar from 'react-gravatar';
 import { useTranslation } from 'react-i18next';
 import { Avatar, FlexboxGrid, Icon } from 'rsuite';
@@ -23,8 +24,7 @@ const ElectionManager: FC<EMProps> = ({ election }) => {
       <FlexboxGrid align="middle">
         <FlexboxGrid.Item>
           <Avatar style={{ margin: 7, marginLeft: 2, marginRight: 2 }}>
-            {/** Render initials or avatar as fallback */}
-            <b>{userImage || initials || <Icon icon="avatar" />}</b>
+            {userImage && <Fade triggerOnce duration={600}>{userImage}</Fade>}
           </Avatar>
         </FlexboxGrid.Item>
         <FlexboxGrid.Item style={{ padding: 10 }}>

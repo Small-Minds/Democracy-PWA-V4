@@ -1,4 +1,5 @@
 import React, { Fragment, useMemo, useState } from 'react';
+import { Fade } from 'react-awesome-reveal';
 import Gravatar from 'react-gravatar';
 import { useTranslation } from 'react-i18next';
 import { Avatar, Button, FlexboxGrid, Icon, Modal } from 'rsuite';
@@ -33,7 +34,7 @@ export default function CandidateInfo({ candidate }: CandidateInfoModalInput) {
             marginTop: 10,
           }}
         >
-          {userImage}
+          {userImage && <Fade triggerOnce duration={600}>{userImage}</Fade>}
         </Avatar>
         <h5 style={{ marginTop: 5, textAlign: 'center' }}>
           {candidate.user.name}
@@ -60,7 +61,7 @@ export default function CandidateInfo({ candidate }: CandidateInfoModalInput) {
                   marginRight: 'auto',
                 }}
               >
-                {userImage}
+                {userImage && <Fade triggerOnce duration={600}>{userImage}</Fade>}
               </Avatar>
             </FlexboxGrid.Item>
             <FlexboxGrid.Item style={{ padding: 10 }}>

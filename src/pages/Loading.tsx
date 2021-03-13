@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import { Fade } from 'react-awesome-reveal';
 import { FlexboxGrid, Loader } from 'rsuite';
 import FlexboxGridItem from 'rsuite/lib/FlexboxGrid/FlexboxGridItem';
 
@@ -10,7 +11,9 @@ const Loading: FC<{ half?: boolean }> = ({ half }) => {
       style={{ height: half ? '30vh' : '90vh' }}
     >
       <FlexboxGridItem>
-        <Loader size="lg" speed="slow" vertical />
+        <Fade>
+          <Loader size="lg" speed="slow" vertical />
+        </Fade>
       </FlexboxGridItem>
     </FlexboxGrid>
   );

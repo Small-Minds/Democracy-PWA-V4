@@ -1,4 +1,5 @@
 import React, { Fragment, useContext, useMemo } from 'react';
+import { Fade } from 'react-awesome-reveal';
 import Gravatar from 'react-gravatar';
 import { useTranslation } from 'react-i18next';
 import { Avatar } from 'rsuite';
@@ -22,7 +23,7 @@ export default function ManageAccount() {
       <br />
       <div>
         <Avatar size="lg" style={{ marginTop: 20, marginBottom: 20 }}>
-          {userImage}
+          {userImage && <Fade triggerOnce duration={600}>{userImage}</Fade>}
         </Avatar>
       </div>
       <a

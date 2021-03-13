@@ -1,4 +1,5 @@
 import React, { FC, useContext, useState } from 'react';
+import { Fade } from 'react-awesome-reveal';
 import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
 import { Button, Col, FlexboxGrid, List, Notification } from 'rsuite';
@@ -52,59 +53,61 @@ const PositionList: FC<PLProps> = ({ election, updateElection }) => {
     <div>
       {election.positions.length !== 0 ? (
         <List>
-          {election.positions.map((position, index) => (
-            <List.Item key={index}>
-              <FlexboxGrid align="middle" justify="space-between">
-                <FlexboxGrid.Item
-                  componentClass={Col}
-                  colspan={24}
-                  sm={showDelete ? 12 : 16}
-                >
-                  <h5>{position.title}</h5>
-                  {position.description.split('\n').map((line, index) => (
-                    <p key={index}>{line}</p>
-                  ))}
-                </FlexboxGrid.Item>
-                {showDelete && (
+          <Fade cascade triggerOnce damping={0.2} duration={200} delay={100}>
+            {election.positions.map((position, index) => (
+              <List.Item key={index}>
+                <FlexboxGrid align="middle" justify="space-between">
+                  <FlexboxGrid.Item
+                    componentClass={Col}
+                    colspan={24}
+                    sm={showDelete ? 12 : 16}
+                  >
+                    <h5>{position.title}</h5>
+                    {position.description.split('\n').map((line, index) => (
+                      <p key={index}>{line}</p>
+                    ))}
+                  </FlexboxGrid.Item>
+                  {showDelete && (
+                    <FlexboxGrid.Item
+                      componentClass={Col}
+                      colspan={showDelete ? 12 : 24}
+                      sm={6}
+                    >
+                      <Button
+                        appearance="primary"
+                        color="red"
+                        onClick={() => {
+                          setPositionId(position.id);
+                          setIsDeletePositionModalOpen(true);
+                        }}
+                        block
+                      >
+                        {t('general.delete')}
+                      </Button>
+                    </FlexboxGrid.Item>
+                  )}
                   <FlexboxGrid.Item
                     componentClass={Col}
                     colspan={showDelete ? 12 : 24}
                     sm={6}
                   >
+                    {/*Navigate to the position application form*/}
                     <Button
-                      appearance="primary"
-                      color="red"
-                      onClick={() => {
-                        setPositionId(position.id);
-                        setIsDeletePositionModalOpen(true);
-                      }}
                       block
+                      disabled={
+                        !election.applications_open || !election.domain_match
+                      }
+                      onClick={() => {
+                        history.push(`/apply/${position.id}`);
+                      }}
                     >
-                      {t('general.delete')}
+                      {t('positionList.applyBtn')}
                     </Button>
                   </FlexboxGrid.Item>
-                )}
-                <FlexboxGrid.Item
-                  componentClass={Col}
-                  colspan={showDelete ? 12 : 24}
-                  sm={6}
-                >
-                  {/*Navigate to the position application form*/}
-                  <Button
-                    block
-                    disabled={
-                      !election.applications_open || !election.domain_match
-                    }
-                    onClick={() => {
-                      history.push(`/apply/${position.id}`);
-                    }}
-                  >
-                    {t('positionList.applyBtn')}
-                  </Button>
-                </FlexboxGrid.Item>
-              </FlexboxGrid>
-            </List.Item>
-          ))}
+                </FlexboxGrid>
+              </List.Item>
+            ))}
+          </Fade>
           <ConfirmModal
             modalTitle={t('positionList.confirmModalTitle')}
             modalBody={t('positionList.confirmModalBody')}

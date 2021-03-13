@@ -1,4 +1,5 @@
 import React, { Fragment, useContext, useEffect, useState } from 'react';
+import { Fade } from 'react-awesome-reveal';
 import { useTranslation } from 'react-i18next';
 import Loading from '../pages/Loading';
 import { Election, getElectionList } from '../utils/api/ElectionManagement';
@@ -41,14 +42,16 @@ export default function ElectionList() {
 
   return (
     <div>
-      {electionList.map((election, index) => (
-        <ElectionListElement
-          key={index}
-          index={index}
-          election={election}
-          managerList
-        />
-      ))}
+      <Fade duration={500} triggerOnce>
+        {electionList.map((election, index) => (
+          <ElectionListElement
+            key={index}
+            index={index}
+            election={election}
+            managerList
+          />
+        ))}
+      </Fade>
     </div>
   );
 }

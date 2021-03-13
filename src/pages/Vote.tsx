@@ -1,5 +1,6 @@
 import { AxiosError, AxiosResponse } from 'axios';
 import React, { Fragment, useContext, useEffect, useState } from 'react';
+import { Fade } from 'react-awesome-reveal';
 import { useTranslation } from 'react-i18next';
 import { useHistory, useParams } from 'react-router-dom';
 import {
@@ -172,15 +173,17 @@ export default function Vote() {
     );
 
   return (
-    <div>
-      <h3>{`${t('votePage.ballotElectionTitle')} ${ballot.title}`}</h3>
-      <p>
-        {`${t('votePage.ballotPositionTitle')} ${ballot.positions
-          .map((pos) => pos.title)
-          .join(', ')}`}
-      </p>
-      <p>{t('votePage.ballotViewCandidateInfo')}</p>
-      <br />
+    <Fragment>
+      <Fade cascade triggerOnce damping={0.1} duration={200}>
+        <h3>{`${t('votePage.ballotElectionTitle')} ${ballot.title}`}</h3>
+        <p>
+          {`${t('votePage.ballotPositionTitle')} ${ballot.positions
+            .map((pos) => pos.title)
+            .join(', ')}`}
+        </p>
+        <p>{t('votePage.ballotViewCandidateInfo')}</p>
+        <br />
+      </Fade>
       <Form
         onChange={(newData) => setFormData(newData)}
         checkTrigger="none"
@@ -190,85 +193,87 @@ export default function Vote() {
         fluid
       >
         <FormGroup>
-          {ballot.positions.map((pos, index) => (
-            <div key={index}>
-              <Divider>
-                <h3>{pos.title}</h3>
-              </Divider>
-              <br />
-              <h5>{t('votePage.ballotPosDescriptionTitle')}</h5>
-              <p>{pos.description}</p>
-              <br />
-              {pos.candidates.length !== 0 ? (
-                <Fragment>
-                  <h5>{t('votePage.ballotPosCandidateTitle')}</h5>
-                  <br />
+          <Fade cascade triggerOnce damping={0.1} duration={200} delay={100}>
+            {ballot.positions.map((pos, index) => (
+              <div key={index}>
+                <Divider>
+                  <h3>{pos.title}</h3>
+                </Divider>
+                <br />
+                <h5>{t('votePage.ballotPosDescriptionTitle')}</h5>
+                <p>{pos.description}</p>
+                <br />
+                {pos.candidates.length !== 0 ? (
+                  <Fragment>
+                    <h5>{t('votePage.ballotPosCandidateTitle')}</h5>
+                    <br />
 
-                  {
-                    <FlexboxGrid align="middle">
+                    {
+                      <FlexboxGrid align="middle">
+                        {pos.candidates.map((candidate, index) => (
+                          <FlexboxGrid.Item
+                            key={index}
+                            style={{ paddingRight: 10, width: 180 }}
+                          >
+                            <CandidateInfo candidate={candidate} />
+                          </FlexboxGrid.Item>
+                        ))}
+                      </FlexboxGrid>
+                    }
+
+                    <br />
+                    <h5>{t('votePage.ballotVoteSectionTitle')}</h5>
+                    <br />
+                    <FormControl name={pos.id} accepter={RadioGroup} required>
                       {pos.candidates.map((candidate, index) => (
-                        <FlexboxGrid.Item
-                          key={index}
-                          style={{ paddingRight: 10, width: 180 }}
-                        >
-                          <CandidateInfo candidate={candidate} />
-                        </FlexboxGrid.Item>
+                        <Radio key={index} value={candidate.id}>
+                          <b>{candidate.user.name}</b>
+                        </Radio>
                       ))}
-                    </FlexboxGrid>
-                  }
-
-                  <br />
-                  <h5>{t('votePage.ballotVoteSectionTitle')}</h5>
-                  <br />
-                  <FormControl name={pos.id} accepter={RadioGroup} required>
-                    {pos.candidates.map((candidate, index) => (
-                      <Radio key={index} value={candidate.id}>
-                        <b>{candidate.user.name}</b>
+                      <Radio value={`abstain`}>
+                        <b>{t('v2.votePage.option.abstain')}</b>
                       </Radio>
-                    ))}
-                    <Radio value={`abstain`}>
-                      <b>{t('v2.votePage.option.abstain')}</b>
-                    </Radio>
-                    <Radio value={`no_confidence`}>
-                      <b>{t('v2.votePage.option.noConfidence')}</b>
-                    </Radio>
-                  </FormControl>
-                </Fragment>
-              ) : (
-                <Fragment>
-                  <p>
-                    <b>{t('v2.votePage.noContest')}</b>
-                  </p>
-                  <br />
-                </Fragment>
-              )}
-            </div>
-          ))}
-          <Divider />
-          <FlexboxGrid justify="end">
-            <FlexboxGrid.Item>
-              <ButtonToolbar>
-                <Button
-                  appearance="primary"
-                  size="lg"
-                  type="submit"
-                  onClick={() => submit()}
-                >
-                  {t('votePage.ballotSubBtn')}
-                </Button>
-                <Button
-                  size="lg"
-                  onClick={() => {
-                    history.goBack();
-                  }}
-                >
-                  {t('votePage.ballotCancelBtn')}
-                </Button>
-              </ButtonToolbar>
-            </FlexboxGrid.Item>
-          </FlexboxGrid>
+                      <Radio value={`no_confidence`}>
+                        <b>{t('v2.votePage.option.noConfidence')}</b>
+                      </Radio>
+                    </FormControl>
+                  </Fragment>
+                ) : (
+                  <Fragment>
+                    <p>
+                      <b>{t('v2.votePage.noContest')}</b>
+                    </p>
+                    <br />
+                  </Fragment>
+                )}
+              </div>
+            ))}
+            <Divider />
+            <FlexboxGrid justify="end">
+              <FlexboxGrid.Item>
+                <ButtonToolbar>
+                  <Button
+                    appearance="primary"
+                    size="lg"
+                    type="submit"
+                    onClick={() => submit()}
+                  >
+                    {t('votePage.ballotSubBtn')}
+                  </Button>
+                  <Button
+                    size="lg"
+                    onClick={() => {
+                      history.goBack();
+                    }}
+                  >
+                    {t('votePage.ballotCancelBtn')}
+                  </Button>
+                </ButtonToolbar>
+              </FlexboxGrid.Item>
+            </FlexboxGrid>
+          </Fade>
         </FormGroup>
       </Form>
-    </div>
+    </Fragment>
   );
 }

@@ -3,6 +3,7 @@ import { Icon, Loader, Steps, Timeline } from 'rsuite';
 import { ElectionDetails } from '../utils/api/ElectionManagement';
 import moment from 'moment';
 import { useTranslation } from 'react-i18next';
+import { Fade } from 'react-awesome-reveal';
 
 interface Props {
   election: ElectionDetails;

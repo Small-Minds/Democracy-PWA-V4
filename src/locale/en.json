@@ -364,9 +364,9 @@
       },
       "electionTimeline": {
         "title": "Election Timeline",
-        "appEndAndReview": "Application period ends, platforms reviewed by manager",
+        "appEndAndReview": "Application period ends, platforms under review by manager",
         "appRelease": "Candidate Platforms released",
-        "voteEndAndReview": "Voting period ends, results reviewed by manager",
+        "voteEndAndReview": "Voting period ends, results under review by manager",
         "voteRelease": "Election results released"
       },
       "general": {

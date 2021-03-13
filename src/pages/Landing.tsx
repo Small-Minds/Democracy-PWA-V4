@@ -1,4 +1,5 @@
 import React, { Fragment, useEffect } from 'react';
+import { Fade } from 'react-awesome-reveal';
 import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
 import LoginForm from '../components/LoginForm';
@@ -17,12 +18,14 @@ function Landing() {
 
   return (
     <Fragment>
-      <h1>{t('general.app.name')}</h1>
-      <br />
-      <p>{t('mainPage.slogan')}</p>
-      <br />
-      <LoginForm />
-      <SignupForm />
+      <Fade cascade triggerOnce duration={300} damping={0.3} delay={100}>
+        <h1>{t('general.app.name')}</h1>
+        <br />
+        <p>{t('mainPage.slogan')}</p>
+        <br />
+        <LoginForm />
+        <SignupForm />
+      </Fade>
     </Fragment>
   );
 }

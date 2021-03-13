@@ -7,6 +7,7 @@ import React, {
   useMemo,
   useState,
 } from 'react';
+import { Fade } from 'react-awesome-reveal';
 import Gravatar from 'react-gravatar';
 import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
@@ -19,6 +20,7 @@ import {
   Message,
   Placeholder,
 } from 'rsuite';
+import Loading from '../pages/Loading';
 import {
   CandidateWithUserDetails,
   ElectionDetails,
@@ -41,18 +43,15 @@ const CandidateListItem: FC<{ candidate: CandidateWithUserDetails }> = ({
 }) => {
   const userImage = useMemo(() => {
     if (!candidate || !candidate.user || !candidate.user.email) return null;
-    return (
-      <Avatar>
-        <Gravatar email={candidate.user.email} size={40} rating="pg" />
-      </Avatar>
-    );
+    return <Gravatar email={candidate.user.email} size={40} rating="pg" />;
   }, [candidate]);
+
   if (!candidate || !candidate.user || !candidate.user.email) return null;
   return (
     <Fragment>
       <FlexboxGrid justify="start" align="middle" style={{ marginBottom: 10 }}>
         <FlexboxGrid.Item style={{ paddingRight: 10 }}>
-          {userImage}
+          <Avatar>{userImage && <Fade triggerOnce duration={600}>{userImage}</Fade>}</Avatar>
         </FlexboxGrid.Item>
         <FlexboxGrid.Item componentClass={'div'}>
           <h5>{candidate.user.name}</h5>
@@ -81,31 +80,38 @@ const PlatformDisplay: FC<PositionDisplayProps> = ({ position }) => {
     });
   }, [position]);
   const [t] = useTranslation();
+
+  if (loading) return <Loading half />;
+
   return (
     <Fragment>
-      <br />
-      <h3>{position.title}</h3>
-      <p>
-        <i>{position.description}</i>
-      </p>
-      <br />
-      <h4>
-        {candidates.length !== 0
-          ? t('platformList.title')
-          : t('platformList.emptyTitle')}
-      </h4>
-      <List style={{ marginTop: 10, marginBottom: 20 }}>
-        {loading && (
-          <List.Item>
-            <Placeholder.Paragraph rows={3} active />
-          </List.Item>
-        )}
-        {candidates.map((candidate, index) => (
-          <List.Item key={index}>
-            <CandidateListItem candidate={candidate} />
-          </List.Item>
-        ))}
-      </List>
+      <Fade cascade triggerOnce damping={0.1} duration={200}>
+        <br />
+        <h3>{position.title}</h3>
+        <p>
+          <i>{position.description}</i>
+        </p>
+        <br />
+        <h4>
+          {candidates.length !== 0
+            ? t('platformList.title')
+            : t('platformList.emptyTitle')}
+        </h4>
+        <List style={{ marginTop: 10, marginBottom: 20 }}>
+          {loading && (
+            <List.Item>
+              <Placeholder.Paragraph rows={3} active />
+            </List.Item>
+          )}
+          <Fade cascade triggerOnce damping={0.1} duration={200} delay={100}>
+            {candidates.map((candidate, index) => (
+              <List.Item key={index}>
+                <CandidateListItem candidate={candidate} />
+              </List.Item>
+            ))}
+          </Fade>
+        </List>
+      </Fade>
     </Fragment>
   );
 };
@@ -189,9 +195,11 @@ const PlatformList: FC<PLProps> = ({ election }) => {
       )}
       {election.positions.length !== 0 ? (
         <Fragment>
-          {election.positions.map((position, index) => (
-            <PlatformDisplay key={index} position={position} />
-          ))}
+          <Fade cascade triggerOnce damping={0.1} duration={200} delay={100}>
+            {election.positions.map((position, index) => (
+              <PlatformDisplay key={index} position={position} />
+            ))}
+          </Fade>
         </Fragment>
       ) : (
         <FlexboxGrid>

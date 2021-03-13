@@ -1,4 +1,5 @@
-import React, { useContext, useMemo } from 'react';
+import React, { Fragment, useContext, useMemo } from 'react';
+import { Fade, Slide } from 'react-awesome-reveal';
 import Gravatar from 'react-gravatar';
 import { useTranslation } from 'react-i18next';
 import { useHistory, useLocation } from 'react-router-dom';
@@ -36,53 +37,55 @@ function AccountMenu() {
   }, [user]);
 
   return (
-    <Dropdown
-      placement="bottomEnd"
-      renderTitle={() => (
-        <Avatar style={{ margin: 7, marginLeft: 2, marginRight: 2 }}>
-          {/** Render initials or avatar as fallback */}
-          <b>{userImage || initials() || <Icon icon="avatar" />}</b>
-        </Avatar>
-      )}
-    >
-      <Dropdown.Item panel style={{ padding: 10 }}>
-        <p>
-          <b>{user?.user.name}</b>
-        </p>
-        <p>{user?.user.email}</p>
-      </Dropdown.Item>
-      <Dropdown.Item divider />
-      <Dropdown.Item
-        icon={<Icon icon="gear-circle" />}
-        onSelect={() => {
-          history.push('/account');
-        }}
+      <Dropdown
+        placement="bottomEnd"
+        renderTitle={() => (
+          <Fragment>
+            <Avatar style={{ margin: 7, marginLeft: 2, marginRight: 2 }}>
+              {/** Render initials or avatar as fallback */}
+              {userImage && <Fade triggerOnce duration={600}>{userImage}</Fade>}
+            </Avatar>
+          </Fragment>
+        )}
       >
-        {t('mainPage.accountSetting')}
-      </Dropdown.Item>
-      <Dropdown.Item divider />
-      <Dropdown.Item
-        icon={<Icon icon="sign-out" />}
-        onSelect={() => {
-          clearTokens();
-          if (!ctx) return;
-          ctx.setCredentials({
-            authenticated: false,
-            token: '',
-            tokenExpiry: undefined,
-            refreshToken: '',
-            refreshTokenExpiry: undefined,
-          });
-          history.push('/');
-          Notification['success']({
-            title: t('mainPage.logoutSuccessTitle'),
-            description: t('mainPage.logoutSuccessDescription'),
-          });
-        }}
-      >
-        {t('mainPage.logoutButton')}
-      </Dropdown.Item>
-    </Dropdown>
+        <Dropdown.Item panel style={{ padding: 10 }}>
+          <p>
+            <b>{user?.user.name}</b>
+          </p>
+          <p>{user?.user.email}</p>
+        </Dropdown.Item>
+        <Dropdown.Item divider />
+        <Dropdown.Item
+          icon={<Icon icon="gear-circle" />}
+          onSelect={() => {
+            history.push('/account');
+          }}
+        >
+          {t('mainPage.accountSetting')}
+        </Dropdown.Item>
+        <Dropdown.Item divider />
+        <Dropdown.Item
+          icon={<Icon icon="sign-out" />}
+          onSelect={() => {
+            clearTokens();
+            if (!ctx) return;
+            ctx.setCredentials({
+              authenticated: false,
+              token: '',
+              tokenExpiry: undefined,
+              refreshToken: '',
+              refreshTokenExpiry: undefined,
+            });
+            history.push('/');
+            Notification['success']({
+              title: t('mainPage.logoutSuccessTitle'),
+              description: t('mainPage.logoutSuccessDescription'),
+            });
+          }}
+        >
+          {t('mainPage.logoutButton')}
+        </Dropdown.Item>
+      </Dropdown>
   );
 }
 

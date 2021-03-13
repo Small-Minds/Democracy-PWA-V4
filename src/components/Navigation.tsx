@@ -15,22 +15,6 @@ function AccountMenu() {
   const [t] = useTranslation();
   const user = useContext(User);
 
-  /**
-   * Extracts initials from the present userInfo
-   */
-  const initials = (): string => {
-    if (!user || !user.user.name) return '';
-    const elems = user.user.name.split(' ');
-    if (elems.length == 1) {
-      return elems[0].charAt(0).toUpperCase();
-    } else if (elems.length >= 2) {
-      return (
-        elems[0].charAt(0).toUpperCase() + elems[1].charAt(0).toUpperCase()
-      );
-    }
-    return '';
-  };
-
   const userImage = useMemo(() => {
     if (!user || !user.user || !user.user.email) return null;
     return <Gravatar email={user?.user.email} size={40} rating="pg" />;
@@ -43,8 +27,9 @@ function AccountMenu() {
         <Fragment>
           <Avatar style={{ margin: 7, marginLeft: 2, marginRight: 2 }}>
             {/** Render initials or avatar as fallback */}
+
             {userImage && (
-              <Fade triggerOnce duration={600} delay={1}>
+              <Fade triggerOnce duration={600} delay={100}>
                 <div>{userImage}</div>
               </Fade>
             )}
@@ -95,7 +80,7 @@ function AccountMenu() {
 
 function Navigation() {
   const ctx = useContext(Credentials);
-  const [t, i18n] = useTranslation();
+  const [t] = useTranslation();
   const history = useHistory();
   const location = useLocation();
 

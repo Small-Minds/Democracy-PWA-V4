@@ -5,16 +5,11 @@ import i18n from './i18n';
 import 'rsuite/dist/styles/rsuite-default.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { Fade } from 'react-awesome-reveal';
 
 ReactDOM.render(
   <React.StrictMode>
     <I18nextProvider i18n={i18n}>
-      {/* <Fade triggerOnce delay={100} duration={800}> */}
-        <div>
-          <App />
-        </div>
-      {/* </Fade> */}
+      <App />
     </I18nextProvider>
   </React.StrictMode>,
   document.getElementById('root')

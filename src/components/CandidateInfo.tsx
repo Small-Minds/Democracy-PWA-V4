@@ -35,7 +35,7 @@ export default function CandidateInfo({ candidate }: CandidateInfoModalInput) {
           }}
         >
           {userImage && (
-            <Fade triggerOnce duration={600} delay={0}>
+            <Fade triggerOnce duration={600} delay={100}>
               <div>{userImage}</div>
             </Fade>
           )}
@@ -66,7 +66,7 @@ export default function CandidateInfo({ candidate }: CandidateInfoModalInput) {
                 }}
               >
                 {userImage && (
-                  <Fade triggerOnce duration={600}>
+                  <Fade triggerOnce duration={600} delay={100}>
                     <div>{userImage}</div>
                   </Fade>
                 )}

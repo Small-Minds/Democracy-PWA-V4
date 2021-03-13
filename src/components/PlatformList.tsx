@@ -53,7 +53,7 @@ const CandidateListItem: FC<{ candidate: CandidateWithUserDetails }> = ({
         <FlexboxGrid.Item style={{ paddingRight: 10 }}>
           <Avatar>
             {userImage && (
-              <Fade triggerOnce duration={600}>
+              <Fade triggerOnce duration={600} delay={100}>
                 <div>{userImage}</div>
               </Fade>
             )}
@@ -92,7 +92,7 @@ const PlatformDisplay: FC<PositionDisplayProps> = ({ position }) => {
 
   return (
     <Fragment>
-      <Fade cascade triggerOnce damping={0.1} duration={200}>
+      <Fade cascade triggerOnce damping={0.1} duration={100}>
         <div>
           <br />
           <h3>{position.title}</h3>
@@ -210,7 +210,7 @@ const PlatformList: FC<PLProps> = ({ election }) => {
       )}
       {election.positions.length !== 0 ? (
         <Fragment>
-          <Fade cascade triggerOnce damping={0.1} duration={200} delay={100}>
+          <Fade cascade triggerOnce damping={0.1} duration={200} delay={50}>
             {election.positions.map((position, index) => (
               <div>
                 <PlatformDisplay key={index} position={position} />

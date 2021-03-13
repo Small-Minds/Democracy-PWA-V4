@@ -29,6 +29,7 @@ import EditElectionModal from '../components/EditElectionModal';
 import EditWhiteListModal from '../components/EditWhiteListModal';
 import ElectionManager from '../components/ElectionManager';
 import ElectionResults from '../components/ElectionResults';
+import ElectionSteps from '../components/ElectionSteps';
 import ElectionTimeline from '../components/ElectionTimeline';
 import PlatformList from '../components/PlatformList';
 import PositionList from '../components/PositionList';
@@ -189,7 +190,8 @@ const Information: FC<ElectionSubpage> = ({ id, election, updateElection }) => {
       <ElectionManager election={election} />
       <br />
       <br />
-      <ElectionTimeline election={election} />
+      <ElectionSteps election={election} />
+      {/* <ElectionTimeline election={election} /> */}
       <br />
       <h4>{t('electionPage.infoSubpagePostionSectionTitle')}</h4>
       <br />
@@ -327,11 +329,13 @@ const Election: FC<RouteComponentProps> = ({ match }) => {
         ) : (
           <Fragment>
             <p>{t('v2.labels.processingResults')}</p>
+            <br />
+            <ElectionManager election={election} />
+            <br />
+            <br />
+            <ElectionSteps election={election} />
           </Fragment>
         )}
-        <br />
-        <br />
-        <ElectionManager election={election} />
         <br />
       </Fragment>
     );

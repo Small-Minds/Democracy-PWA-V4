@@ -1,11 +1,10 @@
 import React, { Fragment } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Panel } from 'rsuite';
 import ElectionList from '../components/ElectionList';
 import NewElectionButton from '../components/NewElectionButton';
 
 function HomeSetup() {
-  const [t, i18n] = useTranslation();
+  const [t] = useTranslation();
 
   return (
     <Fragment>
@@ -15,9 +14,11 @@ function HomeSetup() {
       <NewElectionButton />
       <br />
       <br />
-      <Panel header={<h2>{t('setupHomePage.electionPanelTitle')}</h2>} bordered>
-        <ElectionList />
-      </Panel>
+      <br />
+      <h2>{t('setupHomePage.electionPanelTitle')}</h2>
+      <br />
+      <ElectionList />
+      <br />
     </Fragment>
   );
 }

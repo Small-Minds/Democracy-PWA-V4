@@ -362,6 +362,13 @@
         "processingResults": "Processing Results",
         "resultsReleased": "Results Released"
       },
+      "electionTimeline": {
+        "title": "Election Timeline",
+        "appEndAndReview": "Application period ends, platforms reviewed by manager",
+        "appRelease": "Candidate Platforms released",
+        "voteEndAndReview": "Voting period ends, results reviewed by manager",
+        "voteRelease": "Election results released"
+      },
       "general": {
         "manager": "Manager"
       }

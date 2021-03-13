@@ -42,7 +42,7 @@ export default function ElectionList() {
 
   return (
     <div>
-      <Fade duration={500} triggerOnce>
+      <Fade duration={500} triggerOnce delay={10}>
         {electionList.map((election, index) => (
           <ElectionListElement
             key={index}

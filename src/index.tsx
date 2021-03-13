@@ -10,7 +10,7 @@ import { Fade } from 'react-awesome-reveal';
 ReactDOM.render(
   <React.StrictMode>
     <I18nextProvider i18n={i18n}>
-      <Fade triggerOnce delay={100}>
+      <Fade triggerOnce delay={100} duration={800}>
         <App />
       </Fade>
     </I18nextProvider>

@@ -38,8 +38,9 @@ const PublicElectionList: FC<PELProps> = ({ filterDomain = false }) => {
   }, [user]);
 
   useEffect(() => {
+    if (!ctx) return;
     // Return if the list has already been populated.
-    if (electionList.length > 0) return;
+    if (electionList.length) return;
     // If logged in, attempt to get the list of elections.
     getPublicElectionList()
       .then((res) => {
@@ -78,7 +79,7 @@ const PublicElectionList: FC<PELProps> = ({ filterDomain = false }) => {
     );
   return (
     <div>
-      <Fade duration={500} triggerOnce delay={4}>
+      <Fade cascade duration={250} triggerOnce delay={0} damping={0.1}>
         {electionList.map((election, index) => (
           <ElectionListElement key={index} index={index} election={election} />
         ))}

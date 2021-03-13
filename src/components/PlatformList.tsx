@@ -54,7 +54,7 @@ const CandidateListItem: FC<{ candidate: CandidateWithUserDetails }> = ({
           <Avatar>
             {userImage && (
               <Fade triggerOnce duration={600}>
-                {userImage}
+                <div>{userImage}</div>
               </Fade>
             )}
           </Avatar>
@@ -93,31 +93,39 @@ const PlatformDisplay: FC<PositionDisplayProps> = ({ position }) => {
   return (
     <Fragment>
       <Fade cascade triggerOnce damping={0.1} duration={200}>
-        <br />
-        <h3>{position.title}</h3>
-        <p>
-          <i>{position.description}</i>
-        </p>
-        <br />
-        <h4>
-          {candidates.length !== 0
-            ? t('platformList.title')
-            : t('platformList.emptyTitle')}
-        </h4>
-        <List style={{ marginTop: 10, marginBottom: 20 }}>
-          {loading && (
-            <List.Item>
-              <Placeholder.Paragraph rows={3} active />
-            </List.Item>
-          )}
-          <Fade cascade triggerOnce damping={0.1} duration={200} delay={100}>
-            {candidates.map((candidate, index) => (
-              <List.Item key={index}>
-                <CandidateListItem candidate={candidate} />
+        <div>
+          <br />
+          <h3>{position.title}</h3>
+          <p>
+            <i>{position.description}</i>
+          </p>
+        </div>
+        <div>
+          <br />
+          <h4>
+            {candidates.length !== 0
+              ? t('platformList.title')
+              : t('platformList.emptyTitle')}
+          </h4>
+        </div>
+        <div>
+          <List style={{ marginTop: 10, marginBottom: 20 }}>
+            {loading && (
+              <List.Item>
+                <Placeholder.Paragraph rows={3} active />
               </List.Item>
-            ))}
-          </Fade>
-        </List>
+            )}
+            <Fade cascade triggerOnce damping={0.1} duration={200} delay={100}>
+              {candidates.map((candidate, index) => (
+                <div>
+                  <List.Item key={index}>
+                    <CandidateListItem candidate={candidate} />
+                  </List.Item>
+                </div>
+              ))}
+            </Fade>
+          </List>
+        </div>
       </Fade>
     </Fragment>
   );
@@ -204,7 +212,9 @@ const PlatformList: FC<PLProps> = ({ election }) => {
         <Fragment>
           <Fade cascade triggerOnce damping={0.1} duration={200} delay={100}>
             {election.positions.map((position, index) => (
-              <PlatformDisplay key={index} position={position} />
+              <div>
+                <PlatformDisplay key={index} position={position} />
+              </div>
             ))}
           </Fade>
         </Fragment>

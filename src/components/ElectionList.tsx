@@ -43,14 +43,16 @@ export default function ElectionList() {
   return (
     <div>
       <Fade duration={500} triggerOnce delay={10}>
-        {electionList.map((election, index) => (
-          <ElectionListElement
-            key={index}
-            index={index}
-            election={election}
-            managerList
-          />
-        ))}
+        <div>
+          {electionList.map((election, index) => (
+            <ElectionListElement
+              key={index}
+              index={index}
+              election={election}
+              managerList
+            />
+          ))}
+        </div>
       </Fade>
       <br />
     </div>

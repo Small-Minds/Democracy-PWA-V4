@@ -25,7 +25,7 @@ export default function ManageAccount() {
         <Avatar size="lg" style={{ marginTop: 20, marginBottom: 20 }}>
           {userImage && (
             <Fade triggerOnce duration={600}>
-              {userImage}
+              <div>{userImage}</div>
             </Fade>
           )}
         </Avatar>

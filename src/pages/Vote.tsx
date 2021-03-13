@@ -171,16 +171,18 @@ export default function Vote() {
     );
 
   return (
-    <Fragment>
-      <Fade cascade triggerOnce damping={0.1} duration={200}>
-        <h3>{`${t('votePage.ballotElectionTitle')} ${ballot.title}`}</h3>
-        <p>
-          {`${t('votePage.ballotPositionTitle')} ${ballot.positions
-            .map((pos) => pos.title)
-            .join(', ')}`}
-        </p>
-        <p>{t('votePage.ballotViewCandidateInfo')}</p>
-        <br />
+    <div>
+      <Fade triggerOnce duration={200}>
+        <div>
+          <h3>{`${t('votePage.ballotElectionTitle')} ${ballot.title}`}</h3>
+          <p>
+            {`${t('votePage.ballotPositionTitle')} ${ballot.positions
+              .map((pos) => pos.title)
+              .join(', ')}`}
+          </p>
+          <p>{t('votePage.ballotViewCandidateInfo')}</p>
+          <br />
+        </div>
       </Fade>
       <Form
         onChange={(newData) => setFormData(newData)}
@@ -246,7 +248,11 @@ export default function Vote() {
                 )}
               </div>
             ))}
+          </Fade>
+          <div>
             <Divider />
+          </div>
+          <div>
             <FlexboxGrid justify="end">
               <FlexboxGrid.Item>
                 <ButtonToolbar>
@@ -269,9 +275,9 @@ export default function Vote() {
                 </ButtonToolbar>
               </FlexboxGrid.Item>
             </FlexboxGrid>
-          </Fade>
+          </div>
         </FormGroup>
       </Form>
-    </Fragment>
+    </div>
   );
 }

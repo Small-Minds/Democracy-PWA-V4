@@ -19,12 +19,20 @@ function Landing() {
   return (
     <Fragment>
       <Fade cascade triggerOnce duration={300} damping={0.3} delay={100}>
-        <h1>{t('general.app.name')}</h1>
-        <br />
-        <p>{t('mainPage.slogan')}</p>
-        <br />
-        <LoginForm />
-        <SignupForm />
+        <div>
+          <h1>{t('general.app.name')}</h1>
+          <br />
+        </div>
+        <div>
+          <p>{t('mainPage.slogan')}</p>
+          <br />
+        </div>
+        <div>
+          <LoginForm />
+        </div>
+        <div>
+          <SignupForm />
+        </div>
       </Fade>
     </Fragment>
   );

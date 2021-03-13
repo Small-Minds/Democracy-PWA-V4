@@ -40,29 +40,37 @@ const PublicElectionWelcome: FC = () => {
         <FlexboxGrid.Item colspan={24}>
           <div style={{ textAlign: 'center' }}>
             <Fade cascade triggerOnce duration={300} damping={0.2} delay={100}>
-              <br />
-              <p>{t('v2.labels.invitedToViewElection')}</p>
-              <br />
-              <Panel bordered>
+              <div>
                 <br />
-                <h2>{sparseElectionDetails.title}</h2>
-                <p>{sparseElectionDetails.subtitle}</p>
+                <p>{t('v2.labels.invitedToViewElection')}</p>
                 <br />
-              </Panel>
-              <br />
-              <p>{t('v2.labels.loginToContinue')}</p>
-              <br />
-              <IconButton
-                appearance="primary"
-                size="lg"
-                icon={<Icon icon="arrow-right-line" />}
-                onClick={() => {
-                  history.push('/');
-                }}
-              >
-                {t('general.returnToLogin')}
-              </IconButton>
-              <br />
+              </div>
+              <div>
+                <Panel bordered>
+                  <br />
+                  <h2>{sparseElectionDetails.title}</h2>
+                  <p>{sparseElectionDetails.subtitle}</p>
+                  <br />
+                </Panel>
+              </div>
+              <div>
+                <br />
+                <p>{t('v2.labels.loginToContinue')}</p>
+              </div>
+              <div>
+                <br />
+                <IconButton
+                  appearance="primary"
+                  size="lg"
+                  icon={<Icon icon="arrow-right-line" />}
+                  onClick={() => {
+                    history.push('/');
+                  }}
+                >
+                  {t('general.returnToLogin')}
+                </IconButton>
+                <br />
+              </div>
             </Fade>
           </div>
         </FlexboxGrid.Item>

@@ -121,17 +121,14 @@ export default function ElectionResults() {
   return (
     <div>
       <Fade duration={500} triggerOnce>
-        {electionResult.positions.map(
-          (position: PositionResult, index: number) => (
-            <Position position={position} key={index} />
-          )
-        )}
-        <br />
-        {/**
-      <code>
-        <pre>{JSON.stringify(electionResult, null, 2)}</pre>
-      </code>
-       */}
+        <div>
+          {electionResult.positions.map(
+            (position: PositionResult, index: number) => (
+              <Position position={position} key={index} />
+            )
+          )}
+          <br />
+        </div>
       </Fade>
     </div>
   );

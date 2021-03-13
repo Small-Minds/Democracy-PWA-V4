@@ -26,7 +26,7 @@ const ElectionManager: FC<EMProps> = ({ election }) => {
           <Avatar style={{ margin: 7, marginLeft: 2, marginRight: 2 }}>
             {userImage && (
               <Fade triggerOnce duration={600} delay={0}>
-                {userImage}
+                <div>{userImage}</div>
               </Fade>
             )}
           </Avatar>

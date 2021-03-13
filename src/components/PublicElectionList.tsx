@@ -38,9 +38,15 @@ const PublicElectionList: FC<PELProps> = ({ filterDomain = false }) => {
   }, [user]);
 
   useEffect(() => {
-    if (!ctx) return;
     // Return if the list has already been populated.
-    if (electionList.length) return;
+    if (
+      !ctx ||
+      electionList.length ||
+      !loading ||
+      !ctx.credentials ||
+      !ctx.credentials.authenticated
+    )
+      return;
     // If logged in, attempt to get the list of elections.
     getPublicElectionList()
       .then((res) => {

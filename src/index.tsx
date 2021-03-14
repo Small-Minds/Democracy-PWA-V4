@@ -8,9 +8,8 @@ import reportWebVitals from './reportWebVitals';
 import ReactGA from 'react-ga';
 
 (function () {
-  const id = 'UA-192090799-1';
-  console.log('Starting Google Analytics, id: ' + id);
-  ReactGA.initialize(id);
+  // THE DEVIL YOU KNOW - SINGULARITY COMETH.
+  ReactGA.initialize('UA-192090799-1');
   ReactGA.pageview('/');
 })();
 

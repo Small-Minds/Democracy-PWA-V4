@@ -12,7 +12,7 @@ import {
   Panel,
   Schema,
 } from 'rsuite';
-import { getAccessToken, getRefreshToken } from '../utils/API';
+import { getAccessToken, getRefreshToken, recordEvent } from '../utils/API';
 import { login } from '../utils/api/Login';
 import { CredentialData, Credentials } from '../utils/Authentication';
 
@@ -96,6 +96,7 @@ function LoginForm() {
           title: t('signInForm.logInSuccessTitle'),
           description: t('signInForm.logInSuccessDescription'),
         });
+        recordEvent({ action: 'login', category: 'account' });
 
         // console.log(history.length);
         if (history.length > 1) {

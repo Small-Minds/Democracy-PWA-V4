@@ -21,7 +21,7 @@ export type AnalyticsEvent = {
   action: string;
 }
 
-export const recordEvent = (input: AnalyticsEvent) => {
+export const recordEvent = async (input: AnalyticsEvent) => {
   ReactGA.event(input);
 } 
 

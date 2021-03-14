@@ -10,6 +10,7 @@ import ReactGA from 'react-ga';
 // THE DEVIL YOU KNOW - SINGULARITY COMETH.
 ReactGA.initialize('UA-192090799-1');
 ReactGA.pageview(window.location.pathname);
+ReactGA.set({ page: window.location.pathname });
 
 ReactDOM.render(
   <React.StrictMode>

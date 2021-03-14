@@ -9,7 +9,6 @@ import ReactGA from 'react-ga';
 
 // THE DEVIL YOU KNOW - SINGULARITY COMETH.
 ReactGA.initialize('UA-192090799-1', {
-  debug: true,
   gaOptions: {
     cookieDomain: 'auto',
   },

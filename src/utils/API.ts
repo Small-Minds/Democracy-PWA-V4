@@ -1,6 +1,7 @@
 import axios from 'axios';
 import axiosRetry from 'axios-retry';
 import { getBackendURL } from './Urls';
+import ReactGA from 'react-ga';
 
 export const add = (a: number, b: number): number => {
   return a + b;
@@ -14,6 +15,15 @@ export const api = axios.create({
     'Content-Type': 'application/json',
   },
 });
+
+export type AnalyticsEvent = {
+  category: string;
+  action: string;
+}
+
+export const recordEvent = (input: AnalyticsEvent) => {
+  ReactGA.event(input);
+} 
 
 // DO NOT USE AXIOS OUTSIDE OF THIS PAGE.
 // Instead, import the 'api' object exported from this file.

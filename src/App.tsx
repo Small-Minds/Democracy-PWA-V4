@@ -6,7 +6,6 @@ import {
   Redirect,
   Route,
   Switch,
-  useHistory,
 } from 'react-router-dom';
 import { Col, Container, Content, FlexboxGrid, Icon, IconButton } from 'rsuite';
 import './App.css';
@@ -34,6 +33,7 @@ import {
   CredentialData,
   Credentials,
 } from './utils/Authentication';
+import GoogleAnalytics from './components/GoogleAnalytics';
 
 /**
  * Parent for the entire application.
@@ -50,7 +50,6 @@ function App() {
   const [info, showInfo] = useState<boolean>(false);
   //Set Up Localization Hook
   const [t] = useTranslation();
-  const history = useHistory();
 
   // Load JWTs and validate.
   useEffect(() => {
@@ -115,6 +114,7 @@ function App() {
         <User.Provider value={{ user, setUser }}>
           {working === false ? (
             <BrowserRouter>
+              <GoogleAnalytics />
               <Navigation />
               <FlexboxGrid justify="center">
                 <FlexboxGrid.Item

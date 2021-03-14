@@ -7,11 +7,9 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import ReactGA from 'react-ga';
 
-(function () {
-  // THE DEVIL YOU KNOW - SINGULARITY COMETH.
-  ReactGA.initialize('UA-192090799-1');
-  ReactGA.pageview('/');
-})();
+// THE DEVIL YOU KNOW - SINGULARITY COMETH.
+ReactGA.initialize('UA-192090799-1');
+ReactGA.pageview(window.location.pathname);
 
 ReactDOM.render(
   <React.StrictMode>

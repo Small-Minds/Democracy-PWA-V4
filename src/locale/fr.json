@@ -223,7 +223,7 @@
       "creatationDate": "Date de création de l'élection:"
     },
     "electionManager": {
-      "manager": "Exécuté par"
+      "manager": "Dirigé par"
     },
     "electionTimeline": {
       "appBegin": "Début de la période d'application",
@@ -260,6 +260,123 @@
     "semiLegal": {
       "termsOfService": "En utilisant ce système, vous acceptez de ne pas utiliser le site pour des activités illégales, de spammer d'autres utilisateurs, de violer les lois applicables ou d'être un connard général.",
       "privacyPolicy": "En utilisant ce service, vous acceptez d'autoriser la publication de votre nom et de votre adresse e-mail sur le site Web."
+    },
+    "v2": {
+      "labels": {
+        "forgotPassword": "Mot de passe oublié ?",
+        "processingResults": "Les résultats sont en cours d'examen, merci de votre patience.",
+        "invitedToViewElection": "Vous avez été invité à visionner une élection",
+        "loginToContinue": "Veuillez vous connecter pour voir cette page."
+      },
+      "errors": {
+        "error": "Erreur",
+        "pleaseLogInAgain": "Vos informations d'identification ne sont pas valides, veuillez vous connecter à nouveau.",
+        "electionInvalid": "Désolé, nous ne pouvons pas trouver cette élection.",
+        "cantDelete": "Désolé, nous n'avons pas pu supprimer cela. Veuillez réessayer plus tard.",
+        "notOnWhitelist": {
+          "title": "Erreur de permission",
+          "description": "Vous n'êtes pas sur la liste blanche pour cette élection. Si vous pensez qu'il s'agit d'une erreur, veuillez contacter l'organisateur."
+        },
+        "alreadySubmittedBallot": {
+          "title": "Un seul vote autorisé",
+          "description": "Vous avez déjà voté dans cette élection. Veuillez contacter l'organisateur de l'élection si vous pensez qu'il s'agit d'une erreur."
+        }
+      },
+      "infoModal": {
+        "titles": {
+          "tos": "Conditions d'utilisation",
+          "privacy": "Politique de confidentialité",
+          "contributors": "Contributeurs"
+        }
+      },
+      "passwordResetRequest": {
+        "title": "Demander une réinitialisation du mot de passe",
+        "description": "Nous vous enverrons un courriel contenant un lien que vous pourrez utiliser pour changer votre mot de passe.",
+        "form": {
+          "email": "Adresse e-mail",
+          "submit": "Demande de clé"
+        }
+      },
+      "candidateInfoComp": {
+        "btnTip": "Cliquez sur moi"
+      },
+      "platformList": {
+        "notVisibleWarning": "Les postes ne sont actuellement pas visibles pour les utilisateurs. Ils seront visibles lorsque la période de candidature sera terminée.",
+        "willShowAfterApplications": "Les candidatures sont actuellement ouvertes. Les plateformes seront affichées après la fin de la période de candidature.",
+        "willShowAfterReview": "Les candidatures sont actuellement fermées. Les plateformes sont en cours d'examen."
+      },
+      "passwordResetChange": {
+        "title": "Réinitialiser le mot de passe",
+        "description": "Veuillez entrer votre nouveau mot de passe pour continuer.",
+        "form": {
+          "password1": "Nouveau mot de passe",
+          "password2": "Saisissez à nouveau le nouveau mot de passe",
+          "submit": "Changer le mot de passe et se connecter"
+        }
+      },
+      "electionPage": {
+        "deleteNotification": {
+          "successTitle": "Succès",
+          "successBody": "L'élection a été supprimée avec succès."
+        },
+        "editWhitelistBtn": "Modifier la liste blanche",
+        "editElectionBtn": "Modifier l'élection"
+      },
+      "editWhitelistModal": {
+        "title": "Modifier la liste blanche",
+        "warning": "L'ajout d'e-mails à la liste blanche limitera les personnes qui peuvent participer à votre élection.",
+        "instructions": "Collez une liste d'emails en texte dans le champ ci-dessous, et elle sera scannée lorsqu'un utilisateur tentera de postuler à un poste ou de voter. Les utilisateurs qui ne figurent pas dans la liste ne pourront pas participer.",
+        "formLabel": "Liste blanche : ",
+        "submitBtn": "Soumettre",
+        "cancelBtn": "Annuler",
+        "successNotificationTitle": "Succès",
+        "successNotificationBody": "La liste blanche des élections a été mise à jour avec succès.",
+        "errorNotificationTitle": "Erreur",
+        "errorNotificationBody": "Échec de la mise à jour de la liste blanche des élections"
+      },
+      "editElectionModal": {
+        "title": "Modifier les détails de l'élection",
+        "instructions": "Vous pouvez modifier le titre et la description de l'élection en cours ici",
+        "titleLabel": "Titre",
+        "subtitleLabel": "Sous-titre",
+        "descriptionLabel": "Description",
+        "subBtn": "Soumettre",
+        "cancelBtn": "Annuler",
+        "successNotificationTitle": "Succès",
+        "successNotificationBody": "Les détails de l'élection ont été mis à jour avec succès",
+        "errorNotificationTitle": "Échoué",
+        "errorNotificationBody": "Échec de la mise à jour des détails de l'élection"
+      },
+      "votePage": {
+        "noContest": "Aucun candidat n'a postulé pour ce poste.",
+        "option": {
+          "abstain": "Abstention",
+          "noConfidence": "Vote de non-confiance"
+        }
+      },
+      "timespans": {
+        "preElection": "Future élection",
+        "submissionsOpen": "Soumissions ouvertes",
+        "submissionReview": "Examen des soumissions",
+        "campaigningPeriod": "Période de campagne",
+        "votingOpen": "Vote ouvert",
+        "processingResults": "Traitement des résultats",
+        "resultsReleased": "Résultats publiés"
+      },
+      "electionTimeline": {
+        "title": "Calendrier des élections",
+        "appEndAndReview": "Fin de la période de candidature, les plateformes sont examinées par le gestionnaire",
+        "appRelease": "Plateformes candidates publiées",
+        "voteEndAndReview": "Fin de la période de vote, résultats en cours d'examen par le gestionnaire",
+        "voteRelease": "Publication des résultats des élections"
+      },
+      "electionResults": {
+        "votesOfAbstention": "Votes d'abstention",
+        "votesOfNoConfidence": "Votes de non-confiance"
+      },
+      "general": {
+        "manager": "Gestionnaire"
+      }
     }
   }
 }

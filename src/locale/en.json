@@ -371,6 +371,10 @@
         "voteEndAndReview": "Voting period ends, results under review by manager",
         "voteRelease": "Election results released"
       },
+      "electionResults": {
+        "votesOfAbstention": "Votes of Abstention",
+        "votesOfNoConfidence": "Votes of No Confidence"
+      },
       "general": {
         "manager": "Manager"
       }

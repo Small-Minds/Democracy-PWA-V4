@@ -321,6 +321,7 @@ const Election: FC<RouteComponentProps> = ({ match }) => {
           )}
         </p>
         <br />
+        <br />
         <h3>{t('electionPage.resultSectionTitle')}</h3>
         {showTools && (
           <Fragment>
@@ -335,7 +336,6 @@ const Election: FC<RouteComponentProps> = ({ match }) => {
             <br />
           </Fragment>
         )}
-        <br />
         {manager ||
         (election.voting_release_time &&
           moment(election.voting_release_time).isBefore(moment())) ? (

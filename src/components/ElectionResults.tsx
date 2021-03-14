@@ -2,6 +2,7 @@ import React, { FC, Fragment, useEffect, useMemo, useState } from 'react';
 import { Fade } from 'react-awesome-reveal';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
+import { Icon } from 'rsuite';
 import ProgressLine from 'rsuite/lib/Progress/ProgressLine';
 import Loading from '../pages/Loading';
 import {
@@ -13,24 +14,26 @@ import {
 
 const Position: FC<{ position: PositionResult }> = ({ position }) => {
   const [t] = useTranslation();
-  let maxVotes = 0;
-
+  const [maxVotes, setMaxVotes] = useState<number>(0);
   /**
    * Returns a list of sorted candidates to display for the position.
    */
-  const sortedResults: CandidateResult[] = useMemo(
-    () =>
-      position.candidates
-        .map((value) => {
-          value.voteCount = value.votes.length;
-          if (value.voteCount > maxVotes) maxVotes = value.voteCount;
-          return value;
-        })
-        .sort((a, b) => {
-          return (b.voteCount || 0) - (a.voteCount || 0);
-        }),
-    [position]
-  );
+  const sortedResults: CandidateResult[] | undefined = useMemo(() => {
+    if (!position) return undefined; // Return undefined if position data not ready.
+    let maxVotesInResult = 0;
+    const res = position.candidates
+      .map((value) => {
+        value.voteCount = value.votes.length;
+        if (value.voteCount > maxVotesInResult)
+          maxVotesInResult = value.voteCount;
+        return value;
+      })
+      .sort((a, b) => {
+        return (b.voteCount || 0) - (a.voteCount || 0);
+      });
+    setMaxVotes(maxVotesInResult);
+    return res;
+  }, [position]);
 
   /**
    * Calculates if the top two candidates have equal votes.
@@ -43,12 +46,17 @@ const Position: FC<{ position: PositionResult }> = ({ position }) => {
   /**
    * If no position or candidates, show alternative views.
    */
-  if (!position) return null;
+  if (!position || !sortedResults) return null;
   if (sortedResults.length === 0)
     return (
       <div style={{ marginBottom: 30 }}>
         <h4>
-          {position.title}: {t('electionResults.noWinner')}
+          <b>{position.title}</b>{' '}
+          <Icon
+            icon="arrow-right-line"
+            style={{ margin: 5, marginRight: 10 }}
+          />
+          {t('electionResults.noWinner')}
         </h4>
       </div>
     );
@@ -58,37 +66,68 @@ const Position: FC<{ position: PositionResult }> = ({ position }) => {
       <br />
       {draw ? (
         <h4>
-          {position.title} &rarr; {t('electionResults.draw')}
+          <b>{position.title}</b>{' '}
+          <Icon
+            icon="arrow-right-line"
+            style={{ margin: 5, marginRight: 10 }}
+          />
+          {t('electionResults.draw')}
         </h4>
       ) : (
         <h4>
-          {position.title} &rarr; {sortedResults[0].user.name}
+          <b>{position.title}</b>{' '}
+          <Icon
+            icon="arrow-right-line"
+            style={{ margin: 5, marginRight: 10 }}
+          />
+          {sortedResults[0].user.name}
         </h4>
       )}
       <br />
-      {sortedResults.map((res, index) => {
-        const percent: number = ((res.voteCount || 0) / maxVotes) * 100;
-        const winner: boolean = (res.voteCount || 0) === maxVotes;
-        return (
-          <div key={index}>
-            <p>
-              <b>{res.user.name}</b> - {t('electionResults.votes')}:{' '}
-              {res.voteCount || 0}
-            </p>
-            <ProgressLine
-              percent={percent}
-              showInfo={false}
-              status={winner ? 'success' : undefined}
-            />
-          </div>
-        );
-      })}
-      <br />
-      <p>
-        Votes of Abstention: <code>{position.abstain}</code>
-        <br />
-        Votes of No Confidence: <code>{position.no_confidence}</code>
-      </p>
+      <Fade cascade delay={200} duration={200} damping={0.3}>
+        {sortedResults.map((res, index) => {
+          const percent: number = ((res.voteCount || 0) / maxVotes) * 100;
+          const winner: boolean = (res.voteCount || 0) === maxVotes;
+          return (
+            <div key={index}>
+              <p>
+                <b>{res.user.name}</b> - {t('electionResults.votes')}:
+                <b>
+                  <code>&nbsp;{res.voteCount || 0}</code>
+                </b>
+              </p>
+              <ProgressLine
+                percent={percent}
+                showInfo={false}
+                status={winner && !draw ? 'success' : undefined}
+              />
+            </div>
+          );
+        })}
+        <div>
+          <br />
+          {(position.abstain || position.no_confidence) && (
+            <Fragment>
+              {position.abstain && (
+                <p>
+                  {t('v2.electionResults.votesOfAbstention')}:
+                  <b>
+                    <code>&nbsp;{position.abstain}</code>
+                  </b>
+                </p>
+              )}
+              {position.no_confidence && (
+                <p>
+                  {t('v2.electionResults.votesOfNoConfidence')}:
+                  <b>
+                    <code>&nbsp;{position.no_confidence}</code>
+                  </b>
+                </p>
+              )}
+            </Fragment>
+          )}
+        </div>
+      </Fade>
     </div>
   );
 };
@@ -101,7 +140,6 @@ export default function ElectionResults() {
   useEffect(() => {
     if (!id) return;
     getElectionResult(id).then((res) => {
-      console.log(res); // TODO: Remove me!
       setElection(res);
       setLoading(false);
     });

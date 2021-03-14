@@ -5,6 +5,13 @@ import i18n from './i18n';
 import 'rsuite/dist/styles/rsuite-default.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import ReactGA from 'react-ga';
+
+(function () {
+  console.log('Starting Google Analytics.');
+  ReactGA.initialize('G-QQEWQFE672');
+  ReactGA.pageview('/');
+})();
 
 ReactDOM.render(
   <React.StrictMode>

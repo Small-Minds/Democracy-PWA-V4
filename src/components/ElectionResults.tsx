@@ -156,7 +156,7 @@ export default function ElectionResults() {
 
   return (
     <div>
-      <Fade cascade duration={400} triggerOnce damping={0.2}>
+      <Fade cascade delay={100} duration={400} triggerOnce damping={0.2}>
         {electionResult.positions.map(
           (position: PositionResult, index: number) => (
             <Position position={position} key={index} />

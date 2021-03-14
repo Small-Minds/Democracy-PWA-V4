@@ -8,8 +8,9 @@ import reportWebVitals from './reportWebVitals';
 import ReactGA from 'react-ga';
 
 (function () {
-  console.log('Starting Google Analytics.');
-  ReactGA.initialize('G-QQEWQFE672');
+  const id = 'UA-192090799-1';
+  console.log('Starting Google Analytics, id: ' + id);
+  ReactGA.initialize(id);
   ReactGA.pageview('/');
 })();
 

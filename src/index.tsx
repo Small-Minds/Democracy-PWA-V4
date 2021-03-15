@@ -7,6 +7,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import ReactGA from 'react-ga';
 import * as Sentry from '@sentry/react';
+import ReportError from './components/ReportError';
 
 // Returns true in development.
 const dev: boolean =
@@ -26,6 +27,7 @@ ReactGA.initialize('UA-192090799-1', {
 Sentry.init({
   debug: dev,
   environment: dev ? 'development' : 'production',
+  release: 'democracy@0.1.0',
   dsn:
     'https://09d854276f174feaa67947c83611ced8@o464543.ingest.sentry.io/5674705',
 });
@@ -33,7 +35,7 @@ Sentry.init({
 ReactDOM.render(
   <React.StrictMode>
     <I18nextProvider i18n={i18n}>
-      <Sentry.ErrorBoundary fallback={'Crap.'}>
+      <Sentry.ErrorBoundary fallback={<ReportError />}>
         <App />
       </Sentry.ErrorBoundary>
     </I18nextProvider>

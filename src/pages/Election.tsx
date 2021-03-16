@@ -122,6 +122,7 @@ const ManagementTools: FC<ElectionSubpage> = ({
           {t('v2.electionPage.editElectionBtn')}
         </IconButton>
         <IconButton
+          disabled
           appearance="primary"
           icon={<Icon icon="trash" />}
           color="red"

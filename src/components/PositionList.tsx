@@ -77,7 +77,6 @@ const PositionList: FC<PLProps> = ({ election, updateElection }) => {
                         <Button
                           appearance="primary"
                           color="red"
-                          disabled
                           onClick={() => {
                             setPositionId(position.id);
                             setIsDeletePositionModalOpen(true);

@@ -1,12 +1,7 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import { Fade } from 'react-awesome-reveal';
 import { useTranslation } from 'react-i18next';
-import {
-  BrowserRouter,
-  Redirect,
-  Route,
-  Switch,
-} from 'react-router-dom';
+import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import { Col, Container, Content, FlexboxGrid, Icon, IconButton } from 'rsuite';
 import './App.css';
 import InfoModal from './components/InfoModal';

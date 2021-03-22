@@ -201,7 +201,11 @@ export default function Vote() {
                 </Divider>
                 <br />
                 <h5>{t('votePage.ballotPosDescriptionTitle')}</h5>
-                <p>{pos.description}</p>
+                {pos.description.split('\n').map((line, index) => (
+                  <p key={index}>
+                    <i>{line}</i>
+                  </p>
+                ))}
                 <br />
                 {pos.candidates.length !== 0 ? (
                   <Fragment>

@@ -96,9 +96,11 @@ const PlatformDisplay: FC<PositionDisplayProps> = ({ position }) => {
         <div>
           <br />
           <h3>{position.title}</h3>
-          <p>
-            <i>{position.description}</i>
-          </p>
+          {position.description.split('\n').map((line, index) => (
+            <p key={index}>
+              <i>{line}</i>
+            </p>
+          ))}
         </div>
         <div>
           <br />

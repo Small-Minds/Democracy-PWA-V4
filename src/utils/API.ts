@@ -19,11 +19,11 @@ export const api = axios.create({
 export type AnalyticsEvent = {
   category: string;
   action: string;
-}
+};
 
 export const recordEvent = async (input: AnalyticsEvent) => {
   ReactGA.event(input);
-} 
+};
 
 // DO NOT USE AXIOS OUTSIDE OF THIS PAGE.
 // Instead, import the 'api' object exported from this file.

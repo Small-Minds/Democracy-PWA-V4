@@ -10,7 +10,6 @@ import { Fade } from 'react-awesome-reveal';
 import { useTranslation } from 'react-i18next';
 import { FlexboxGrid } from 'rsuite';
 import Loading from '../pages/Loading';
-import { clearTokens } from '../utils/API';
 import {
   Election,
   getPublicElectionList,
@@ -61,8 +60,6 @@ const PublicElectionList: FC<PELProps> = ({ filterDomain = false }) => {
       })
       .catch((err) => {
         console.error(err);
-        console.log('You are not authenticated, kicking out...');
-        clearTokens();
       })
       .finally(() => {
         setLoading(false);

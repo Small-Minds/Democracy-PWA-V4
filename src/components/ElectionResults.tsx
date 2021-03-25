@@ -84,7 +84,7 @@ const Position: FC<{ position: PositionResult }> = ({ position }) => {
         </h4>
       )}
       <br />
-      <Fade cascade delay={200} duration={200} damping={0.3}>
+      <Fade cascade delay={200} duration={200} damping={0.3} triggerOnce>
         {sortedResults.map((res, index) => {
           const percent: number = ((res.voteCount || 0) / maxVotes) * 100;
           const winner: boolean = (res.voteCount || 0) === maxVotes;

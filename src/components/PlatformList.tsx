@@ -18,6 +18,7 @@ import {
   IconButton,
   List,
   Message,
+  Panel,
   Placeholder,
 } from 'rsuite';
 import Loading from '../pages/Loading';
@@ -48,30 +49,39 @@ const CandidateListItem: FC<{ candidate: CandidateWithUserDetails }> = ({
 
   if (!candidate || !candidate.user || !candidate.user.email) return null;
   return (
-    <Fragment>
-      <FlexboxGrid justify="start" align="middle" style={{ marginBottom: 10 }}>
-        <FlexboxGrid.Item style={{ paddingRight: 10 }}>
-          <Avatar>
-            {userImage && (
-              <Fade triggerOnce duration={600} delay={100}>
-                <div>{userImage}</div>
-              </Fade>
-            )}
-          </Avatar>
-        </FlexboxGrid.Item>
-        <FlexboxGrid.Item componentClass={'div'}>
-          <h5>{candidate.user.name}</h5>
-          <p>
-            <code>{candidate.user.email}</code>
-          </p>
-        </FlexboxGrid.Item>
-      </FlexboxGrid>
-      <div>
-        {candidate.platform.split('\n').map((line, index) => (
-          <p key={index}>{line}</p>
-        ))}
-      </div>
-    </Fragment>
+    <div style={{ marginBottom: 10 }}>
+      <Panel
+        collapsible
+        bordered
+        header={
+          <div>
+            <FlexboxGrid justify="start" align="middle">
+              <FlexboxGrid.Item style={{ paddingRight: 12 }}>
+                <Avatar size="md">
+                  {userImage && (
+                    <Fade triggerOnce duration={600} delay={100}>
+                      <div>{userImage}</div>
+                    </Fade>
+                  )}
+                </Avatar>
+              </FlexboxGrid.Item>
+              <FlexboxGrid.Item componentClass={'div'}>
+                <h5>{candidate.user.name}</h5>
+                <p>
+                  <code>{candidate.user.email}</code>
+                </p>
+              </FlexboxGrid.Item>
+            </FlexboxGrid>
+          </div>
+        }
+      >
+        <div>
+          {candidate.platform.split('\n').map((line, index) => (
+            <p key={index}>{line}</p>
+          ))}
+        </div>
+      </Panel>
+    </div>
   );
 };
 
@@ -91,45 +101,35 @@ const PlatformDisplay: FC<PositionDisplayProps> = ({ position }) => {
   if (loading) return <Loading half />;
 
   return (
-    <Fragment>
-      <Fade cascade triggerOnce damping={0.1} duration={100}>
-        <div>
-          <br />
-          <h3>{position.title}</h3>
-          {position.description.split('\n').map((line, index) => (
-            <p key={index}>
-              <i>{line}</i>
-            </p>
+    <Fade cascade triggerOnce damping={0.1} duration={100}>
+      <div>
+        <br />
+        <h3>{position.title}</h3>
+        {position.description.split('\n').map((line, index) => (
+          <p key={index}>
+            <i>{line}</i>
+          </p>
+        ))}
+      </div>
+      <div>
+        <br />
+        <h4>
+          {candidates.length !== 0
+            ? t('platformList.title')
+            : t('platformList.emptyTitle')}
+        </h4>
+      </div>
+      <div style={{ marginTop: 10, marginBottom: 20 }}>
+        {loading && <Placeholder.Paragraph rows={3} active />}
+        <Fade cascade triggerOnce damping={0.1} duration={200} delay={100}>
+          {candidates.map((candidate, index) => (
+            <div key={index}>
+              <CandidateListItem candidate={candidate} />
+            </div>
           ))}
-        </div>
-        <div>
-          <br />
-          <h4>
-            {candidates.length !== 0
-              ? t('platformList.title')
-              : t('platformList.emptyTitle')}
-          </h4>
-        </div>
-        <div>
-          <List style={{ marginTop: 10, marginBottom: 20 }}>
-            {loading && (
-              <List.Item>
-                <Placeholder.Paragraph rows={3} active />
-              </List.Item>
-            )}
-            <Fade cascade triggerOnce damping={0.1} duration={200} delay={100}>
-              {candidates.map((candidate, index) => (
-                <div>
-                  <List.Item key={index}>
-                    <CandidateListItem candidate={candidate} />
-                  </List.Item>
-                </div>
-              ))}
-            </Fade>
-          </List>
-        </div>
-      </Fade>
-    </Fragment>
+        </Fade>
+      </div>
+    </Fade>
   );
 };
 

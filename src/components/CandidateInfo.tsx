@@ -81,7 +81,11 @@ export default function CandidateInfo({ candidate }: CandidateInfoModalInput) {
           </FlexboxGrid>
           <br />
           <h5>{t('candidateInfoComp.candidatePlatform')}</h5>
-          <p>{candidate.platform}</p>
+          <div style={{ marginTop: 10, marginBottom: 10 }}>
+            {candidate.platform.split('\n').map((line, index) => (
+              <p key={index}>{line}</p>
+            ))}
+          </div>
         </Modal.Body>
         <Modal.Footer>
           <Button

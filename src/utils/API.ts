@@ -2,6 +2,9 @@ import axios from 'axios';
 import axiosRetry from 'axios-retry';
 import { getBackendURL } from './Urls';
 import ReactGA from 'react-ga';
+import versionData from '../../package.json';
+
+const version: string = versionData.version.trim();
 
 export const add = (a: number, b: number): number => {
   return a + b;
@@ -37,10 +40,11 @@ export const recordEvent = async (input: AnalyticsEvent) => {
 const refreshURL = `/jwt-auth/token/refresh/`;
 
 export function getAccessToken() {
-  const token = localStorage.getItem('token') || '';
+  const token = localStorage.getItem(`token-${version}`) || '';
   const expiry =
-    new Date(Date.parse(localStorage.getItem('token-expiry') || '')) ||
-    undefined;
+    new Date(
+      Date.parse(localStorage.getItem(`token-expiry-${version}`) || '')
+    ) || undefined;
   const data = {
     token: token,
     expiry: expiry,
@@ -49,10 +53,11 @@ export function getAccessToken() {
 }
 
 export function getRefreshToken() {
-  const token = localStorage.getItem('refresh-token') || '';
+  const token = localStorage.getItem(`refresh-token-${version}`) || '';
   const expiry =
-    new Date(Date.parse(localStorage.getItem('refresh-token-expiry') || '')) ||
-    undefined;
+    new Date(
+      Date.parse(localStorage.getItem(`refresh-token-expiry-${version}`) || '')
+    ) || undefined;
 
   const data = {
     refreshToken: token,
@@ -64,22 +69,22 @@ export function getRefreshToken() {
 export function setNewAccessToken(token: string) {
   const now = new Date();
   now.setMinutes(now.getMinutes() + 5);
-  localStorage.setItem('token', token);
-  localStorage.setItem('token-expiry', now.toISOString());
+  localStorage.setItem(`token-${version}`, token);
+  localStorage.setItem(`token-expiry-${version}`, now.toISOString());
 }
 
 export function setNewRefreshToken(token: string) {
   const now = new Date(Date.now() + 12096e5); // Now + two weeks in ms.
-  localStorage.setItem('refresh-token', token);
-  localStorage.setItem('refresh-token-expiry', now.toISOString());
+  localStorage.setItem(`refresh-token-${version}`, token);
+  localStorage.setItem(`refresh-token-expiry-${version}`, now.toISOString());
 }
 
 export async function clearTokens(): Promise<void> {
   // console.log('Clearing credentials from storage...');
-  localStorage.removeItem('token');
-  localStorage.removeItem('token-expiry');
-  localStorage.removeItem('refresh-token');
-  localStorage.removeItem('refresh-token-expiry');
+  localStorage.removeItem(`token-${version}`);
+  localStorage.removeItem(`token-expiry-${version}`);
+  localStorage.removeItem(`refresh-token-${version}`);
+  localStorage.removeItem(`refresh-token-expiry-${version}`);
   return;
 }
 
@@ -106,7 +111,8 @@ export async function isAuthenticated(): Promise<boolean> {
   // If the refresh token is valid, attempt to get a new access token.
   if (isRefreshTokenValid()) {
     // console.log('Getting new access token using refresh token...');
-    const refreshToken = localStorage.getItem('refresh-token') || null;
+    const refreshToken =
+      localStorage.getItem(`refresh-token-${version}`) || null;
     if (refreshToken == null) throw new Error('No stored refresh token.');
 
     try {

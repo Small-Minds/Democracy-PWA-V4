@@ -89,6 +89,7 @@ export default function CandidateInfo({ candidate }: CandidateInfoModalInput) {
         </Modal.Body>
         <Modal.Footer>
           <Button
+            style={{ marginTop: 10 }}
             onClick={() => {
               setOpen(false);
             }}

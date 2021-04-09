@@ -2,6 +2,9 @@ import React, { FC } from 'react';
 import { Fade } from 'react-awesome-reveal';
 import { useTranslation } from 'react-i18next';
 import { Modal, Button, Content } from 'rsuite';
+import versionInfo from '../../package.json';
+
+const version = versionInfo.version;
 
 interface InfoModalProps {
   open: boolean;
@@ -19,6 +22,10 @@ const InfoModal: FC<InfoModalProps> = ({ open, setOpen }) => {
       <Modal.Body>
         <Content>
           <h1>Democracy</h1>
+          <p>
+            <code>Build {version}</code>
+          </p>
+          <br />
           <br />
           <p>
             Built by <b>Ryan Fleck</b> and <b>Mengxuan Chen</b>, the{' '}

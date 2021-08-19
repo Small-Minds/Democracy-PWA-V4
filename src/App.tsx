@@ -29,6 +29,9 @@ import {
   Credentials,
 } from './utils/Authentication';
 import GoogleAnalytics from './components/GoogleAnalytics';
+import versionInfo from '../package.json';
+
+const version = versionInfo.version;
 
 /**
  * Parent for the entire application.
@@ -213,12 +216,17 @@ function App() {
                       <FlexboxGrid.Item>
                         <Fade delay={1500} duration={1000} triggerOnce>
                           <div>
-                            <IconButton
-                              appearance="subtle"
-                              size="lg"
-                              icon={<Icon icon="info-circle" />}
-                              onClick={() => showInfo(true)}
-                            ></IconButton>
+                            <div>
+                              <IconButton
+                                appearance="subtle"
+                                size="lg"
+                                icon={<Icon icon="info-circle" />}
+                                onClick={() => showInfo(true)}
+                              ></IconButton>
+                            </div>
+                            <div>
+                              <code className="version-number">{version}</code>
+                            </div>
                           </div>
                         </Fade>
                       </FlexboxGrid.Item>

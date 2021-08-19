@@ -91,3 +91,7 @@ p {
 a:hover {
   text-decoration: none;
 }
+
+.version-number {
+  color: #ccc;
+}

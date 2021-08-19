@@ -60,7 +60,6 @@ const InfoModal: FC<InfoModalProps> = ({ open, setOpen }) => {
             </li>
           </ul>
           <br />
-          <br />
           <h4>{t('v2.infoModal.titles.contributors')}</h4>
           <p>Contributors provided alternative translations for the web app.</p>
           <br />
@@ -79,13 +78,29 @@ const InfoModal: FC<InfoModalProps> = ({ open, setOpen }) => {
             </li>
           </ul>
           <br />
-          <br />
           <h4>{t('v2.infoModal.titles.tos')}</h4>
           {t('semiLegal.termsOfService')}
           <br />
           <br />
           <h4>{t('v2.infoModal.titles.privacy')}</h4>
           {t('semiLegal.privacyPolicy')}
+          <br />
+          <br />
+          <h4>Open Source</h4>
+          <p>
+            Source code for the frontend and backend of this application is
+            pubilshed under open source licenses and can be freely extended.
+          </p>
+          <br />
+          <p>
+            <a
+              href="https://github.com/Small-Minds"
+              target="_blank"
+              rel="nofollow noopener noreferrer"
+            >
+              Small Minds Repositories
+            </a>
+          </p>
           <br />
           <br />
           {process.env.NODE_ENV !== 'production' && (

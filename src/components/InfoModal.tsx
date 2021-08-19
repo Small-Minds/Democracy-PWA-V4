@@ -59,6 +59,12 @@ const InfoModal: FC<InfoModalProps> = ({ open, setOpen }) => {
           {t('semiLegal.privacyPolicy')}
           <br />
           <br />
+          {process.env.NODE_ENV !== 'production' && (
+            <>
+              <h4>Development Information</h4>
+              <p>Backend URL: {process.env.REACT_APP_BACKEND_URL}</p>
+            </>
+          )}
         </Content>
       </Modal.Body>
       <Modal.Footer>

@@ -35,11 +35,9 @@ export const locales = [
   // { name: 'বাংলা', key: 'bn' },
   // { name: 'हिन्दी', key: 'hi' },
 ];
-// Returns true in development.
-const dev: boolean =
-  window.location.hostname === 'localhost' ||
-  window.location.hostname === '127.0.0.1' ||
-  window.location.hostname === '';
+
+// Returns true in development/testing.
+const dev: boolean = process.env.NODE_ENV !== 'production';
 
 i18n
   .use(LanguageDetector)

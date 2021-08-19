@@ -29,6 +29,14 @@ When adding new features, please use the semantic commit style with these labels
 - **test**: Adding missing or correcting existing tests
 - **chore**: Changes to the build process or auxiliary tools and libraries such as documentation generation
 
+## Deployment
+
+The following environment variables must be set in your deployment environment.
+
+```
+REACT_APP_BACKEND_URL=https://your-deployed-app.domain.com
+```
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

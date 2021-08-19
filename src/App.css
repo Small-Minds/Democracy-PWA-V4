@@ -1,4 +1,5 @@
-body {
+body,
+html {
   /* Use System Fonts */
   /* Default: Apple-System, Arial, Helvetica, "PingFang SC", "Hiragino Sans GB",
 "Microsoft YaHei", STXihei, sans-serif */
@@ -7,7 +8,12 @@ body {
     segoe ui, sans-serif, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei',
     STXihei, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
   text-rendering: optimizeLegibility;
+  font-feature-settings: 'liga' on, 'calt' on;
+  font-synthesis: none;
+  scroll-behavior: smooth;
+}
 
+body {
   /* To prevent jank, always show the scrollbar. */
   overflow-y: scroll;
   /* min-width: 420px; */

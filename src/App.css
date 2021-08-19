@@ -95,3 +95,7 @@ a:hover {
 .version-number {
   color: #ccc;
 }
+
+.rs-notification {
+  max-width: calc(100vw - 48px);
+}

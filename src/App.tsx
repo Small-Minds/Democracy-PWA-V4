@@ -216,17 +216,23 @@ function App() {
                       <FlexboxGrid.Item>
                         <Fade delay={1500} duration={1000} triggerOnce>
                           <div>
-                            <div>
-                              <IconButton
-                                appearance="subtle"
-                                size="lg"
-                                icon={<Icon icon="info-circle" />}
-                                onClick={() => showInfo(true)}
-                              ></IconButton>
-                            </div>
-                            <div>
+                            <IconButton
+                              appearance="subtle"
+                              size="lg"
+                              icon={<Icon icon="info-circle" />}
+                              onClick={() => showInfo(true)}
+                            ></IconButton>
+                          </div>
+                        </Fade>
+                      </FlexboxGrid.Item>
+                    </FlexboxGrid>
+                    <FlexboxGrid justify="center" align="middle">
+                      <FlexboxGrid.Item>
+                        <Fade delay={1800} duration={1000} triggerOnce>
+                          <div>
+                            <small>
                               <code className="version-number">{version}</code>
-                            </div>
+                            </small>
                           </div>
                         </Fade>
                       </FlexboxGrid.Item>

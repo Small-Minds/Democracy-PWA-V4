@@ -1,8 +1,11 @@
 import React, { FC } from 'react';
+import { useState } from 'react';
+import { useEffect } from 'react';
 import { Fade } from 'react-awesome-reveal';
 import { useTranslation } from 'react-i18next';
 import { Modal, Button, Content } from 'rsuite';
 import versionInfo from '../../package.json';
+import { AppInfo, info } from '../utils/api/Alive';
 
 const version = versionInfo.version;
 
@@ -13,6 +16,19 @@ interface InfoModalProps {
 
 const InfoModal: FC<InfoModalProps> = ({ open, setOpen }) => {
   const [t] = useTranslation();
+  const [backendVersion, setBackendVersion] = useState<string>('0.0.0');
+
+  // Get backend version number.
+  useEffect(() => {
+    info()
+      .then((res) => {
+        const info: AppInfo = res.data;
+        setBackendVersion(info.api_version);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }, []);
 
   return (
     <Modal show={open} onHide={() => setOpen(false)}>
@@ -23,17 +39,30 @@ const InfoModal: FC<InfoModalProps> = ({ open, setOpen }) => {
         <Content>
           <h1>Democracy</h1>
           <p>
-            <code>Build {version}</code>
+            <b>
+              <code>
+                Frontend v{version} &amp; Backend v{backendVersion}
+              </code>
+            </b>
           </p>
           <br />
-          <br />
+          <h4>Development Team</h4>
           <p>
-            Built by <b>Ryan Fleck</b> and <b>Mengxuan Chen</b>, the{' '}
-            <b>Small Minds</b> team circa 2020.
+            Built by the <b>Small Minds</b> team circa 2020.
           </p>
+          <br />
+          <ul>
+            <li>
+              <b>Ryan Fleck</b> &middot; Development Lead for BE/FE
+            </li>
+            <li>
+              <b>Mengxuan (Max) Chen</b> &middot; Frontend Developer, UX
+            </li>
+          </ul>
           <br />
           <br />
           <h4>{t('v2.infoModal.titles.contributors')}</h4>
+          <p>Contributors provided alternative translations for the web app.</p>
           <br />
           <ul>
             <li>
@@ -45,9 +74,9 @@ const InfoModal: FC<InfoModalProps> = ({ open, setOpen }) => {
             <li>
               <b>RuiFeng Tian</b> &middot; Chinese translation
             </li>
-            {/* <li>
-              <b>Sirjan S. Rekhi</b> &middot; Hindi translation
-            </li> */}
+            <li>
+              <b>Mengxuan Chen</b> &middot; Chinese translation
+            </li>
           </ul>
           <br />
           <br />

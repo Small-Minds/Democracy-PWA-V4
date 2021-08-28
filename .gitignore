@@ -29,3 +29,5 @@ yarn-error.log*
 # Die, NPM.
 package-lock.json
 debug.log
+
+.env

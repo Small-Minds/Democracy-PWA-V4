@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  democracy-pwa:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    image: smallminds/democracy-pwa
+    container_name: democracy-pwa
+    environment:
+      - REACT_APP_BACKEND_URL=${REACT_APP_BACKEND_URL}
+    ports:
+      - 1789:80

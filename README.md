@@ -31,10 +31,12 @@ When adding new features, please use the semantic commit style with these labels
 
 ## Deployment
 
-The following environment variables must be set in your deployment environment.
+The following environment variables **must** be set in your deployment environment.
 
 ```
 REACT_APP_BACKEND_URL=https://your-deployed-app.domain.com
+REACT_APP_GA_KEY=UA-19230...
+REACT_APP_SENTRY_KEY=https://09d854276f174...
 ```
 
 # Getting Started with Create React App

@@ -10,27 +10,28 @@ import * as Sentry from '@sentry/react';
 import ReportError from './components/ReportError';
 
 // Returns true in development.
-const dev: boolean =
-  window.location.hostname === 'localhost' ||
-  window.location.hostname === '127.0.0.1' ||
-  window.location.hostname === '';
+const dev: boolean = !process.env.NODE_ENV || process.env.NODE_ENV === 'development';
 
-// THE DEVIL YOU KNOW - SINGULARITY COMETH.
-ReactGA.initialize('UA-192090799-1', {
+// Google Analytics
+if (!process.env.REACT_APP_GA_KEY)
+  console.error("Please redeoploy the app with a valid google analytics key.");
+ReactGA.initialize(process.env.REACT_APP_GA_KEY || "", {
   debug: dev,
   gaOptions: {
     cookieDomain: 'auto',
   },
 });
 
-// THE DEVIL YOU DON'T - ERROR REPORTING.
+// Sentry for Error Reporting
+if (!process.env.REACT_APP_SENTRY_KEY)
+  console.error("Please redeoploy the app with a valid sentry key.");
 Sentry.init({
   debug: dev,
   environment: dev ? 'development' : 'production',
   release: 'democracy@0.1.0',
-  dsn:
-    'https://09d854276f174feaa67947c83611ced8@o464543.ingest.sentry.io/5674705',
+  dsn: process.env.REACT_APP_SENTRY_KEY || "",
 });
+
 
 ReactDOM.render(
   <React.StrictMode>

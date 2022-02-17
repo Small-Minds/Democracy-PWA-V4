@@ -16,7 +16,7 @@ export default function ReportError() {
       <Button
         block
         appearance="primary"
-        onClick={() => window.location.reload(true)}
+        onClick={() => window.location.reload()}
       >
         Refresh
       </Button>

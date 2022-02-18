@@ -1,6 +1,7 @@
 # Democracy PWA V3
 
 ![CI](https://github.com/Small-Minds/Democracy-PWA-V3/workflows/CI/badge.svg?branch=master)
+![Libraries.io dependency status for GitHub repo](https://img.shields.io/librariesio/github/Small-Minds/Democracy-PWA-V3)
 
 This is the third iteration of the Democracy frontend.
 

@@ -55,7 +55,7 @@ const PositionList: FC<PLProps> = ({ election, updateElection }) => {
         <List>
           <Fade cascade triggerOnce damping={0.2} duration={200} delay={100}>
             {election.positions.map((position, index) => (
-              <div>
+              <div key={index}>
                 <List.Item key={index}>
                   <FlexboxGrid align="middle" justify="space-between">
                     <FlexboxGrid.Item

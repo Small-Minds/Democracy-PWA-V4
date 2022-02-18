@@ -120,7 +120,7 @@ export default function EditWhiteListModal({
                 name="whitelist"
                 componentClass="textarea"
                 rows={20}
-                placeholder="whitelist"
+                placeholder="leave blank to disable whitelist"
                 type="string"
               />
             </FormGroup>

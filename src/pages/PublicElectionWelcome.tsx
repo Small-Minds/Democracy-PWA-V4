@@ -28,7 +28,6 @@ const PublicElectionWelcome: FC = () => {
         setSparseElectionDetails(res.data);
       })
       .catch((res) => {
-        console.error(res);
         setSparseElectionDetails({
           title: 'Bad ID?',
           subtitle: "We couldn't find that Election.",

@@ -80,7 +80,6 @@ const AddPositionModal: FC<APMProps> = ({
         setFormData({}); // Clear form data after successful submission.
       })
       .catch((x) => {
-        console.error(x);
         Notification['error']({
           title: t('createElectionBtn.failMsgTitle'),
           description: t('createElectionBtn.failMsg'),

@@ -214,7 +214,7 @@ const PlatformList: FC<PLProps> = ({ election }) => {
         <Fragment>
           <Fade cascade triggerOnce damping={0.1} duration={200} delay={50}>
             {election.positions.map((position, index) => (
-              <div>
+              <div key={index}>
                 <PlatformDisplay key={index} position={position} />
               </div>
             ))}

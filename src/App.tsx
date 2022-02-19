@@ -39,9 +39,8 @@ const version = versionInfo.version;
  */
 function App() {
   // When the app first starts, it is unauthenticated.
-  const [credentials, setCredentials] = useState<CredentialData>(
-    blankCredentialData
-  );
+  const [credentials, setCredentials] =
+    useState<CredentialData>(blankCredentialData);
   const [user, setUser] = useState<UserInfo>(blankUserInfo);
   // If processing credentials, be working.
   const [working, setWorking] = useState<boolean>(true);
@@ -226,7 +225,11 @@ function App() {
                         </Fade>
                       </FlexboxGrid.Item>
                     </FlexboxGrid>
-                    <FlexboxGrid justify="center" align="middle">
+                    <FlexboxGrid
+                      justify="center"
+                      align="middle"
+                      direction="column"
+                    >
                       <FlexboxGrid.Item>
                         <Fade delay={1800} duration={1000} triggerOnce>
                           <div>
@@ -237,6 +240,25 @@ function App() {
                         </Fade>
                       </FlexboxGrid.Item>
                     </FlexboxGrid>
+                    {process.env.REACT_APP_INSTANCE_NAME && (
+                      <FlexboxGrid
+                        justify="center"
+                        align="middle"
+                        direction="column"
+                      >
+                        <FlexboxGrid.Item>
+                          <Fade delay={1800} duration={1000} triggerOnce>
+                            <div>
+                              <small>
+                                <code className="version-number">
+                                  {process.env.REACT_APP_INSTANCE_NAME}
+                                </code>
+                              </small>
+                            </div>
+                          </Fade>
+                        </FlexboxGrid.Item>
+                      </FlexboxGrid>
+                    )}
                     <br />
                   </Container>
                 </FlexboxGrid.Item>

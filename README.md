@@ -1,11 +1,13 @@
-# Democracy PWA V3
+# Democracy PWA V4
 
 ![CI](https://github.com/Small-Minds/Democracy-PWA-V3/workflows/CI/badge.svg?branch=master)
 ![Libraries.io dependency status for GitHub repo](https://img.shields.io/librariesio/github/Small-Minds/Democracy-PWA-V3)
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/Small-Minds/Democracy-PWA-V3)
 ![Lines of code](https://img.shields.io/tokei/lines/github/Small-Minds/Democracy-PWA-V3)
 
-This is the third iteration of the Democracy frontend.
+This is the fourth iteration of the Democracy frontend.
+
+It is designed to be deployed on public clouds (not Heroku) like AWS, Azure, etc.
 
 Uses typescript, axios, and rsuite.
 
